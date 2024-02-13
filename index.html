@@ -51,13 +51,11 @@
             padding: 0;
         }
         ul li {
-            background: #333;
-            margin: 5px 0;
-            padding: 30px;
-            border-radius: 5px;
+            border-bottom: 1px solid #575757; /* Lighter than #333 for visibility */
+            padding-bottom: 10px; /* Add some padding to bottom */
         }
-        ul li:hover {
-            background: #575757;
+        ul li:not(:last-child) {
+            margin-bottom: 10px; /* Space between items */
         }
         /* Smooth Scroll */
         html {
