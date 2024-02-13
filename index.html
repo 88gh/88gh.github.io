@@ -51,6 +51,28 @@ header h1 {
     color: #ffffff; /* Ensure text is white */
     border: none;
 }
+/* Remove padding from the list-group */
+.section .list-group {
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 0;
+}
+/* Adjust padding for list-group-item */
+.section .list-group-item {
+    padding: 0; /* Removes padding inside each list group item */
+    border: none; /* Optional: removes the border if desired */
+}
+/* Additional adjustment for the row inside list-group-item to ensure alignment */
+.section .list-group-item .row {
+    margin-right: 0;
+    margin-left: 0;
+}
+/* keep some spacing inside each list group item(adjust the row's padding instead) */
+.section .list-group-item .row {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+    
 h2 {
     color: #ffffff;
     font-size: 20px;
