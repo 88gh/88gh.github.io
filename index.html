@@ -6,63 +6,66 @@
 <meta name="description" content="website of Geonhwi Hwang.">
 <meta name="author" content="Geonhwi Hwang">
 <title>Geonhwi Hwang</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #15151e;
-            color: #fff;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 20px;
-        }
-        header {
-            background: #15151e;
-            color: #fff;
-            padding-top: 30px;
-            min-height: 30px;
-            border-bottom: #0779e4 2px solid;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        header h1 {
-            text-align: left;
-            margin: 0;
-            font-size: 24px;
-        }
-        .section {
-            background-color: #323232; /* Slightly lighter than body bg */
-            margin: 10px 0;
-            padding: 20px;
-            border-radius: 6px; /* Rounded corners */
-            border: 1px solid #707070; /* Thin gray border */
-        }
-        h2 {
-            color: #0779e4;
-        }
-        p, li {
-            font-size: 18px;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        ul li {
-            border-bottom: 1px solid #575757; /* Lighter than #333 for visibility */
-            padding-bottom: 10px; /* Add some padding to bottom */
-        }
-        ul li:not(:last-child) {
-            margin-bottom: 10px; /* Space between items */
-        }
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #15151e;
+    color: #fff;
+    line-height: 1.6;
+}
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+header {
+    background: #15151e;
+    color: #fff;
+    padding-top: 30px;
+    min-height: 30px;
+    border-bottom: #0779e4 2px solid;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+header h1 {
+    text-align: left;
+    margin: 0;
+    font-size: 24px;
+}
+.section {
+    background-color: #323232;
+    margin: 10px 0;
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid #707070;
+}
+.badge {
+    background-color: white; /* Overwrites default badge background */
+    color: black; /* Sets text color */
+}
+h2 {
+    color: #0779e4;
+}
+p, li {
+    font-size: 18px;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+ul li {
+    border-bottom: 1px solid #575757; /* Lighter than #333 for visibility */
+    padding-bottom: 10px; /* Add some padding to bottom */
+}
+ul li:not(:last-child) {
+    margin-bottom: 10px; /* Space between items */
+}
+html {
+    scroll-behavior: smooth;
+}
+</style>
 </head>
     
 <body>
@@ -73,52 +76,61 @@
     </header>
     
     <div class="container">
-        <div class="section" id="curriculum-vitae">
-            <h2>Curriculum Vitae</h2>
-            <p>Geonhwi Hwang</p>
-            <p>Laboratory of Solid State Physics</p>
-            <p>Division of Applied Physics, Hokkaido University</p>
-            <p>theprex2_at_eis.hokudai.ac.jp (replace _at_ with @)</p>
+<div class="section" id="curriculum-vitae">
+    <h2>Curriculum Vitae</h2>
+    <p>Geonhwi Hwang</p>
+    <p>Laboratory of Solid State Physics</p>
+    <p>Division of Applied Physics, Hokkaido University</p>
+    <p>theprex2_at_eis.hokudai.ac.jp (replace _at_ with @)</p>
+</div>
+<div class="section" id="education">
+    <h2 style="color: white;">Education</h2>
+    <div class="row">
+        <div class="col-xs-2 col-sm-2 col-md-2 text-center" style="width: 75px;">
+            <span class="badge font-weight-bold danger-color-dark text-uppercase align-middle" style="min-width: 75px; background-color: white; color: black;">
+                Duration
+            </span>
         </div>
-        
-        <!-- Education Section -->
-        <div class="section" id="education">
-            <h2>Education</h2>
-            <p>MEng in Applied Physics, Graduate School of Engineering, Hokkaido University</p>
-            <p>BEng in Applied Physics, School of Engineering, Hokkaido University</p>
+        <div class="col-xs-10 col-sm-10 col-md-10">
+            <h6 class="title font-weight-bold ml-1 ml-md-4" style="color: white;">MEng in Applied Physics</h6>
+            <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem; color: white;">Graduate School of Engineering, Hokkaido University</h6>
         </div>
-
-        <!-- Publications Section -->
-        <div class="section" id="publications">
-            <h2>Publication</h2>
-            <ul>
-                <li>Geonhwi Hwang and Hideaki Obuse, "Bulk-Edge Correspondence for Point-Gap Topological Phases in Junction Systems", Phys. Rev. B 108, L121302 (2023)</li>
-            </ul>
+    </div>
+    <div class="row">
+        <div class="col-xs-2 col-sm-2 col-md-2 text-center" style="width: 75px;">
+            <span class="badge font-weight-bold danger-color-dark text-uppercase align-middle" style="min-width: 75px; background-color: white; color: black;">
+                Duration
+            </span>
         </div>
-        
-        <!-- Presentations Section -->
-        <div class="section" id="presentations">
-            <h2>Presentations</h2>
-            <ul>
-                <li>The Physical Society of Japan 2023 Spring Meeting(oral, 23pD1-6, 22-25Mar, 2023) (Online)</li>
-                <li>Physics of Open Systems and Beyond(oral, 17-23Aug, 2023)</li>
-                <li>The Physical Society of Japan 2023 Annual (78th) Meeting(oral, 18aA106-7, 16-19Sep, 2023)</li>
-                <li>Coherent Quantum Dynamics Summer School in Okinawa(poster, 26Sep-05Oct, 2023)</li>
-            </ul>
+        <div class="col-xs-10 col-sm-10 col-md-10">
+            <h6 class="title font-weight-bold ml-1 ml-md-4" style="color: white;">BEng in Applied Physics</h6>
+            <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem; color: white;">School of Engineering, Hokkaido University</h6>
         </div>
-
-        <!-- Scholarships and Awards Section -->
-        <div class="section" id="scholarships-awards">
-            <h2>Scholarships and Awards</h2>
-            <p>Scholarship, Korea-Japan Joint Science and Engineering Program International Student</p>
-            <!-- Add details as needed -->
-        </div>
-
-        <!-- Contact Section -->
-        <div class="section" id="contact">
-            <h2>Teaching Experiences</h2>
-            <p>For more information or to get in touch, please reach out via email at: your.email@example.com</p>
-        </div>
+    </div>
+</div>
+<div class="section" id="publications">
+    <h2>Publication</h2>
+    <ul>
+        <li>Geonhwi Hwang and Hideaki Obuse, "Bulk-Edge Correspondence for Point-Gap Topological Phases in Junction Systems", Phys. Rev. B 108, L121302 (2023)</li>
+    </ul>
+</div>
+<div class="section" id="presentations">
+    <h2>Presentations</h2>
+    <ul>
+        <li>The Physical Society of Japan 2023 Spring Meeting(oral, 23pD1-6, 22-25Mar, 2023) (Online)</li>
+        <li>Physics of Open Systems and Beyond(oral, 17-23Aug, 2023)</li>
+        <li>The Physical Society of Japan 2023 Annual (78th) Meeting(oral, 18aA106-7, 16-19Sep, 2023)</li>
+        <li>Coherent Quantum Dynamics Summer School in Okinawa(poster, 26Sep-05Oct, 2023)</li>
+    </ul>
+</div>
+<div class="section" id="scholarships-awards">
+    <h2>Scholarships and Awards</h2>
+    <p>Scholarship, Korea-Japan Joint Science and Engineering Program International Student</p>
+</div>
+<div class="section" id="contact">
+    <h2>Teaching Experiences</h2>
+    <p>For more information or to get in touch, please reach out via email at: your.email@example.com</p>
+</div>
     </div>
 </body>
 </html>
