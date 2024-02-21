@@ -35,19 +35,17 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    overflow: hidden; /* Ensure the pseudo-element does not extend outside the header */
+    display: flex;
+    justify-content: center;
 }
-
 header::after {
     content: '';
+    display: block;
+    height: 2px;
+    background-color: #80a060;
+    width: 800px; /* Width of the line */
     position: absolute;
-    bottom: 0; /* Align to the bottom of the header */
-    left: 50%; /* Start from the center */
-    width: 800px; /* Total width of the visible border */
-    height: 2px; /* Height of the border */
-    background: linear-gradient(to right, transparent, #80a060, transparent);
-    transform: translateX(-50%); /* Center the element */
-    z-index: 10;
+    bottom: 0; /* Position it at the bottom of the header */
 }
 
 header h1 {
