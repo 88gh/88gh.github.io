@@ -41,19 +41,18 @@ header::after {
     content: '';
     position: absolute;
     bottom: 0; /* Align to the bottom of the header */
-    left: 50%; /* Start from the center */
+    left: 50%; /* Center the element */
     width: 1500px; /* Total width of the visible border */
     height: 2px; /* Height of the border */
     background: linear-gradient(to right, 
-                                transparent, 
-                                transparent 350px, /* Start fade in */
-                                #80a060 350px, /* Solid color starts */
-                                #80a060 1150px, /* Solid color ends */
-                                transparent 1150px, /* Start fade out */
-                                transparent);
-    transform: translateX(-50%); /* Center the element */
+                                transparent 0%, 
+                                #80a060 23.33%, /* Start solid color more gradually */
+                                #80a060 76.67%, /* End solid color more gradually */
+                                transparent 100%);
+    transform: translateX(-50%); /* Center the element horizontally */
     z-index: 10;
 }
+
 
 header h1 {
     text-align: left;
