@@ -152,6 +152,14 @@ html {
         padding-right: 15px;
     }
 }
+.content-indent {
+    display: inline-block; /* Make span behave like a block for margins but inline for flow */
+    margin-left: 20px; /* Adjust as needed to align with the text after the bullet */
+    text-indent: -20px; /* Pull the first line back to start at the bullet point */
+    max-width: calc(100% - 20px); /* Prevent text from extending under the bullet */
+}
+
+
 </style>
 </head>
 <body>
@@ -231,13 +239,12 @@ Unauthorized use, duplication, or dissemination of this information is strictly 
 <div class="section" id="pre">
     <h2>Presentations</h2>
     <ul>
-        <li>&#9633; The Physical Society of Japan 2023 Spring Meeting(oral, 23pD1-6, 22-25Mar, 2023) (Online)</li>
+        <li>&#9679; The Physical Society of Japan 2023 Spring Meeting(oral, 23pD1-6, 22-25Mar, 2023) (Online)</li>
         <li>&#8226; Physics of Open Systems and Beyond(oral, 17-23Aug, 2023)</li>
         <li>&#8226; The Physical Society of Japan 2023 Annual (78th) Meeting(oral, 18aA106-7, 16-19Sep, 2023)</li>
         <li>&#8226; Coherent Quantum Dynamics Summer School in Okinawa(poster, 26Sep-05Oct, 2023)</li>
     </ul>
 </div>
-
 <div class="section" id="sch">
     <h2>Scholarships and Awards</h2>
 <div class="list-group">
