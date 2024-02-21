@@ -37,15 +37,20 @@ header {
     z-index: 1000;
     display: flex;
     justify-content: center;
+    position: relative; 
 }
 header::after {
     content: '';
-    display: block;
-    height: 2px;
-    background-color: #80a060;
-    width: 800px; /* Width of the line */
     position: absolute;
-    bottom: 0; /* Position it at the bottom of the header */
+    bottom: 0; /* Align to the bottom of the header */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for exact centering */
+    width: 100%; /* Full width of the header */
+    height: 2px; /* Height of your line */
+    background-image: url('path/to/your/line.svg'); /* Path to your SVG */
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 800px 2px; /* Width and height of the SVG background */
 }
 
 header h1 {
