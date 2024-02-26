@@ -122,6 +122,9 @@ html {
     padding: 10px;
     border-radius: 6px;
 }
+.secfpf h2 {
+    margin-bottom: 20px;
+}
 .section {
     background-color: #303030;
     margin: 0;
@@ -170,6 +173,14 @@ html {
         text-align: center;
     }
 }
+@media (max-width: 767.98px) {
+    .secfpf .container .row .col-md-4 {
+        order: -1;
+    }
+    .secfpf img {
+        margin-bottom: 20px;
+    }
+}
 
 </style>
 </head>
@@ -187,10 +198,16 @@ Unauthorized use, duplication, or dissemination of this information is strictly 
 <div class="container">
 <div class="secfpf" id="cur">
     <h2>Curriculum Vitae</h2>
+<div class="row">
+    <div class="col-md-4 order-md-2 text-center">
+        <img src="https://via.placeholder.com/200" alt="Profile Picture" class="img-fluid rounded-circle" style="max-width: 200px; margin: auto;">
+    </div>
+    <div class="col-md-8 order-md-1">
     <p>Geonhwi Hwang</p>
     <p>Laboratory of Solid State Physics</p>
     <p>Division of Applied Physics, Hokkaido University</p>
     <p>theprex2_at_eis.hokudai.ac.jp (replace _at_ with @)</p>
+    </div>
 </div>
 <div class="section" id="edu">
     <h2>Education</h2>
