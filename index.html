@@ -133,6 +133,7 @@ html {
     padding-bottom: 10px;
     border: none; 
     border-top: 1px solid #575757;
+    border-radius: 0px;
 }
 .section .list-group-item .badge {
     display: inline-block;
@@ -148,6 +149,10 @@ html {
     padding-right: 0;
 }
 @media (min-width: 768px) {
+    .section .row > [class*='col-'] {
+        padding-left: 0;
+        padding-right: 0;
+    }
     .section .list-group-item .col-md-auto {
         padding-right: 15px;
     }
