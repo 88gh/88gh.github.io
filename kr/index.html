@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Welcome to Geonhwi Hwang's webpage.">
+<meta name="author" content="Geonhwi Hwang">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="icon" type="image/png" href="https://github.com/88gh/88gh.github.io/blob/main/icon_gh_r1.png?raw=true">
+<title>Geonhwi Hwang's webpage</title>
+<!-- 
+Copyright (C) 2024 Geonhwi Hwang. All Rights Reserved.
+NOTICE: All information contained herein is, and remains the property of Geonhwi Hwang. The intellectual and technical concepts contained herein are proprietary and protected by copyright law.
+Unauthorized use, duplication, or dissemination of this information is strictly forbidden without prior written permission from Geonhwi Hwang. This includes unauthorized analysis, deobfuscation, or reverse engineering for any purpose.
+-->
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #202020;
+    color: #ffffff;
+    line-height: 1.6;
+}
+.container {
+    max-width: 768px;
+    margin: auto;
+    padding: 4px;
+}
+header {
+    background: #202020;
+    color: #ffffff;
+    padding-top: 6px;
+    padding-bottom: 2px;
+    margin: 0;
+    min-height: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    overflow: hidden;
+}
+header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; /* Align to the bottom of the header */
+    left: 50%; /* Center the element */
+    width: 1500px; /* Total width of the visible border */
+    height: 2.4px; /* Height of the border */
+    background: linear-gradient(to right, 
+                                transparent 0%, 
+                                #80a060 23.33%, /* Start solid color more gradually */
+                                #80a060 76.67%, /* End solid color more gradually */
+                                transparent 100%);
+    transform: translateX(-50%); /* Center the element horizontally */
+    z-index: 10;
+}
+
+
+header h1 {
+    text-align: left;
+    margin: 0;
+    font-size: 24px;
+}
+h2 {
+    color: #ffffff;
+    font-size: 22px;
+    padding: 8px;
+}
+p, li {
+    font-size: 16px;
+}
+p {
+    margin: 0;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+ul li {
+    border-top: 1px solid #575757;
+    padding-top: 8px;
+    padding-bottom: 7px;
+}
+ul li:not(:last-child) {
+    margin-bottom: 10px;
+}
+footer {
+    padding: 0px 0;
+    background-color: white;
+    color: black;
+    font-size: 0.6rem;
+}
+footer * {
+    margin: 0;
+    padding: 0;
+}
+footer .container {
+    padding: 0;
+}
+footer a {
+    color: black;
+    text-decoration: none;
+}
+footer a:hover, footer a:focus {
+    color: green;
+}
+html {
+    scroll-behavior: smooth;
+}
+.badge {
+    background-color: #80a060;
+    margin-left: 0;
+    margin-right: 0;
+}
+.badger {
+    background-color: #a06060;
+    margin-left: 0;
+    margin-right: 0;
+}
+.badgeb {
+    background-color: #6080a0;
+    margin-left: 0;
+    margin-right: 0;
+}
+.custom-list-item {
+    background-color: #303030;
+    color: #ffffff;
+    border: none;
+}
+.secfpf {
+    background-color: #202020;
+    margin: 0;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    padding: 10px;
+    border-radius: 6px;
+}
+.secfpf h2 {
+    margin-bottom: 0px;
+}
+.secfpf p {
+    margin-top: 4px;
+    font-size: 16px;
+}
+.section {
+    background-color: #303030;
+    margin: 0;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1.6px solid #404937;
+}
+#tea {
+    margin-bottom: 32px;
+}
+.section .list-group {
+    padding-left: 0;
+    padding-right: 0;
+}
+.section .list-group-item {
+    padding: 0; 
+    padding-top: 8px;
+    padding-bottom: 10px;
+    border: none; 
+    border-top: 1px solid #575757;
+    border-radius: 0px;
+}
+.section .list-group-item .badge, 
+.section .list-group-item .badger, 
+.section .list-group-item .badgeb {
+    display: inline-block;
+    min-width: 150px;
+    text-align: center;
+}
+
+.section .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+.section .row > [class*='col-'] {
+    padding-left: 0;
+    padding-right: 0;
+}
+@media (min-width: 768px) {
+    .section .list-group-item .col-md-auto {
+        padding-right: 15px;
+    }
+}
+@media (max-width: 767.98px) {
+    .section .list-group-item .col-md > div:first-child strong {
+        display: block;
+        text-align: center;
+    }
+}
+@media (max-width: 767.98px) {
+    .secfpf .container .row .col-md-4 {
+        order: -1;
+    }
+    .secfpf img {
+        margin-bottom: 20px;
+    }
+}
+@media (min-width: 768px) {
+    div.col-md-8.order-md-1 p.curpmaq {
+        margin-top: 48px;
+    }
+    div.col-md-8.order-md-1 p.curpmaw {
+        margin-bottom: 12px;
+    }
+}
+</style>
+</head>
+<body>
+<!-- 
+Copyright (C) 2024 Geonhwi Hwang. All Rights Reserved.
+NOTICE: All information contained herein is, and remains the property of Geonhwi Hwang. The intellectual and technical concepts contained herein are proprietary and protected by copyright law.
+Unauthorized use, duplication, or dissemination of this information is strictly forbidden without prior written permission from Geonhwi Hwang. This includes unauthorized analysis, deobfuscation, or reverse engineering for any purpose.
+-->
+<header>
+<div class="container"><img src="https://github.com/88gh/88gh.github.io/blob/main/icon_gh_r1.png?raw=true" alt="icon" style="height:27px; float:left; margin-left:1px; margin-right:10px;">
+<h1><a href="https://bio.link/geonhwi" style="color: inherit; text-decoration: none;">Geonhwi Hwang's webpage</a></h1>
+</div>
+</header>
+<div class="container">
+<div class="secfpf" id="cur">
+    <h2>Curriculum Vitae</h2>
+<div class="row">
+    <div class="col-md-4 order-md-2 text-center">
+        <img src="https://github.com/88gh/88gh.github.io/blob/main/20231101_034909.jpg?raw=true" alt="Profile Picture" class="img-fluid rounded-circle" style="max-width: 200px; margin: 0px, margin-left: 20px, margin-right: 20px;">
+    </div>
+    <div class="col-md-8 order-md-1">
+    <p class="curpmaq" style="font-size: 18px;"><strong>Geonhwi Hwang</strong></p>
+    <p>Laboratory of Solid State Physics</p>
+    <p>Division of Applied Physics</p>
+    <p>Graduate School of Engineering, Hokkaido University</p>
+    <p class="curpmaw">theprex2_at_eis.hokudai.ac.jp (replace _at_ with @)</p>
+    </div>
+</div>
+</div>
+<div class="secfpf" id="lin">
+<div class="row">
+<div class="col-md-2 col-3 text-center">
+    <a href="mailto:%74%68%65%70%72%65%78%32%40%65%69%73%2E%68%6F%6B%75%64%61%69%2E%61%63%2E%6A%70">
+        <img src="https://github.com/88gh/88gh.github.io/blob/main/Gmail_Logo_512px_2.png?raw=true" alt="E-mail" class="img-fluid rounded" style="max-width: 70px;">
+    </a>
+</div>
+<div class="col-md-2 col-3 text-center">
+    <a href="https://bio.link/geonhwi">
+        <img src="https://github.com/88gh/88gh.github.io/blob/main/bio.link.png?raw=true" alt="BIO LINK" class="img-fluid rounded" style="max-width: 70px;">
+    </a>
+</div>
+<div class="col-md-2 col-3 text-center">
+    <a href="https://orcid.org/0009-0005-2973-255X">
+        <img src="https://github.com/88gh/88gh.github.io/blob/main/ORCID_iD.png?raw=true" alt="ORCID" class="img-fluid rounded" style="max-width: 70px;">
+    </a>
+</div>
+<div class="col-md-2 col-3 text-center">
+    <a href="mailto:%74%68%65%70%72%65%78%31%40%6E%61%76%65%72%2E%63%6F%6D">
+        <img src="https://github.com/88gh/88gh.github.io/blob/main/naver_mail.png?raw=true" alt="NAVER E-mail" class="img-fluid rounded" style="max-width: 70px;">
+    </a>
+</div>
+<div class="col-md-2 col-3 text-center">
+    <a href="https://3sunbiedu.com/">
+        <img src="https://github.com/88gh/88gh.github.io/blob/main/3sunbiedu_sq_4_1.png?raw=true" alt="3sunbiedu" class="img-fluid rounded" style="max-width: 70px;">
+    </a>
+</div>
+</div>
+</div>
+<div class="section" id="edu">
+    <h2>Education</h2>
+<div class="list-group">
+<div class="list-group-item custom-list-item">
+<div class="row">
+    <div class="col-md-auto col-12 text-center">
+        <span class="badge badgeb badge-primary">APR. 2024 - present</span>
+    </div>
+    <div class="col-md col-12">
+        <div><strong>PhD in Applied Physics</strong></div>
+        <div>Graduate School of Engineering, Hokkaido University</div>
+    </div>
+</div>
+</div>
+<div class="list-group-item custom-list-item">
+<div class="row">
+    <div class="col-md-auto col-12 text-center">
+        <span class="badge badge-primary">APR. 2022 - MAR. 2024</span>
+    </div>
+    <div class="col-md col-12">
+        <div><strong>MEng in Applied Physics</strong></div>
+        <div>Graduate School of Engineering, Hokkaido University</div>
+    </div>
+</div>
+</div>
+<div class="list-group-item custom-list-item">
+<div class="row">
+    <div class="col-md-auto col-12 text-center">
+        <span class="badge badge-primary">APR. 2018 - MAR. 2022</span>
+    </div>
+    <div class="col-md col-12">
+        <div><strong>BEng in Applied Physics</strong></div>
+        <div>School of Engineering, Hokkaido University</div>
+    </div>
+</div>
+</div>
+<div class="list-group-item custom-list-item">
+<div class="row">
+    <div class="col-md-auto col-12 text-center">
+        <span class="badge badge-primary">OCT. 2017 - MAR. 2018</span>
+    </div>
+    <div class="col-md col-12">
+        <div><strong>Preliminary Education in Japanese Language, Sciences, and Cultural Studies</strong></div>
+        <div>Institute for the Advancement of Higher Education, Hokkaido University</div>
+    </div>
+</div>
+</div>
+<div class="list-group-item custom-list-item">
+<div class="row">
+    <div class="col-md-auto col-12 text-center">
+        <span class="badge badge-primary">DEC. 2016 - SEP. 2017</span>
+    </div>
+    <div class="col-md col-12">
+        <div><strong>Preliminary Education in Japanese Language, Sciences, and Cultural Studies</strong></div>
+        <div>Institute of International Education, Kyung Hee University</div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="pub">
+    <h2>Publication</h2>
+<div class="list-group">
+<div class="list-group-item custom-list-item">
+<div class="row">
+    <div class="col-md-auto col-12 text-center">
+        <span class="badge badge-primary">September 2023</span>
+    </div>
+    <div class="col-md col-12">
+        <div><strong>Bulk-Edge Correspondence for Point-Gap Topological Phases in Junction Systems</strong></div>
+        <!--<div class="row"><div class="col-auto">&#8226;</div>-->
+        <!--<div class="col">Geonhwi Hwang and Hideaki Obuse, Phys. Rev. B 108, L121302 (2023)</div>-->
+        <div><u>Geonhwi Hwang</u> and Hideaki Obuse, Phys. Rev. B 108, L121302 (2023)</div>
+        <!--</div>-->
+    </div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="pre">
+    <h2>Presentations</h2>
+<div class="list-group">
+                        <div class="list-group-item custom-list-item">
+                        <div style="text-align: center; font-size: 20px; padding-top: 2px; color: #6080a0;"><strong>2024</strong><!--border-top: none;--></div>
+                        </div>
+<div class="list-group-item custom-list-item">
+<div class="row">
+    <div class="col-md-auto col-12 text-center">
+        <span class="badge badger badge-primary">(scheduled)</span>
+    </div>
+    <div class="col-md col-12">
+        <!--<div><span style="color: #a06060;"><strong>(admitted) </strong></span><strong>The Physical Society of Japan 2024 Spring Meeting</strong></div>-->
+        <div><strong>META 2024: 14th International Conference on Metamaterials, Photonic Crystals and Plasmonics</strong></div>
+        <div>Toyama International Conference Center, Toyama, Japan</div>
+    </div>
+</div>
+<div style="text-align: center;"><strong>Dual Symmetry Classification of Non-Hermitian Systems and Point-Gap Topology</strong></div>
+<div style="text-align: center;">Zhiyu Jiang, <u>Geonhwi Hwang</u>, and Hideaki Obuse</div>
+<div class="row"><div class="col-auto">&#8226;</div><div class="col">Oral, Presentor: Hideaki Obuse</div></div>
+<div class="row"><div class="col-auto">&#8226;</div><div class="col">16 - 19 July, 2024 (scheduled)</div></div>
+</div>
+<div class="list-group-item custom-list-item">
+<div class="row">
+    <div class="col-md-auto col-12 text-center">
+        <span class="badge badge-primary">18 - 21 March, 2024</span>
+    </div>
+    <div class="col-md col-12">
+        <!--<div><span style="color: #a06060;"><strong>(admitted) </strong></span><strong>The Physical Society of Japan 2024 Spring Meeting</strong></div>-->
+        <div><strong>The Physical Society of Japan 2024 Spring Meeting</strong></div>
+        <div>Online</div>
+    </div>
+</div>
+<div style="text-align: center;"><strong>Point-Gap Topological Phases and Bulk-Edge Correspondence in Junction Systems: Multi-Segment Extension</strong></div>
+<div style="text-align: center;"><u>Geonhwi Hwang</u>, Hideaki Obuse</div>
+<div class="row"><div class="col-auto">&#8226;</div><div class="col">Oral (Lecture No. 18pD1-1)</div></div>
+<!-- <div class="row"><div class="col-auto">&#8226;</div><div class="col">18 - 21 March, 2024 (scheduled)</div></div> -->
+</div>
+                        <div class="list-group-item custom-list-item">
+                        <!--<ul><li style="text-align: center; font-size: 20px; padding-top: 10px; padding-bottom: 0px; color: #80a060;"><strong>2023</strong><li></ul>-->
+                        <div style="text-align: center; font-size: 20px; padding-top: 2px; color: #80a060;"><strong>2023</strong><!--border-top: none;--></div>
+                        </div>
+<div class="list-group-item custom-list-item">
+<div class="row">
+    <div class="col-md-auto col-12 text-center">
+        <span class="badge badge-primary">26 SEP. - 05 OCT., 2023</span>
+    </div>
+    <div class="col-md col-12">
+        <div><strong>Okinawa School in Physics 2023: Coherent Quantum Dynamics</strong></div>
+        <div>Okinawa Institute of Science and Technology, Onna-son, Okinawa, Japan</div>
+    </div>
+</div>
+<div style="text-align: center;"><strong>Bulk-Edge Correspondence for Point-Gap Topological Phases in Junction Systems</strong></div>
+<div style="text-align: center;"><u>Geonhwi Hwang</u> and Hideaki Obuse</div>
+<div class="row"><div class="col-auto">&#8226;</div><div class="col">Poster</div></div>
+</div>
+<div class="list-group-item custom-list-item">
+<div class="row">
+    <div class="col-md-auto col-12 text-center">
+        <span class="badge badge-primary">16 - 19 Sepember, 2023</span>
+    </div>
+    <div class="col-md col-12">
+        <div><strong>The Physical Society of Japan 2023 Annual (78th) Meeting</strong></div>
+        <div>Tohoku University, Sendai, Japan</div>
+    </div>
+</div>
+<div style="text-align: center;"><strong>Point-Gap Topology and Proximity Effects in Non-Hermitian Junction Systems</strong></div>
+<div style="text-align: center;"><u>Geonhwi Hwang</u> and Hideaki Obuse</div>
+<div class="row"><div class="col-auto">&#8226;</div><div class="col">Oral (Lecture No. 18aA106-7)</div></div>
+</div>
+<div class="list-group-item custom-list-item">
+<div class="row">
+    <div class="col-md-auto col-12 text-center">
+        <span class="badge badge-primary">17 - 23 August, 2023</span>
+    </div>
+    <div class="col-md col-12">
+        <div><strong>Physics of Open Systems and Beyond</strong></div>
+        <div>Hokkaido University, Sapporo, Japan</div>
+    </div>
+</div>
+<div style="text-align: center;"><strong>Bulk-Edge Correspondence for Point-Gap Topological Phases in Junction Systems</strong></div>
+<div style="text-align: center;"><u>Geonhwi Hwang</u> and Hideaki Obuse</div>
+<div class="row"><div class="col-auto">&#8226;</div><div class="col">Oral</div></div>
+</div>
+<div class="list-group-item custom-list-item">
+<div class="row">
+    <div class="col-md-auto col-12 text-center">
+        <span class="badge badge-primary">3 - 4 April, 2023</span>
+    </div>
+    <div class="col-md col-12">
+        <div><strong>Condensed Matter Science in the Age of Computation</strong></div>
+        <div>The University of Tokyo, Tokyo, Japan</div>
+    </div>
+</div>
+<div style="text-align: center;"><strong>Non-Hermitian Topological Phases and Arbitrary Precision Operations with Julia</strong></div>
+<div style="text-align: center;"><u>Geonhwi Hwang</u>, Zhiyu Jiang, and Hideaki Obuse</div>
+<div class="row"><div class="col-auto">&#8226;</div><div class="col">Oral, Presentor: Hideaki Obuse</div></div>
+</div>
+<div class="list-group-item custom-list-item">
+<div class="row">
+    <div class="col-md-auto col-12 text-center">
+        <span class="badge badge-primary">22 - 25 March, 2023</span>
+    </div>
+    <div class="col-md col-12">
+        <div><strong>The Physical Society of Japan 2023 Spring Meeting</strong></div>
+        <div>Online</div>
+    </div>
+</div>
+<div style="text-align: center;"><strong>Bulk-Boundary Correspondence for Non-Hermitian Topological Phases in Junction Systems</strong></div>
+<div style="text-align: center;"><u>Geonhwi Hwang</u> and Hideaki Obuse</div>
+<div class="row"><div class="col-auto">&#8226;</div><div class="col">Oral (Lecture No. 23pD1-6)</div></div>
+</div>
+</div>
+</div>
+<div class="section" id="sch">
+    <h2>Scholarships and Awards</h2>
+<div class="list-group">
+<div class="list-group-item custom-list-item">
+<div class="row">
+    <div class="col-md-auto col-12 text-center">
+        <span class="badge badge-primary">APR. 2022 - MAR. 2024</span>
+    </div>
+    <div class="col-md col-12">
+        <div><strong>Tuition Fee Waiver</strong></div>
+        <div class="row"><div class="col-auto">&#8226;</div><div class="col">Awarded ¥133,950 for tuition (50% tuition fee waiver) for the 1st semester of my first year in the master's program</div></div>
+        <div class="row"><div class="col-auto">&#8226;</div><div class="col">Awarded ¥267,900 for tuition (full tuition fee waiver) for the 2nd semester of my first year in the master's program</div></div>
+        <div class="row"><div class="col-auto">&#8226;</div><div class="col">Awarded ¥267,900 for tuition (full tuition fee waiver) for the 1st semester of my second year in the master's program</div></div>
+        <div class="row"><div class="col-auto">&#8226;</div><div class="col">Awarded ¥267,900 for tuition (full tuition fee waiver) for the 2nd semester of my second year in the master's program</div></div>
+    </div>
+</div>
+</div>
+<div class="list-group-item custom-list-item">
+<div class="row">
+    <div class="col-md-auto col-12 text-center">
+        <span class="badge badge-primary">November 2016</span>
+    </div>
+    <div class="col-md col-12">
+        <div><strong>International Student of Korea-Japan Joint Science and Engineering Program</strong></div>
+        <div class="row"><div class="col-auto">&#8226;</div><div class="col">Admitted into the 17th cohort of the scholarship program with a national ranking of 40th in Republic of Korea</div></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-auto col-12 text-center">
+        <span class="badge badge-primary">DEC. 2016 - SEP. 2017</span>
+    </div>
+    <div class="col-md col-12">
+        <div><strong>Preliminary Education in Republic of Korea</strong></div>
+        <div>Institute of International Education, Kyung Hee University</div>
+        <div class="row"><div class="col-auto">&#8226;</div><div class="col">Awarded ₩600,000/month for tuition, ₩600,000/month for living expenses, and flight fee during the preliminary education period in Republic of Korea</div></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-auto col-12 text-center">
+        <span class="badge badge-primary">OCT. 2017 - MAR. 2018</span>
+    </div>
+    <div class="col-md col-12">
+        <div><strong>Preliminary Education in Japan</strong></div>
+        <div>Institute for the Advancement of Higher Education, Hokkaido University</div><!--International Education and Research Division-->
+        <div class="row"><div class="col-auto">&#8226;</div><div class="col">Awarded ¥17,000 for entrance examination fee, ¥250,000 for tuition and ¥117,000/month for living expenses during the preliminary education period before starting my undergraduate studies</div></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-auto col-12 text-center">
+        <span class="badge badge-primary">APR. 2018 - MAR. 2022</span>
+    </div>
+    <div class="col-md col-12">
+        <div><strong>Undergraduate Studies</strong></div>
+        <div>School of Engineering, Hokkaido University</div>
+        <div class="row"><div class="col-auto">&#8226;</div><div class="col">Awarded ¥282,000 for admission, ¥535,800/year for tuition, ¥117,000/month for living expenses, and flight fee for the duration of my undergraduate studies</div></div>
+     </div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="tea">
+    <h2>Teaching Experiences</h2>
+<div class="list-group">
+<div class="list-group-item custom-list-item">
+<div class="row">
+    <div class="col-md-auto col-12 text-center">
+        <span class="badge badger badge-primary">APR. 2024 - MAR. 2025</span>
+    </div>
+    <div class="col-md col-12">
+        <div><strong>Teaching Fellow (scheduled)</strong></div>
+        <div>School of Engineering, Hokkaido University</div>
+        <div class="row"><div class="col-auto">&#8226;</div><div class="col">Applied Mathematics II (lecture for second year undergraduate students, 2nd semester)</div></div>
+        <div class="row"><div class="col-auto">&#8226;</div><div class="col">Quantum Mechanics II (lecture for third year undergraduate students, 2nd semester)</div></div>
+<!--        <div>APR. 2024 - MAR. 2025 (scheduled)</div>-->
+    </div>
+</div>
+</div>
+<div class="list-group-item custom-list-item">
+<div class="row">
+    <div class="col-md-auto col-12 text-center">
+        <span class="badge badge-primary">APR. 2023 - MAR. 2024</span>
+    </div>
+    <div class="col-md col-12">
+        <div><strong>Teaching Assistant</strong></div>
+        <div>School of Engineering, Hokkaido University</div>
+        <div class="row"><div class="col-auto">&#8226;</div><div class="col">Applied Mathematics II (lecture for second year undergraduate students, 2nd semester)</div></div>
+        <div class="row"><div class="col-auto">&#8226;</div><div class="col">Quantum Mechanics II (lecture for third year undergraduate students, 2nd semester)</div></div>
+    </div>
+</div>
+</div>
+<div class="list-group-item custom-list-item">
+<div class="row">
+    <div class="col-md-auto col-12 text-center">
+        <span class="badge badge-primary">APR. 2022 - MAR. 2023</span>
+    </div>
+    <div class="col-md col-12">
+        <div><strong>Teaching Assistant</strong></div>
+        <div>School of Engineering, Hokkaido University</div>
+        <div class="row"><div class="col-auto">&#8226;</div><div class="col">Applied Mathematics I (lecture for second year undergraduate students, 1st semester)</div></div>
+        <div class="row"><div class="col-auto">&#8226;</div><div class="col">Applied Mathematics II (lecture for second year undergraduate students, 2nd semester)</div></div>
+        <div class="row"><div class="col-auto">&#8226;</div><div class="col">Quantum Mechanics II (lecture for third year undergraduate students, 2nd semester)</div></div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+    
+<footer class="fixed-bottom">
+<div class="container mt-0 text-center">
+    © 2024 Geonhwi Hwang. All Rights Reserved.
+    Powered by <a href="https://getbootstrap.com/" target="_blank" rel="external nofollow noopener">Bootstrap</a>.
+    Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>.
+    Last updated: April 8, 2024.
+</div>
+</footer>
+</div>
+</body>
+</html>
