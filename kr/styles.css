@@ -201,3 +201,8 @@ html {
         margin-bottom: 6px;
     }
 }
+
+.card-body {
+    background-color: #303030;
+    color: white;
+}
