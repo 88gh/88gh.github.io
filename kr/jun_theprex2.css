@@ -141,7 +141,7 @@ html {
     margin-bottom: 16px;
     padding: 8px;
     border-radius: 6px;
-    border: 1.6px solid #404937;
+    border: 1.6px solid #374049;
 }
 #tea {
     margin-bottom: 32px;
@@ -200,6 +200,9 @@ html {
     div.col-md-8.order-md-1 p.curpmaw {
         margin-bottom: 6px;
     }
+}
+div.col-md-8.order-md-1 p.curpmaw {
+    background-color: #202020;
 }
 
 .card-body {
