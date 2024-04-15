@@ -202,6 +202,12 @@ html {
 }
 div.col-md-8.order-md-1 p.curpmaw {
     background-color: #80a060;
+    display: inline-block;
+    padding: 6px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    border-radius: 9px; 
 }
 
 .card-body {
