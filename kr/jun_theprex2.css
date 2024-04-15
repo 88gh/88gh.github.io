@@ -203,6 +203,7 @@ html {
 div.col-md-8.order-md-1 p.curpmaw {
     background-color: #80a060;
     display: inline-block;
+    margin: 0;
     padding: 6px;
     text-align: center;
     text-decoration: none;
