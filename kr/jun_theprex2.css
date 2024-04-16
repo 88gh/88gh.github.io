@@ -57,6 +57,11 @@ h2 {
     font-size: 22px;
     padding: 8px;
 }
+h3 {
+    color: #ffffff;
+    font-size: 19px;
+    padding: 8px;
+}
 p, li {
     font-size: 17px;
 }
