@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旅行計画のご案内</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #2563eb, #4f46e5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-link {
+            position: relative;
+            color: #1f2937;
+            text-decoration: none;
+            padding: 5px 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #4f46e5;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- ナビゲーション -->
+    <nav class="bg-white shadow-md fixed w-full z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <h1 class="text-xl font-bold gradient-text">旅行計画</h1>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#process" class="nav-link">プロセス</a>
+                    <a href="#plan" class="nav-link">旅行内容</a>
+                    <a href="#reservation" class="nav-link">予約・手配</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ヒーローセクション -->
+    <section class="pt-32 pb-20 bg-gradient-to-r from-blue-50 to-indigo-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 gradient-text">
+                    旅行計画のご案内
+                </h2>
+                <p class="text-lg text-gray-600">
+                    以下の内容をご確認ください。ご不明点などございましたらお気軽にご連絡ください。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- プロセス -->
+    <section id="process" class="py-10">
+        <div class="container mx-auto px-6">
+            <h3 class="text-2xl font-bold mb-6 gradient-text">プロセス</h3>
+            <div class="bg-white rounded-xl shadow-lg p-6 space-y-4">
+                <div>
+                    <h4 class="font-semibold mb-2">(プ1)</h4>
+                    <p class="text-gray-700">
+                        4月第1、2週末（5-6日、12-13日）のどれか2日を含む4日を、えりのご両親で決めて頂きます。
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-2">(プ2)</h4>
+                    <p class="text-gray-700">
+                        その際の優先順位は以下の通りです：<br>
+                        <strong>金土日月</strong>（ベスト）、<strong>土日月火</strong>、<strong>木金土日</strong>（日曜の昼・夜が使えない可能性があるためワースト）。
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-2">(プ3)</h4>
+                    <p class="text-gray-700">
+                        決定された4日の旅程で航空券を予約しますが、以下の2点が確認され次第となります。
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-2 space-y-1">
+                        <li>えりのご両親のパスポートの写メ送付（メール宛先：<a class="text-blue-600 hover:underline" href="mailto:theprex1@naver.com">theprex1@naver.com</a>）</li>
+                        <li>えりのご両親がその4日に対し、お休みを確実に取れた事実の確認</li>
+                    </ul>
+                    <p class="text-gray-700 mt-2">
+                        航空券は変更・キャンセル料金が負担的なので、お休みが確実に取れることを第一に確認をお願いいたします。
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-2">(プ4)</h4>
+                    <p class="text-gray-700">
+                        航空券予約完了後、旅程が確定となり、私の両親へ日程調整の連絡が可能になります。<br><br>
+                        万が一、日程調整がうまくいかない可能性はゼロではありませんが、こちらから出発する4人の飛行機が欠航する程度の確率と認識していますので、万が一のことを恐れず進めます。<br>
+                        何より自分の両親も楽しみにしていると思いますので、臆せず計画を進行していきます。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 旅行内容 -->
+    <section id="plan" class="py-10 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h3 class="text-2xl font-bold mb-6 gradient-text">旅行内容について</h3>
+            <div class="bg-white rounded-xl shadow-lg p-6 space-y-4">
+                <div>
+                    <h4 class="font-semibold mb-2">(ナ1)</h4>
+                    <p class="text-gray-700">
+                        6人で過ごす時間としては、食事のみから観光同行など幅広くアレンジが可能です。<br>
+                        私自身も初めての経験で、何がベストかはまだわかりません。もしご提案があればぜひお知らせください。<br>
+                        あわせて私の実家側の意見も確認しながら計画します。
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-2">(ナ2)</h4>
+                    <p class="text-gray-700">
+                        6人で過ごす時間以外は、私が常に待機・帯同しますので、日本国内でできることは基本的に自由に可能です。<br>
+                        行きたい場所や食べたいもの等、ご要望があればその場でお知らせください。<br>
+                        特になければ、私が最適な案をご案内します。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 予約・手配など -->
+    <section id="reservation" class="py-10">
+        <div class="container mx-auto px-6">
+            <h3 class="text-2xl font-bold mb-6 gradient-text">旅行に対する予約などについて</h3>
+            <div class="bg-white rounded-xl shadow-lg p-6 space-y-4">
+                <div>
+                    <h4 class="font-semibold mb-2">(ヨ1) VISA</h4>
+                    <p class="text-gray-700">
+                        VISAは不要です。パスポートのみお持ちであれば出入国可能です。他の身分証は不要です。
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-2">(ヨ2) ホテル</h4>
+                    <p class="text-gray-700">
+                        同線を考慮して私が予約を確保します。<br>
+                        1泊当たりの予算やお部屋の条件などご要望があれば(プ3)の段階でお知らせください。なければこちらで最適な形に手配します。
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-2">(ヨ3) SIMカード</h4>
+                    <p class="text-gray-700">
+                        えりが詳しいと思いますので、直接えりにお尋ねいただくとスムーズです。
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-2">(ヨ4) 両貝</h4>
+                    <p class="text-gray-700">
+                        両替は私が行います。<br>
+                        <strong class="text-red-600">アスティ45には絶対にいらっしゃってはいけません。</strong>
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-2">(ヨ5) 旅行者保険</h4>
+                    <p class="text-gray-700">
+                        私たち2人は加入予定がありません。もし加入される場合は、えりが詳しいので直接相談いただけますと幸いです。
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-2">(ヨ6) 交通手段</h4>
+                    <p class="text-gray-700">
+                        現場でその都度手配可能なので、事前予約は不要です。
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-2">(ヨ7) 6人で過ごす時間の施設予約</h4>
+                    <p class="text-gray-700">
+                        食事場所や観光施設など、必要に応じた事前予約は私が行います。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-gray-800 text-white py-8 mt-10">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-400">© 2025 旅行計画. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- スクロール挙動スクリプト -->
+    <script>
+        // スムーズスクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // スクロール時ナビゲーションに影追加
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>
