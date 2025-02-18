@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>여행 계획 안내</title>
+  <title>旅行計画のご案内</title>
 
   <!-- Tailwind CSS -->
   <link
@@ -16,10 +16,10 @@
     rel="stylesheet"
   />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
 
     body {
-      font-family: 'Noto Sans KR', sans-serif;
+      font-family: 'Noto Sans KR', 'Noto Sans JP', sans-serif;
       background-color: #f8f9fa;
     }
 
@@ -36,7 +36,6 @@
       text-decoration: none;
       padding: 5px 0;
     }
-
     .nav-link::after {
       content: '';
       position: absolute;
@@ -47,53 +46,287 @@
       background-color: #4f46e5;
       transition: width 0.3s ease;
     }
-
     .nav-link:hover::after {
       width: 100%;
-    }
-
-    .card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
   </style>
 </head>
 <body>
-  <!-- 상단 네비게이션 -->
-  <nav class="bg-white shadow-md fixed w-full z-50">
+  <!-- (1) 일본어 내비게이션 -->
+  <nav
+    id="navJa"
+    class="bg-white shadow-md fixed w-full z-50 flex items-center justify-center"
+  >
     <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-      <h1 class="text-xl font-bold gradient-text">여행 계획</h1>
-
-      <!-- 내비게이션 링크들 -->
+      <h1 class="text-xl font-bold gradient-text">旅行計画</h1>
       <div class="hidden md:flex space-x-8 items-center">
-        <a href="#process" class="nav-link">프로세스</a>
-        <a href="#plan" class="nav-link">여행 내용</a>
-        <a href="#reservation" class="nav-link">예약·준비</a>
+        <a href="#plan-ja" class="nav-link">旅行内容</a>
+        <a href="#reservation-ja" class="nav-link">予約・手配</a>
 
         <!-- 언어 전환 버튼 -->
         <button
-          id="langToggleBtn"
-          class="flex items-center space-x-1 px-3 py-1 bg-gray-100 border rounded-md hover:bg-gray-200 transition"
+          id="langToggleBtnJa"
+          class="flex items-center space-x-2 px-3 py-1 bg-gray-100 border rounded-md hover:bg-gray-200 transition"
         >
-          <!-- 기본: 일본 국기 + "日本語" -->
           <img
-            id="flagIcon"
-            src="img/flag-jp.png"
-            alt="Japanese Flag"
+            src="https://em-content.zobj.net/source/apple/96/flag-for-south-korea_1f1f0-1f1f7.png"
+            alt="Korean Flag"
             class="w-5 h-5"
           />
-          <span id="langLabel" class="text-sm font-medium">日本語</span>
+          <span class="text-sm font-medium">한국어</span>
         </button>
       </div>
     </div>
   </nav>
 
-  <!-- (1) 한국어 버전 컨테이너: ko-content -->
-  <div id="ko-content" class="pt-32">
+  <!-- (2) 한국어 내비게이션 (초기 hidden) -->
+  <nav
+    id="navKo"
+    class="hidden bg-white shadow-md fixed w-full z-50 flex items-center justify-center"
+  >
+    <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+      <h1 class="text-xl font-bold gradient-text">여행 계획</h1>
+      <div class="hidden md:flex space-x-8 items-center">
+        <a href="#plan-ko" class="nav-link">여행 내용</a>
+        <a href="#reservation-ko" class="nav-link">예약·준비</a>
+
+        <!-- 언어 전환 버튼 -->
+        <button
+          id="langToggleBtnKo"
+          class="flex items-center space-x-2 px-3 py-1 bg-gray-100 border rounded-md hover:bg-gray-200 transition"
+        >
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAQqDRhLX5OiNPtxmijvY49L4KJwwDy8RG9A&s"
+            alt="Japanese Flag"
+            class="w-5 h-5"
+          />
+          <span class="text-sm font-medium">日本語</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- (3) 일본어 콘텐츠 (기본 표출) -->
+  <div id="jaContent" class="pt-24 md:pt-32">
+    <!-- 히어로 섹션 -->
+    <section class="pb-20 bg-gradient-to-r from-blue-50 to-indigo-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 gradient-text">
+            旅行計画のご案内
+          </h2>
+          <p class="text-lg text-gray-600">
+            2025年2月13日
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 旅行内容 -->
+    <section id="plan-ja" class="py-10 bg-white">
+      <div class="container mx-auto px-6">
+        <h3 class="text-2xl font-bold gradient-text mb-6">旅行内容について</h3>
+        <div class="bg-white rounded-xl shadow-lg p-6 space-y-4">
+          <div>
+            <h4 class="font-semibold mb-2">（ナ1）</h4>
+            <p class="text-gray-700 leading-relaxed">
+              6人で過ごす時間としては、食事のみから観光同行など、幅広いプランにアレンジできます。<br/>
+              私自身も初めての体験なので、何が最適かはまだわかりません。もしご提案があればぜひお知らせください。<br/>
+              あわせて私の実家側の意見も確認しながら計画します。
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-2">（ナ2）</h4>
+            <p class="text-gray-700 leading-relaxed">
+              6人で過ごさない時間帯は、私が常に待機・帯同しますので、日本国内でやりたいことは自由に楽しむことができます。<br/>
+              行きたい場所や食べたいものがあれば随時お知らせください。特にご要望がなければ、私が最適なプランでご案内します。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 予約・手配 -->
+    <section id="reservation-ja" class="py-10 bg-white">
+      <div class="container mx-auto px-6">
+        <h3 class="text-2xl font-bold gradient-text mb-6">予約・手配</h3>
+        <div class="bg-white rounded-xl shadow-lg p-6 space-y-4">
+          <div>
+            <h4 class="font-semibold mb-2">（ヨ1）VISA</h4>
+            <p class="text-gray-700 leading-relaxed">
+              VISAは不要です。パスポートだけお持ちであれば出入国が可能です。他の身分証は不要です。
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-2">（ヨ2）ホテル</h4>
+            <p class="text-gray-700 leading-relaxed">
+              移動経路を考慮して私が予約を確保します。1泊あたりの予算や部屋の条件などご要望があれば、お早めにお知らせください。
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-2">（ヨ3）SIMカード</h4>
+            <p class="text-gray-700 leading-relaxed">
+              えりが詳しいと思いますので、直接えりにお尋ねいただくのがスムーズです。
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-2">（ヨ4）両替</h4>
+            <p class="text-gray-700 leading-relaxed">
+              えりのご両親がご自身で両替しても問題ありません。手数料が高い場合は私が代行할 수 있으니 금額を教えてください。<br/>
+              <strong class="text-red-600">アスティ45には絶対に行かないようにお願いします。</strong>
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-2">（ヨ5）旅行者保険</h4>
+            <p class="text-gray-700 leading-relaxed">
+              私たち2人は加入予定がありませんが、もしご両親が加入を検討される場合は、えりに相談してください。
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-2">（ヨ6）交通手段</h4>
+            <p class="text-gray-700 leading-relaxed">
+              現地で必要に応じて手配できますので、事前予約は不要です。
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-2">（ヨ7）6人で過ごす時間の施設予約</h4>
+            <p class="text-gray-700 leading-relaxed">
+              食事場所や観光施設など、必要に応じて私が事前予約を行います。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- フライト情報 -->
+    <section id="flight-info" class="py-10 bg-white">
+      <div class="container mx-auto px-6">
+        <h3 class="text-3xl font-bold text-gray-800 mb-6">フライト情報</h3>
+
+        <div class="bg-white rounded-xl shadow-lg p-6 space-y-8">
+          <!-- 予約番号 / 代表者連絡先 -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <h4 class="text-lg font-semibold mb-2">予約番号</h4>
+              <p class="text-gray-700 text-base">5OM3EE</p>
+            </div>
+            <div>
+              <h4 class="text-lg font-semibold mb-2">代表者連絡先</h4>
+              <p class="text-gray-700 text-base">
+                電話番号: 8201027979647<br>
+                メール: THEPREX1@NAVER.COM
+              </p>
+            </div>
+          </div>
+
+          <!-- 往路 -->
+          <div class="border-t border-gray-200 pt-6">
+            <h4 class="text-xl font-bold text-gray-800 mb-3">往路: 2025年 04月 11日 (金)</h4>
+            <p class="text-gray-700 leading-relaxed mb-4">
+              出発地: CTS (札幌/千歳) → 到着地: ICN (ソウル/仁川)<br/>
+              フライト番号: KE766 / 機材: B787-10<br/>
+              出発 14:05 / 到着 17:05 (所要 約3時間)
+            </p>
+            <h5 class="text-md font-semibold mb-2">座席情報（一般席Q）</h5>
+            <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
+              <li>HWANG GEONHWI：36D</li>
+              <li>ASAI ERI：36E</li>
+              <li>ASAI HIROHIKO：37E</li>
+              <li>ASAI YUZUKO：37D</li>
+            </ul>
+          </div>
+
+          <!-- 復路 -->
+          <div class="border-t border-gray-200 pt-6">
+            <h4 class="text-xl font-bold text-gray-800 mb-3">復路: 2025年 04月 14日 (月)</h4>
+            <p class="text-gray-700 leading-relaxed mb-4">
+              出発地: ICN (ソウル/仁川) → 到着地: CTS (札幌/千歳)<br/>
+              フライト番号: KE765 / 機材: B787-10<br/>
+              出発 10:05 / 到着 12:50 (所要 約2時間45分)
+            </p>
+            <h5 class="text-md font-semibold mb-2">座席情報（一般席Q）</h5>
+            <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
+              <li>HWANG GEONHWI：35D</li>
+              <li>ASAI ERI：35E</li>
+              <li>ASAI HIROHIKO：36E</li>
+              <li>ASAI YUZUKO：36D</li>
+            </ul>
+          </div>
+
+          <!-- チケット情報 -->
+          <div class="border-t border-gray-200 pt-6">
+            <h4 class="text-lg font-semibold mb-2">チケット情報</h4>
+            <p class="text-gray-700 leading-relaxed text-base">
+              以下の航空券番号（eチケット）で予約済みです。<br/>
+              <strong>HWANG GEONHWI:</strong> 1802348416708<br/>
+              <strong>ASAI ERI:</strong> 1802348416709<br/>
+              <strong>ASAI HIROHIKO:</strong> 1802348416710<br/>
+              <strong>ASAI YUZUKO:</strong> 1802348416707
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 旅行日程 -->
+    <section id="schedule-ja" class="py-10 bg-white">
+      <div class="container mx-auto px-6">
+        <h3 class="text-3xl font-bold text-gray-800 mb-6">旅行日程</h3>
+        
+        <div class="bg-white rounded-xl shadow-lg p-6 space-y-6">
+          <!-- 11日 -->
+          <div>
+            <h4 class="text-xl font-bold mb-4">4月11日（金）</h4>
+            <div class="space-y-2 text-gray-700 leading-relaxed">
+              <p><strong>12:00</strong> 空港集合、チェックイン</p>
+              <p><strong>14:05</strong> 出発（機内で休憩）</p>
+              <p><strong>17:05</strong> 到着、入国審査</p>
+              <p><strong>18:00 ~ 19:00</strong> 入国手続き完了、夕食</p>
+              <p><strong>20:00</strong> 夕食後ホテルへ移動（ソウル）</p>
+              <p><strong>21:00</strong> ホテル到着、チェックイン、荷物を置く</p>
+              <p><strong>21:30</strong> 観光（ソウル夜景スポットへ移動）</p>
+              <p><strong>23:00</strong> 自由時間</p>
+            </div>
+          </div>
+          <!-- 12日 -->
+          <div>
+            <h4 class="text-xl font-bold mb-4">4月12日（土）</h4>
+            <div class="space-y-2 text-gray-700 leading-relaxed">
+              <p><strong>09:00</strong> 起床、朝食（場所未定）</p>
+              <p><strong>11:00</strong> ホテルチェックアウト、荷物を預けて市内観光（ソウル）、昼食</p>
+              <p><strong>15:00</strong> ホテルに戻り荷物を受け取り、次のホテルへ移動（仁川）</p>
+              <p><strong>16:00</strong> ホテル到着、チェックイン、荷物を置く</p>
+              <p><strong>16:30</strong> 約束の場所へ移動、顔合わせ後、自由時間</p>
+            </div>
+          </div>
+          <!-- 13日 -->
+          <div>
+            <h4 class="text-xl font-bold mb-4">4月13日（日）</h4>
+            <div class="space-y-2 text-gray-700 leading-relaxed">
+              <p><strong>08:00</strong> 起床、朝食（ホテル内レストラン）</p>
+              <p><strong>11:00</strong> ホテルチェックアウト、荷物を預けて観光（場所未定）、自由時間</p>
+              <p><strong>14:00</strong> ホテルに戻り荷物を受け取り、次のホテルへ移動（仁川）</p>
+              <p><strong>15:00</strong> ホテル到着、チェックイン、荷物を置く</p>
+              <p><strong>15:30</strong> 自由時間、早めの就寝（21~22時）</p>
+            </div>
+          </div>
+          <!-- 14日 -->
+          <div>
+            <h4 class="text-xl font-bold mb-4">4月14日（月）</h4>
+            <div class="space-y-2 text-gray-700 leading-relaxed">
+              <p><strong>05:00</strong> 起床、チェックアウト準備</p>
+              <p><strong>06:00</strong> 朝食（ホテルレストラン）</p>
+              <p><strong>07:00</strong> ホテルチェックアウト、空港へ移動</p>
+              <p><strong>08:00</strong> 空港到着</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- (4) 한국어 콘텐츠 (초기 hidden) -->
+  <div id="koContent" class="hidden pt-24 md:pt-32">
     <!-- 히어로 섹션 -->
     <section class="pb-20 bg-gradient-to-r from-blue-50 to-indigo-50">
       <div class="container mx-auto px-6">
@@ -108,135 +341,76 @@
       </div>
     </section>
 
-    <!-- 프로세스 -->
-    <section id="process" class="py-10">
-      <div class="container mx-auto px-6">
-        <h3 class="text-2xl font-bold mb-6 gradient-text">프로세스</h3>
-        <div class="bg-white rounded-xl shadow-lg p-6 space-y-4">
-          <div>
-            <h4 class="font-semibold mb-2">(프1)</h4>
-            <p class="text-gray-700">
-              4월 첫째, 둘째 주말(5-6일, 12-13일) 중 이틀을 포함하는 4일을 에리 부모님께서 결정해 주시면 됩니다.
-            </p>
-          </div>
-
-          <div>
-            <h4 class="font-semibold mb-2">(프2)</h4>
-            <p class="text-gray-700">
-              그때의 우선순위는 아래와 같습니다:
-            </p>
-            <ul class="list-disc list-inside text-gray-700 mt-2 space-y-1">
-              <li><u><strong>금/토/일/월 (가장 이상적)</strong></u></li>
-              <li><strong>토/일/월/화</strong></li>
-              <li><strong>목/금/토/일 (일요일 점심·저녁 불가 가능성 있어 비선호)</strong></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 class="font-semibold mb-2">(프3)</h4>
-            <p class="text-gray-700">
-              결정된 4일 일정으로 항공권을 예약하되, 아래 두 가지가 확인되면 진행합니다.
-            </p>
-            <ul class="list-disc list-inside text-gray-700 mt-2 space-y-1">
-              <li>에리 부모님의 여권 사진(카톡 또는 메일 전송 가능: <a class="text-blue-600 hover:underline" href="mailto:theprex1@naver.com">theprex1@naver.com</a>)</li>
-              <li><u>부모님께서 해당 4일간 휴가를 확실히 확보했다는 사실</u></li>
-            </ul>
-            <p class="text-gray-700 mt-2">
-              항공권은 변경·취소에 대한 수수료 부담이 크므로, 휴가가 확실히 확보되었는지가 매우 중요합니다.
-            </p>
-          </div>
-
-          <div>
-            <h4 class="font-semibold mb-2">(프4)</h4>
-            <p class="text-gray-700">
-              항공권 예약이 완료되면 최종 일정이 확정되며, 제 부모님께도 날짜 조정을 알릴 수 있게 됩니다.<br><br>
-              혹시 일정 조정이 잘 안 될 가능성이 전혀 없는 것은 아니지만, 마치 출발편 비행기가 결항될 정도의 낮은 확률로 생각하고 있으므로, 그리 걱정 말고 진행하겠습니다.<br>
-              저희 부모님도 이 여행을 기대하고 있을 것이니, 만약 문제가 생겨도 여행은 그대로 진행할 계획입니다.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- 여행 내용 -->
-    <section id="plan" class="py-10 bg-gray-50">
+    <section id="plan-ko" class="py-10 bg-white">
       <div class="container mx-auto px-6">
-        <h3 class="text-2xl font-bold mb-6 gradient-text">여행 내용</h3>
+        <h3 class="text-2xl font-bold gradient-text mb-6">여행 내용</h3>
         <div class="bg-white rounded-xl shadow-lg p-6 space-y-4">
           <div>
             <h4 class="font-semibold mb-2">(나1)</h4>
-            <p class="text-gray-700">
-              6명이 함께 보낼 수 있는 시간은 식사만 같이하는 것부터 관광 동행까지 다양하게 조정이 가능합니다.<br>
-              저도 이런 경험은 처음이라 무엇이 최적인지는 아직 확신이 없으니, 좋은 아이디어가 있으시면 언제든 말씀해주세요.<br>
-              제 부모님 의견도 함께 들으면서 계획을 세우겠습니다.
+            <p class="text-gray-700 leading-relaxed">
+              6명이 함께 보낼 시간은 식사만 같이하는 것부터 관광 동행까지, 다양하게 조정할 수 있습니다.<br/>
+              저 역시 처음이라 어떤 방식이 최적인지는 아직 확실치 않습니다. 좋은 아이디어가 있으시면 언제든 말씀해주세요.<br/>
+              제 부모님 의견도 들어보고 함께 논의해서 결정할 예정입니다.
             </p>
           </div>
-
           <div>
             <h4 class="font-semibold mb-2">(나2)</h4>
-            <p class="text-gray-700">
-              6명이 함께 움직이지 않는 시간대에는 제가 상시 대기·동행하므로, 한국 내에서는 기본적으로 원하는 활동을 자유롭게 즐기실 수 있습니다.<br>
-              가고 싶은 곳이나 먹고 싶은 것이 있으면 현장에서 알려주시면 됩니다.<br>
-              딱히 없으시면 제가 적절히 안내하겠습니다.
+            <p class="text-gray-700 leading-relaxed">
+              6명이 같이 있지 않은 시간에는 제가 상시 동행하므로, 한국 내에서 원하시는 것은 자유롭게 해보실 수 있습니다.<br/>
+              가고 싶은 장소나 먹고 싶은 것이 있으면 언제든 말씀해주세요. 특별한 요청이 없으면 제가 적절히 안내하겠습니다.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 예약 및 준비 사항 -->
-    <section id="reservation" class="py-10">
+    <!-- 예약·준비 -->
+    <section id="reservation-ko" class="py-10 bg-white">
       <div class="container mx-auto px-6">
-        <h3 class="text-2xl font-bold mb-6 gradient-text">예약 · 준비 사항</h3>
+        <h3 class="text-2xl font-bold gradient-text mb-6">예약·준비</h3>
         <div class="bg-white rounded-xl shadow-lg p-6 space-y-4">
           <div>
             <h4 class="font-semibold mb-2">(예1) 비자(VISA)</h4>
-            <p class="text-gray-700">
-              별도의 비자는 필요 없습니다. 여권만 있으시면 입출국이 가능합니다. 다른 신분증은 없어도 됩니다.
+            <p class="text-gray-700 leading-relaxed">
+              별도의 비자는 필요 없습니다. 여권만 있으면 입출국이 가능합니다. 다른 신분증은 없어도 됩니다.
             </p>
           </div>
-
           <div>
             <h4 class="font-semibold mb-2">(예2) 호텔</h4>
-            <p class="text-gray-700">
-              동선을 고려해 제가 예약을 진행하겠습니다.<br>
-              1박 예산이나 객실 조건 등의 요구사항이 있으면 (프3) 단계에서 알려주세요. 없으시면 적절히 안내해 드리겠습니다.
+            <p class="text-gray-700 leading-relaxed">
+              이동 동선을 고려해 제가 예약을 진행하겠습니다. 1박 예산이나 객실 조건이 있으시면 미리 알려주세요.
             </p>
           </div>
-
           <div>
             <h4 class="font-semibold mb-2">(예3) SIM카드</h4>
-            <p class="text-gray-700">
-              에리가 잘 알고 있으니, 에리에게 직접 문의하시면 빠를 것 같습니다.
+            <p class="text-gray-700 leading-relaxed">
+              에리가 잘 알고 있으니, 직접 물어보시면 편리합니다.
             </p>
           </div>
-
           <div>
             <h4 class="font-semibold mb-2">(예4) 환전</h4>
-            <p class="text-gray-700">
-              에리 부모님께서 직접 환전하셔도 되고, 수수료가 많이 든다면 제가 대신 해드릴 수 있으니 금액만 알려주세요.<br>
-              <strong class="text-red-600">아스티45에는 절대 들르지 말아 주세요.</strong>
+            <p class="text-gray-700 leading-relaxed">
+              부모님께서 직접 환전하셔도 되고, 수수료가 많으면 제가 대신 해드릴 수도 있습니다. 금액만 말씀해주세요.<br/>
+              <strong class="text-red-600">아스티45에는 절대 가지 말아주세요.</strong>
             </p>
           </div>
-
           <div>
             <h4 class="font-semibold mb-2">(예5) 여행자 보험</h4>
-            <p class="text-gray-700">
-              저희 둘(에리와 저)은 가입하지 않을 예정입니다. 만약 부모님께서 가입하실 생각이 있으시면 에리에게 확인하시면 됩니다.
+            <p class="text-gray-700 leading-relaxed">
+              저희 둘은 가입하지 않을 예정이지만, 부모님께서 원하시면 에리와 상의하시면 됩니다.
             </p>
           </div>
-
           <div>
             <h4 class="font-semibold mb-2">(예6) 교통 수단</h4>
-            <p class="text-gray-700">
-              현장에서 그때그때 이용하면 되므로, 사전 예약은 필요 없습니다.
+            <p class="text-gray-700 leading-relaxed">
+              현장에서 필요에 따라 이용하면 되므로, 사전 예약은 안 하셔도 됩니다.
             </p>
           </div>
-
           <div>
             <h4 class="font-semibold mb-2">(예7) 6명이 함께하는 시간의 시설 예약</h4>
-            <p class="text-gray-700">
-              식사 장소나 관광 시설 등의 사전 예약이 필요하다면 제가 처리하겠습니다.
+            <p class="text-gray-700 leading-relaxed">
+              식사 장소나 관광 시설 등에 사전 예약이 필요하면 제가 처리하겠습니다.
             </p>
           </div>
         </div>
@@ -244,39 +418,36 @@
     </section>
 
     <!-- 항공편 정보 -->
-    <section id="flight-info" class="py-10 bg-gray-50">
+    <section id="flight-info-ko" class="py-10 bg-white">
       <div class="container mx-auto px-6">
-        <h3 class="text-2xl font-bold mb-6 gradient-text">항공편 정보</h3>
+        <h3 class="text-3xl font-bold text-gray-800 mb-6">항공편 정보</h3>
 
-        <!-- 예약번호, 대표자 연락처 -->
-        <div class="bg-white rounded-xl shadow-lg p-6 space-y-4">
-          <div>
-            <h4 class="font-semibold mb-2">예약번호</h4>
-            <p class="text-gray-700">5OM3EE</p>
+        <div class="bg-white rounded-xl shadow-lg p-6 space-y-8">
+          <!-- 예약번호 / 대표자 연락처 -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <h4 class="text-lg font-semibold mb-2">예약번호</h4>
+              <p class="text-gray-700 text-base">5OM3EE</p>
+            </div>
+            <div>
+              <h4 class="text-lg font-semibold mb-2">대표자 연락처</h4>
+              <p class="text-gray-700 text-base">
+                전화번호: 8201027979647<br/>
+                이메일: THEPREX1@NAVER.COM
+              </p>
+            </div>
           </div>
-          <div>
-            <h4 class="font-semibold mb-2">대표자 연락처</h4>
-            <p class="text-gray-700">
-              전화번호: 8201027979647<br>
-              이메일: THEPREX1@NAVER.COM
-            </p>
-          </div>
-        </div>
 
-        <!-- 왕복 항공편 정보 -->
-        <div class="mt-8 bg-white rounded-xl shadow-lg p-6 space-y-6">
           <!-- 출발편 -->
-          <div>
-            <h4 class="text-xl font-semibold mb-2">
-              출발편: 2025년 04월 11일 (금)
-            </h4>
-            <p class="text-gray-700 mb-4">
-              출발: CTS (삿포로/치토세) → 도착: ICN (서울/인천)<br />
-              편명: KE766 / 기종: B787-10<br />
+          <div class="border-t border-gray-200 pt-6">
+            <h4 class="text-xl font-bold text-gray-800 mb-3">출발편: 2025년 04월 11일 (금)</h4>
+            <p class="text-gray-700 leading-relaxed mb-4">
+              출발: CTS (삿포로/치토세) → 도착: ICN (서울/인천)<br/>
+              편명: KE766 / 기종: B787-10<br/>
               14:05 출발 / 17:05 도착 (약 3시간 소요)
             </p>
-            <h5 class="font-semibold mb-1">좌석 정보(일반석 Q)</h5>
-            <ul class="list-disc list-inside text-gray-700 space-y-1">
+            <h5 class="text-md font-semibold mb-2">좌석 정보 (일반석 Q)</h5>
+            <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
               <li>HWANG GEONHWI: 36D</li>
               <li>ASAI ERI: 36E</li>
               <li>ASAI HIROHIKO: 37E</li>
@@ -285,372 +456,88 @@
           </div>
 
           <!-- 귀국편 -->
-          <div>
-            <h4 class="text-xl font-semibold mb-2">
-              귀국편: 2025년 04월 14일 (월)
-            </h4>
-            <p class="text-gray-700 mb-4">
-              출발: ICN (서울/인천) → 도착: CTS (삿포로/치토세)<br />
-              편명: KE765 / 기종: B787-10<br />
+          <div class="border-t border-gray-200 pt-6">
+            <h4 class="text-xl font-bold text-gray-800 mb-3">귀국편: 2025년 04월 14일 (월)</h4>
+            <p class="text-gray-700 leading-relaxed mb-4">
+              출발: ICN (서울/인천) → 도착: CTS (삿포로/치토세)<br/>
+              편명: KE765 / 기종: B787-10<br/>
               10:05 출발 / 12:50 도착 (약 2시간 45분 소요)
             </p>
-            <h5 class="font-semibold mb-1">좌석 정보(일반석 Q)</h5>
-            <ul class="list-disc list-inside text-gray-700 space-y-1">
+            <h5 class="text-md font-semibold mb-2">좌석 정보 (일반석 Q)</h5>
+            <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1">
               <li>HWANG GEONHWI: 35D</li>
               <li>ASAI ERI: 35E</li>
               <li>ASAI HIROHIKO: 36E</li>
               <li>ASAI YUZUKO: 36D</li>
             </ul>
           </div>
-        </div>
 
-        <!-- e-티켓 정보 -->
-        <div class="mt-8 bg-white rounded-xl shadow-lg p-6 space-y-4">
-          <h4 class="font-semibold mb-2">티켓 정보</h4>
-          <p class="text-gray-700">
-            아래 항공권 번호(e-티켓)로 예약되어 있습니다.<br />
-            <strong>HWANG GEONHWI:</strong> 1802348416708<br />
-            <strong>ASAI ERI:</strong> 1802348416709<br />
-            <strong>ASAI HIROHIKO:</strong> 1802348416710<br />
-            <strong>ASAI YUZUKO:</strong> 1802348416707
-          </p>
+          <!-- e-티켓 -->
+          <div class="border-t border-gray-200 pt-6">
+            <h4 class="text-lg font-semibold mb-2">티켓 정보</h4>
+            <p class="text-gray-700 leading-relaxed text-base">
+              아래 항공권 번호(e-티켓)로 예약되어 있습니다.<br/>
+              <strong>HWANG GEONHWI:</strong> 1802348416708<br/>
+              <strong>ASAI ERI:</strong> 1802348416709<br/>
+              <strong>ASAI HIROHIKO:</strong> 1802348416710<br/>
+              <strong>ASAI YUZUKO:</strong> 1802348416707
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- 여행 일정 -->
-    <section id="schedule" class="py-10 bg-white">
+    <section id="schedule-ko" class="py-10 bg-white">
       <div class="container mx-auto px-6">
-        <h3 class="text-2xl font-bold mb-6 gradient-text">여행 일정</h3>
-
-        <!-- 4월 11일 (금) -->
-        <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
-          <h4 class="text-xl font-semibold mb-4">4월 11일 (금)</h4>
-          <div class="space-y-2">
-            <p><span class="font-bold">12:00</span> 공항 집합, 체크인</p>
-            <p><span class="font-bold">14:05</span> 이륙 (기내 휴식)</p>
-            <p><span class="font-bold">17:05</span> 착륙, 입국심사</p>
-            <p><span class="font-bold">18:00 ~ 19:00</span> 입국 완료, 저녁 식사</p>
-            <p><span class="font-bold">20:00</span> 저녁 식사 후 호텔로 이동 (서울)</p>
-            <p><span class="font-bold">21:00</span> 호텔 도착, 체크인, 짐 정리</p>
-            <p><span class="font-bold">21:30</span> 관광 (서울 야경 스팟 이동)</p>
-            <p><span class="font-bold">23:00</span> 자유 시간</p>
-          </div>
-        </div>
-
-        <!-- 4월 12일 (토) -->
-        <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
-          <h4 class="text-xl font-semibold mb-4">4월 12일 (토)</h4>
-          <div class="space-y-2">
-            <p><span class="font-bold">09:00</span> 기상, 조식(장소 미정)</p>
-            <p><span class="font-bold">11:00</span> 호텔 체크아웃, 짐 보관 후 관광(서울), 점심</p>
-            <p><span class="font-bold">15:00</span> 호텔 돌아와 짐 찾은 뒤 다음 호텔로 이동(인천)</p>
-            <p><span class="font-bold">16:00</span> 호텔 도착, 체크인, 짐 정리</p>
-            <p><span class="font-bold">16:30</span> 약속 장소로 이동, 상견례 후 자유 일정</p>
-          </div>
-        </div>
-
-        <!-- 4월 13일 (일) -->
-        <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
-          <h4 class="text-xl font-semibold mb-4">4월 13일 (일)</h4>
-          <div class="space-y-2">
-            <p><span class="font-bold">08:00</span> 기상, 조식(호텔 식당)</p>
-            <p><span class="font-bold">11:00</span> 호텔 체크아웃, 짐 보관 후 관광(장소 미정), 자유 일정</p>
-            <p><span class="font-bold">14:00</span> 호텔 돌아와 짐 찾은 뒤 다음 호텔로 이동(인천)</p>
-            <p><span class="font-bold">15:00</span> 호텔 도착, 체크인, 짐 정리</p>
-            <p><span class="font-bold">15:30</span> 자유 시간, 일찍 취침(21~22시)</p>
-          </div>
-        </div>
-
-        <!-- 4월 14일 (월) -->
-        <div class="bg-white rounded-xl shadow-lg p-6">
-          <h4 class="text-xl font-semibold mb-4">4월 14일 (월)</h4>
-          <div class="space-y-2">
-            <p><span class="font-bold">05:00</span> 기상, 체크아웃 준비</p>
-            <p><span class="font-bold">06:00</span> 조식(호텔 식당)</p>
-            <p><span class="font-bold">07:00</span> 호텔 체크아웃, 공항 이동</p>
-            <p><span class="font-bold">08:00</span> 공항 도착</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-  <!-- (2) 일본어 버전 컨테이너: ja-content (초기 hidden) -->
-  <div id="ja-content" class="hidden pt-32">
-    <!-- 以下: 기존 일본어 버전 (원본) 그대로 배치 -->
-
-    <!-- ヒーローセクション -->
-    <section class="pb-20 bg-gradient-to-r from-blue-50 to-indigo-50">
-      <div class="container mx-auto px-6">
-        <div class="text-center">
-          <h2 class="text-3xl md:text-4xl font-bold mb-6 gradient-text">
-            旅行計画のご案内
-          </h2>
-          <p class="text-lg text-gray-600">
-            2025年２月13日
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- プロセス -->
-    <section id="process" class="py-10">
-      <div class="container mx-auto px-6">
-        <h3 class="text-2xl font-bold mb-6 gradient-text">プロセス</h3>
-        <div class="bg-white rounded-xl shadow-lg p-6 space-y-4">
+        <h3 class="text-3xl font-bold text-gray-800 mb-6">여행 일정</h3>
+        
+        <div class="bg-white rounded-xl shadow-lg p-6 space-y-6">
+          <!-- 4월 11일 (금) -->
           <div>
-            <h4 class="font-semibold mb-2">(プ1)</h4>
-            <p class="text-gray-700">
-              4月第1、2週末（5-6日、12-13日）のどれか2日を含む4日を、えりのご両親で決めて頂きます。
-            </p>
+            <h4 class="text-xl font-bold mb-4">4월 11일 (금)</h4>
+            <div class="space-y-2 text-gray-700 leading-relaxed">
+              <p><strong>12:00</strong> 공항 집합, 체크인</p>
+              <p><strong>14:05</strong> 이륙 (기내 휴식)</p>
+              <p><strong>17:05</strong> 착륙, 입국심사</p>
+              <p><strong>18:00 ~ 19:00</strong> 입국 완료, 저녁 식사</p>
+              <p><strong>20:00</strong> 저녁 식사 후 호텔로 이동 (서울)</p>
+              <p><strong>21:00</strong> 호텔 도착, 체크인, 짐 정리</p>
+              <p><strong>21:30</strong> 관광 (서울 야경 스팟 이동)</p>
+              <p><strong>23:00</strong> 자유 시간</p>
+            </div>
           </div>
-
+          <!-- 4월 12일 (토) -->
           <div>
-            <h4 class="font-semibold mb-2">(プ2)</h4>
-            <p class="text-gray-700">
-              その際の優先順位は以下の通りです：
-            </p>
-            <ul class="list-disc list-inside text-gray-700 mt-2 space-y-1">
-              <li><u><strong>金土日月（ベスト）</strong></u></li>
-              <li><strong>土日月火</strong></li>
-              <li><strong>木金土日（日曜の昼・夜が使えない可能性があるためワースト）</strong></li>
-            </ul>
+            <h4 class="text-xl font-bold mb-4">4월 12일 (토)</h4>
+            <div class="space-y-2 text-gray-700 leading-relaxed">
+              <p><strong>09:00</strong> 기상, 조식(장소 미정)</p>
+              <p><strong>11:00</strong> 호텔 체크아웃, 짐 보관 후 관광(서울), 점심</p>
+              <p><strong>15:00</strong> 호텔 돌아와 짐 찾고 다음 호텔로 이동(인천)</p>
+              <p><strong>16:00</strong> 호텔 도착, 체크인, 짐 정리</p>
+              <p><strong>16:30</strong> 약속 장소로 이동, 상견례 후 자유 일정</p>
+            </div>
           </div>
-
+          <!-- 4월 13일 (일) -->
           <div>
-            <h4 class="font-semibold mb-2">(プ3)</h4>
-            <p class="text-gray-700">
-              決定された4日の旅程で航空券を予約しますが、以下の2点が確認され次第となります。
-            </p>
-            <ul class="list-disc list-inside text-gray-700 mt-2 space-y-1">
-              <li>えりのご両親のパスポートの写メ送付（ラインで大丈夫です。メールが宜しい場合のメール宛先：<a class="text-blue-600 hover:underline" href="mailto:theprex1@naver.com">theprex1@naver.com</a>）</li>
-              <li><u>えりのご両親がその4日に対し、お休みを確実に取れた事実</u></li>
-            </ul>
-            <p class="text-gray-700 mt-2">
-              航空券は変更・キャンセル料金が負担的なので、お休みが確実に取れたか否かが最も重要です。
-            </p>
+            <h4 class="text-xl font-bold mb-4">4월 13일 (일)</h4>
+            <div class="space-y-2 text-gray-700 leading-relaxed">
+              <p><strong>08:00</strong> 기상, 조식(호텔 식당)</p>
+              <p><strong>11:00</strong> 호텔 체크아웃, 짐 보관 후 관광(장소 미정), 자유 일정</p>
+              <p><strong>14:00</strong> 호텔로 돌아와 짐 찾고 다음 호텔로 이동(인천)</p>
+              <p><strong>15:00</strong> 호텔 도착, 체크인, 짐 정리</p>
+              <p><strong>15:30</strong> 자유 시간, 일찍 취침(21~22시)</p>
+            </div>
           </div>
-
+          <!-- 4월 14일 (월) -->
           <div>
-            <h4 class="font-semibold mb-2">(プ4)</h4>
-            <p class="text-gray-700">
-              航空券予約完了後、旅程が確定となり、私の両親へ日程調整の連絡が可能になります。<br><br>
-              万が一、日程調整がうまくいかない可能性はゼロではありませんが、こちらから出発する4人の飛行機が欠航する程度の確率と認識していますので、万が一のことを恐れず進めます。<br>
-              何より自分の両親も楽しみにしていると思いますので、臆せず計画を進行していきます。万が一のことが起きても旅行は進めます。
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 旅行内容 -->
-    <section id="plan" class="py-10 bg-gray-50">
-      <div class="container mx-auto px-6">
-        <h3 class="text-2xl font-bold mb-6 gradient-text">旅行内容について</h3>
-        <div class="bg-white rounded-xl shadow-lg p-6 space-y-4">
-          <div>
-            <h4 class="font-semibold mb-2">(ナ1)</h4>
-            <p class="text-gray-700">
-              6人で過ごす時間としては、食事のみから観光同行など幅広くアレンジが可能です。<br>
-              私自身も初めての経験で、何がベストかはまだわかりません。もしご提案があればぜひお知らせください。<br>
-              あわせて私の実家側の意見も確認しながら計画します。
-            </p>
-          </div>
-
-          <div>
-            <h4 class="font-semibold mb-2">(ナ2)</h4>
-            <p class="text-gray-700">
-              6人で過ごす時間以外は、私が常に待機・帯同しますので、日本国内でできることは基本的に自由に可能です。<br>
-              行きたい場所や食べたいもの等、ご要望があればその場でお知らせください。<br>
-              特になければ、私が最適にご案内します。
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 予約・手配など -->
-    <section id="reservation" class="py-10">
-      <div class="container mx-auto px-6">
-        <h3 class="text-2xl font-bold mb-6 gradient-text">予約・手配</h3>
-        <div class="bg-white rounded-xl shadow-lg p-6 space-y-4">
-          <div>
-            <h4 class="font-semibold mb-2">(ヨ1) VISA</h4>
-            <p class="text-gray-700">
-              VISAは不要です。パスポートのみお持ちであれば出入国可能です。他の身分証は不要です。
-            </p>
-          </div>
-
-          <div>
-            <h4 class="font-semibold mb-2">(ヨ2) ホテル</h4>
-            <p class="text-gray-700">
-              同線を考慮して私が予約を確保します。<br>
-              1泊当たりの予算やお部屋の条件などご要望があれば(プ3)の段階でお知らせください。特になければ、私が最適にご案内します。
-            </p>
-          </div>
-
-          <div>
-            <h4 class="font-semibold mb-2">(ヨ3) SIMカード</h4>
-            <p class="text-gray-700">
-              えりが詳しいと思いますので、直接えりにお尋ねいただくとスムーズです。
-            </p>
-          </div>
-
-          <div>
-            <h4 class="font-semibold mb-2">(ヨ4) 両替</h4>
-            <p class="text-gray-700">
-              両替は、えりのご両親で行われて構いませんが、手数料が高いようでしたら私が行いますのでその額を教えてください。<br>
-              <strong class="text-red-600">アスティ45には絶対にいらっしゃってはいけません。</strong>
-            </p>
-          </div>
-
-          <div>
-            <h4 class="font-semibold mb-2">(ヨ5) 旅行者保険</h4>
-            <p class="text-gray-700">
-              私たち2人は加入予定がありません。もし加入される場合は、えりが詳しいと思います。
-            </p>
-          </div>
-
-          <div>
-            <h4 class="font-semibold mb-2">(ヨ6) 交通手段</h4>
-            <p class="text-gray-700">
-              現場でその都度手配可能なので、事前予約は不要です。
-            </p>
-          </div>
-
-          <div>
-            <h4 class="font-semibold mb-2">(ヨ7) 6人で過ごす時間の施設予約</h4>
-            <p class="text-gray-700">
-              食事場所や観光施設など、必要に応じた事前予約は私が行います。
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- フライト情報 -->
-    <section id="flight-info" class="py-10 bg-gray-50">
-      <div class="container mx-auto px-6">
-        <h3 class="text-2xl font-bold mb-6 gradient-text">フライト情報</h3>
-
-        <!-- 予約番号など -->
-        <div class="bg-white rounded-xl shadow-lg p-6 space-y-4">
-          <div>
-            <h4 class="font-semibold mb-2">予約番号</h4>
-            <p class="text-gray-700">5OM3EE</p>
-          </div>
-          <div>
-            <h4 class="font-semibold mb-2">代表者連絡先</h4>
-            <p class="text-gray-700">
-              電話番号: 8201027979647<br>
-              メール: THEPREX1@NAVER.COM
-            </p>
-          </div>
-        </div>
-
-        <!-- 往路・復路 -->
-        <div class="mt-8 bg-white rounded-xl shadow-lg p-6 space-y-6">
-          <!-- 往路 -->
-          <div>
-            <h4 class="text-xl font-semibold mb-2">往路: 2025年 04月 11日 (金)</h4>
-            <p class="text-gray-700 mb-4">
-              出発地: CTS (札幌/千歳) → 到着地: ICN (ソウル/仁川)<br>
-              フライト番号: KE766 / 機材: B787-10<br>
-              出発 14:05 / 到着 17:05 (所要約 3時間00分)
-            </p>
-            <h5 class="font-semibold mb-1">座席情報（一般席Q）</h5>
-            <ul class="list-disc list-inside text-gray-700 space-y-1">
-              <li>HWANG GEONHWI：36D</li>
-              <li>ASAI ERI：36E</li>
-              <li>ASAI HIROHIKO：37E</li>
-              <li>ASAI YUZUKO：37D</li>
-            </ul>
-          </div>
-
-          <!-- 復路 -->
-          <div>
-            <h4 class="text-xl font-semibold mb-2">復路: 2025年 04月 14日 (月)</h4>
-            <p class="text-gray-700 mb-4">
-              出発地: ICN (ソウル/仁川) → 到着地: CTS (札幌/千歳)<br>
-              フライト番号: KE765 / 機材: B787-10<br>
-              出発 10:05 / 到着 12:50 (所要約 2時間45分)
-            </p>
-            <h5 class="font-semibold mb-1">座席情報（一般席Q）</h5>
-            <ul class="list-disc list-inside text-gray-700 space-y-1">
-              <li>HWANG GEONHWI：35D</li>
-              <li>ASAI ERI：35E</li>
-              <li>ASAI HIROHIKO：36E</li>
-              <li>ASAI YUZUKO：36D</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- e-チケット情報 -->
-        <div class="mt-8 bg-white rounded-xl shadow-lg p-6 space-y-4">
-          <h4 class="font-semibold mb-2">チケット情報</h4>
-          <p class="text-gray-700">
-            以下の航空券番号（eチケット）にて予約済みです。<br>
-            <strong>HWANG GEONHWI:</strong> 1802348416708<br>
-            <strong>ASAI ERI:</strong> 1802348416709<br>
-            <strong>ASAI HIROHIKO:</strong> 1802348416710<br>
-            <strong>ASAI YUZUKO:</strong> 1802348416707
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 旅行日程 -->
-    <section id="schedule" class="py-10 bg-white">
-      <div class="container mx-auto px-6">
-        <h3 class="text-2xl font-bold mb-6 gradient-text">旅行日程</h3>
-
-        <!-- 11日（金） -->
-        <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
-          <h4 class="text-xl font-semibold mb-4">4月11日（金）</h4>
-          <div class="space-y-2">
-            <p><span class="font-bold">12:00</span> 空港集合、チェックイン</p>
-            <p><span class="font-bold">14:05</span> 出発（機内で休憩）</p>
-            <p><span class="font-bold">17:05</span> 到着、入国審査</p>
-            <p><span class="font-bold">18:00 ~ 19:00</span> 入国手続き完了、夕食</p>
-            <p><span class="font-bold">20:00</span> 夕食後、ホテルへ移動（ソウル）</p>
-            <p><span class="font-bold">21:00</span> ホテル到着、チェックイン、荷物を置く</p>
-            <p><span class="font-bold">21:30</span> 観光（ソウル夜景スポットへ移動）</p>
-            <p><span class="font-bold">23:00</span> 自由時間</p>
-          </div>
-        </div>
-
-        <!-- 12日（土） -->
-        <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
-          <h4 class="text-xl font-semibold mb-4">4月12日（土）</h4>
-          <div class="space-y-2">
-            <p><span class="font-bold">09:00</span> 起床、朝食（場所未定）</p>
-            <p><span class="font-bold">11:00</span> ホテルチェックアウト、荷物を預けて市内観光（ソウル）、昼食</p>
-            <p><span class="font-bold">15:00</span> ホテルに戻り荷物を受け取り、次のホテルへ移動（仁川）</p>
-            <p><span class="font-bold">16:00</span> ホテル到着、チェックイン、荷物を置く</p>
-            <p><span class="font-bold">16:30</span> 約束の場所へ移動、顔合わせ（以降の予定は未定）、自由時間</p>
-          </div>
-        </div>
-
-        <!-- 13日（日） -->
-        <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
-          <h4 class="text-xl font-semibold mb-4">4月13日（日）</h4>
-          <div class="space-y-2">
-            <p><span class="font-bold">08:00</span> 起床、朝食（ホテル内レストラン）</p>
-            <p><span class="font-bold">11:00</span> ホテルチェックアウト、荷物を預けて観光（場所未定）、自由時間</p>
-            <p><span class="font-bold">14:00</span> ホテルに戻り荷物を受け取り、次のホテルへ移動（仁川）</p>
-            <p><span class="font-bold">15:00</span> ホテル到着、チェックイン、荷物を置く</p>
-            <p><span class="font-bold">15:30</span> 自由時間、早めの就寝（21～22時）</p>
-          </div>
-        </div>
-
-        <!-- 14日（月） -->
-        <div class="bg-white rounded-xl shadow-lg p-6">
-          <h4 class="text-xl font-semibold mb-4">4月14日（月）</h4>
-          <div class="space-y-2">
-            <p><span class="font-bold">05:00</span> 起床、チェックアウトの準備</p>
-            <p><span class="font-bold">06:00</span> 朝食（ホテルレストラン）</p>
-            <p><span class="font-bold">07:00</span> ホテルチェックアウト、空港へ移動</p>
-            <p><span class="font-bold">08:00</span> 空港到着</p>
+            <h4 class="text-xl font-bold mb-4">4월 14일 (월)</h4>
+            <div class="space-y-2 text-gray-700 leading-relaxed">
+              <p><strong>05:00</strong> 기상, 체크아웃 준비</p>
+              <p><strong>06:00</strong> 조식(호텔 식당)</p>
+              <p><strong>07:00</strong> 호텔 체크아웃, 공항 이동</p>
+              <p><strong>08:00</strong> 공항 도착</p>
+            </div>
           </div>
         </div>
       </div>
@@ -664,60 +551,76 @@
     </div>
   </footer>
 
-  <!-- 스크롤 및 언어 토글 스크립트 -->
+  <!-- 스크립트 -->
   <script>
-    // 스무스 스크롤
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-          });
-        }
-      });
-    });
-
-    // 스크롤 시 네비게이션 그림자
+    // 스크롤 시 내비게이션 그림자
     window.addEventListener('scroll', function () {
-      const nav = document.querySelector('nav');
+      const navJa = document.getElementById('navJa');
+      const navKo = document.getElementById('navKo');
+      // 두 네비게이션 모두 처리
       if (window.scrollY > 50) {
-        nav.classList.add('shadow-md');
+        navJa.classList.add('shadow-md');
+        navKo.classList.add('shadow-md');
       } else {
-        nav.classList.remove('shadow-md');
+        navJa.classList.remove('shadow-md');
+        navKo.classList.remove('shadow-md');
       }
     });
 
-    // 언어 토글 (한국어 <--> 일본어)
-    const koContent = document.getElementById('ko-content');
-    const jaContent = document.getElementById('ja-content');
-    const langToggleBtn = document.getElementById('langToggleBtn');
-    const flagIcon = document.getElementById('flagIcon');
-    const langLabel = document.getElementById('langLabel');
+    // DOM
+    const navJa = document.getElementById('navJa');
+    const navKo = document.getElementById('navKo');
+    const jaContent = document.getElementById('jaContent');
+    const koContent = document.getElementById('koContent');
 
-    let currentLang = 'ko'; // 기본: 한국어
+    // 버튼
+    const langToggleBtnJa = document.getElementById('langToggleBtnJa');
+    const langToggleBtnKo = document.getElementById('langToggleBtnKo');
 
-    langToggleBtn.addEventListener('click', () => {
-      if (currentLang === 'ko') {
-        // 일본어로 전환
-        koContent.classList.add('hidden');
-        jaContent.classList.remove('hidden');
+    // (1) 기본 언어: 일본어
+    let currentLang = 'ja';
 
-        currentLang = 'ja';
-        flagIcon.src = 'img/flag-kr.png'; // 한국 국기
-        langLabel.textContent = '한국어';
+    // (2) 해시값 검사: #lang=ko 라면 한국어 표시
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash; 
+      if (hash === '#lang=ko') {
+        switchToKorean();
       } else {
-        // 다시 한국어로 전환
-        jaContent.classList.add('hidden');
-        koContent.classList.remove('hidden');
-
-        currentLang = 'ko';
-        flagIcon.src = 'img/flag-jp.png'; // 일본 국기
-        langLabel.textContent = '日本語';
+        switchToJapanese(); // 디폴트
       }
     });
+
+    // (3) 일본어 Nav에서 '한국어' 버튼 클릭
+    langToggleBtnJa.addEventListener('click', () => {
+      switchToKorean();
+      window.location.hash = 'lang=ko';
+    });
+
+    // (4) 한국어 Nav에서 '日本語' 버튼 클릭
+    langToggleBtnKo.addEventListener('click', () => {
+      switchToJapanese();
+      window.location.hash = ''; // #lang=ja 등으로 해도 되지만, 여기서는 기본값으로
+    });
+
+    function switchToJapanese() {
+      // navJa/jaContent 보이기
+      navJa.classList.remove('hidden');
+      jaContent.classList.remove('hidden');
+      // navKo/koContent 숨기기
+      navKo.classList.add('hidden');
+      koContent.classList.add('hidden');
+      currentLang = 'ja';
+    }
+
+    function switchToKorean() {
+      // navKo/koContent 보이기
+      navKo.classList.remove('hidden');
+      koContent.classList.remove('hidden');
+      // navJa/jaContent 숨기기
+      navJa.classList.add('hidden');
+      jaContent.classList.add('hidden');
+      currentLang = 'ko';
+    }
   </script>
 </body>
 </html>
