@@ -310,9 +310,8 @@
     </div>
   </section>
 
-  <section id="hotel-info" class="py-10 bg-white">
+<section id="hotel-info" class="py-10 bg-white">
   <div class="container mx-auto px-6">
-    <!-- 섹션 제목 -->
     <h3 class="text-2xl font-bold mb-6 gradient-text">ホテル情報</h3>
 
     <!-- 1) Toyoko Inn Incheon Bupyeong -->
@@ -325,9 +324,9 @@
           住所: Gwangjang-ro10, Bupyeong-gu, Incheon 21404, South Korea<br/>
           電話番号: +82-32-527-1045<br/>
           FAX: +82-32-527-1046<br/>
-          <a 
-            href="https://www.toyoko-inn.com/sp/search/detail/00277" 
-            target="_blank" 
+          <a
+            href="https://www.toyoko-inn.com/sp/search/detail/00277"
+            target="_blank"
             class="text-blue-600 hover:underline"
           >
             公式ウェブサイト
@@ -335,10 +334,11 @@
         </p>
       </div>
 
-      <!-- 구글맵 위젯 -->
+      <!-- 1번 링크 (https://maps.app.goo.gl/x66BscjBB3rcWzcY9) 기반 -->
+      <!-- Toyoko Inn 실제 좌표로 매핑한 구글맵 임베드 (37.49155, 126.72385 근방) -->
       <div>
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.3081610913433!2d126.7238542!3d37.491550599999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b7e1eaa4b2437%3A0x75e0c6a99615428b!2sToyoko%20Inn%20Incheon%20Bupyeong!5e0!3m2!1sen!2skr!4v1676783582792!5m2!1sen!2skr"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.3081610913433!2d126.7238542!3d37.4915506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b7e1eaa4b2437%3A0x75e0c6a99615428b!2sToyoko%20Inn%20Incheon%20Bupyeong!5e0!3m2!1sen!2skr!4v1677079990995!5m2!1sen!2skr"
           width="100%"
           height="300"
           style="border:0;"
@@ -356,11 +356,11 @@
           </h5>
           <p class="text-gray-700 text-base leading-relaxed">
             予約番号: 5210437<br/>
-            チェックイン: 2025年 4月11日 (金) 21:00<br/>
+            チェックイン: 2025年4月11日 (金) 21:00<br/>
             宿泊数: 1泊<br/>
             宿泊者: Mr. HWANG GEONHWI (会員番号: I0018-021044)<br/>
             部屋タイプ: Special Price Double (2名利用)<br/>
-            料金: 64,600 (ウォン) / 現地支払い
+            料金: 64,600ウォン / 現地支払い
           </p>
         </div>
         <div class="space-y-2">
@@ -369,33 +369,51 @@
           </h5>
           <p class="text-gray-700 text-base leading-relaxed">
             予約番号: 5210438<br/>
-            チェックイン: 2025年 4月11日 (金) 21:00<br/>
+            チェックイン: 2025年4月11日 (金) 21:00<br/>
             宿泊数: 1泊<br/>
             宿泊者: Mr. ASAI HIROHIKO<br/>
             部屋タイプ: Special Price Double (2名利用)<br/>
-            料金: 68,000 (ウォン) / 現地支払い
+            料金: 68,000ウォン / 現地支払い
           </p>
         </div>
       </div>
+
       <div class="border-t border-gray-200 pt-4">
         <p class="text-gray-700 text-base leading-relaxed">
-          合計: 132,600 (ウォン) <br/>
+          合計: 132,600ウォン<br/>
           ※韓国入国審査書類に必要な初日宿泊先の住所と電話番号は上記情報をご参照ください。
         </p>
       </div>
     </div>
 
-    <!-- 2) 송도소재 호텔 (비밀, お楽しみに) -->
+    <!-- 2) 송도소재 호텔 (비공개) -->
     <div class="bg-white rounded-xl shadow-lg p-6 mb-10">
       <h4 class="text-xl font-semibold text-gray-800 mb-2">
         송도エリアのホテル（お楽しみに！）
       </h4>
-      <p class="text-gray-700 text-base leading-relaxed">
-        場所：仁川・松島（詳細は当日のお楽しみ）<br/>
-        電話番号：+82-32-???-????（現時点ではシークレット）
+      <p class="text-gray-700 text-base leading-relaxed mb-4">
+        場所：仁川・松島（詳細はまだ秘密です）<br/>
+        電話番号：+82-32-???-????（実際の番号は当日まで非公開）
       </p>
-      <p class="text-gray-700 text-base mt-2">
-        ホテル名や住所はまだ非公開です。当日までお待ちください！
+      <p class="text-gray-700 text-base leading-relaxed">
+        ホテル名や正確な住所などは当日までのお楽しみです。
+      </p>
+
+      <!-- 2번 링크 (https://maps.app.goo.gl/HAGLbs3Z3fuidVFZA) 기반 -->
+      <!-- 송도 센트럴파크 근방 좌표 (37.400041, 126.636147) 구글맵 -->
+      <div class="mt-6">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3163.7003395473197!2d126.6361474161536!3d37.40004114155137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b7ae397fd2c09%3A0x677c7804c3fd5ffb!2z7ZWc64-z7J2867aA64-E7Jet7IK87Iug66as6rWQ!5e0!3m2!1sko!2skr!4v1677079990999!5m2!1sko!2skr"
+          width="100%"
+          height="300"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+      <p class="text-sm text-gray-500 mt-4">
+        ※上記マップは「松島セントラルパーク」付近の参考用です。正確なホテル位置は当日ご案内いたします。
       </p>
     </div>
 
@@ -413,10 +431,11 @@
         メール：hoteltour032@naver.com
       </p>
 
-      <!-- 구글맵 위젯 -->
+      <!-- 3번 링크 (https://maps.app.goo.gl/4P23jJKLjUSx3cYM8) 기반 -->
+      <!-- Hotel Tour Incheon Airport & Suites 근방 좌표 (37.4872, 126.42538) 구글맵 -->
       <div>
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.503495595295!2d126.4253845767439!3d37.48720062130959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c967e122f00e5%3A0xd638c79b418dcd41!2sUnseo-dong%2C%20Jung-gu%2C%20Incheon!5e0!3m2!1sen!2skr!4v1677047226688!5m2!1sen!2skr"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.503495595295!2d126.4253845767439!3d37.48720062130959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c967e122f00e5%3A0xd638c79b418dcd41!2sUnseo-dong%2C%20Jung-gu%2C%20Incheon!5e0!3m2!1sen!2skr!4v1677080039512!5m2!1sen!2skr"
           width="100%"
           height="300"
           style="border:0;"
@@ -428,8 +447,8 @@
 
       <div class="border-t border-gray-200 pt-4 space-y-3">
         <p class="text-gray-700 text-base leading-relaxed">
-          チェックイン：2025年 4月13日 (日) 15:00以降<br/>
-          チェックアウト：2025年 4月14日 (月) 11:00まで
+          チェックイン：2025年4月13日 (日) 15:00以降<br/>
+          チェックアウト：2025年4月14日 (月) 11:00まで
         </p>
         <p class="text-gray-700 text-base leading-relaxed">
           予約内容：スタンダードルーム（駐車7日間無料）<br/>
@@ -438,9 +457,25 @@
         </p>
         <p class="text-gray-700 text-base leading-relaxed">
           キャンセルポリシー：<br/>
-          4月12日 (土) 0:00 以前のキャンセルは無料。<br/>
+          4月12日 (土) 0:00 より前のキャンセルは無料。<br/>
           到着日前日～当日のキャンセルは全額チャージ。<br/>
           無連絡のNo-Showの場合も100％請求となります。
+        </p>
+      </div>
+
+      <!-- 추가 결제정보 -->
+      <div class="border-t border-gray-200 pt-4 space-y-2">
+        <h5 class="text-md font-semibold text-gray-800">お支払い情報</h5>
+        <p class="text-gray-700 text-base leading-relaxed">
+          ご予約は確定しておりますが、まだ支払いは完了していません。<br/>
+          1泊（1部屋）: KRW 73,568 + 税金・手数料: KRW 15,445 = <strong>合計: KRW 89,013</strong><br/>
+          お支払いは2025年4月10日(木)に、日本円に換算された金額が
+          <br/>（約KRW 89,017相当、為替や適用条件によって変動）<br/>
+          Geonhwi様のクレジットカードに請求される予定です。<br/>
+          4月10日以降は自動的にカードに課金されますのでご了承ください。
+        </p>
+        <p class="text-gray-700 text-sm leading-relaxed">
+          ※Agodaのプライス保証適用 / キャンセル無料期限を過ぎると全額請求対象となります。
         </p>
       </div>
     </div>
