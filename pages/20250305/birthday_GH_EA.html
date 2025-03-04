@@ -1,1 +1,476 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박준의 AI 개발 교육 포트폴리오</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8f9fa;
+        }
 
+        .gradient-text {
+            background: linear-gradient(45deg, #2563eb, #4f46e5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-link {
+            position: relative;
+            color: #1f2937;
+            text-decoration: none;
+            padding: 5px 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #4f46e5;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-tag {
+            background: linear-gradient(45deg, #3b82f6, #6366f1);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="bg-white shadow-md fixed w-full z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <h1 class="text-xl font-bold gradient-text">JoonLab</h1>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#experience" class="nav-link">강연・강의 경험</a>
+                    <a href="#development" class="nav-link">개발</a>
+                    <a href="#curriculum" class="nav-link">커리큘럼</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    
+    <section class="pt-32 pb-20 bg-gradient-to-r from-blue-50 to-indigo-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">
+                    AI 개발 교육의 새로운 지평
+                </h1>
+                <p class="text-lg text-gray-600 mb-8">
+                    기초부터 심화까지, 체계적인 AI 개발 교육 커리큘럼을 제공합니다
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <a href="https://bio.link/joonpark" target="_blank" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+                        Bio Link
+                    </a>
+                    <a href="https://www.youtube.com/@joonlab98" target="_blank" class="bg-red-600 text-white px-8 py-3 rounded-lg hover:bg-red-700 transition duration-300">
+                        YouTube
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center gradient-text">자기 소개</h2>
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                
+                <table class="border-collapse border border-gray-300 w-full">
+  <tr>
+    <td class="border border-gray-300 p-2 text-center">SURNAME, Given_name</td>
+    <td class="border border-gray-300 p-2 text-center">성 이름</td>
+    <td class="border border-gray-300 p-2 text-center">苗字 名前</td>
+    <td class="border border-gray-300 p-2 text-center">漢字名</td>
+    <td class="border border-gray-300 p-2 text-center">Birthday</td>
+    <td class="border border-gray-300 p-2 text-center">Age</td>
+    <td class="border border-gray-300 p-2 text-center">D-Day to next</td>
+  </tr>
+  <tr>
+    <td class="border border-gray-300 p-2 text-center">HWANG, Geonhwi</td>
+    <td class="border border-gray-300 p-2 text-center">황건휘</td>
+    <td class="border border-gray-300 p-2 text-center">ファン ゴンフィ</td>
+    <td class="border border-gray-300 p-2 text-center">黃 健輝</td>
+    <td class="border border-gray-300 p-2 text-center">Fri Apr 24 1998 00:00:00 GMT+0900 (日本標準時)</td>
+    <td class="border border-gray-300 p-2 text-center">26</td>
+    <td class="border border-gray-300 p-2 text-center">50</td>
+  </tr>
+  <tr>
+    <td class="border border-gray-300 p-2 text-center">HWANG, Baesun</td>
+    <td class="border border-gray-300 p-2 text-center">황배선</td>
+    <td class="border border-gray-300 p-2 text-center">ファン ベソン</td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center">Sat Feb 24 1968 00:00:00 GMT+0900 (日本標準時)</td>
+    <td class="border border-gray-300 p-2 text-center">57</td>
+    <td class="border border-gray-300 p-2 text-center">356</td>
+  </tr>
+  <tr>
+    <td class="border border-gray-300 p-2 text-center">KANG, sunhee</td>
+    <td class="border border-gray-300 p-2 text-center">강선희</td>
+    <td class="border border-gray-300 p-2 text-center">ガン ソンヒ</td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center">Tue Jan 04 1972 00:00:00 GMT+0900 (日本標準時)</td>
+    <td class="border border-gray-300 p-2 text-center">53</td>
+    <td class="border border-gray-300 p-2 text-center">305</td>
+  </tr>
+  <tr>
+    <td class="border border-gray-300 p-2 text-center">HWANG, Jaehwi</td>
+    <td class="border border-gray-300 p-2 text-center">황재휘</td>
+    <td class="border border-gray-300 p-2 text-center">ファン ジェフィ</td>
+    <td class="border border-gray-300 p-2 text-center">黃 在輝</td>
+    <td class="border border-gray-300 p-2 text-center">Sat Oct 28 2000 00:00:00 GMT+0900 (日本標準時)</td>
+    <td class="border border-gray-300 p-2 text-center">24</td>
+    <td class="border border-gray-300 p-2 text-center">237</td>
+  </tr>
+  <tr>
+    <td class="border border-gray-300 p-2 text-center">HWANG, Namseok</td>
+    <td class="border border-gray-300 p-2 text-center">황남석</td>
+    <td class="border border-gray-300 p-2 text-center">ファン ナムソク</td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center">125</td>
+    <td class="border border-gray-300 p-2 text-center">300</td>
+  </tr>
+  <tr>
+    <td class="border border-gray-300 p-2 text-center">LEE, Jeong-im</td>
+    <td class="border border-gray-300 p-2 text-center">이정임</td>
+    <td class="border border-gray-300 p-2 text-center">イ  ジョンイム</td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center">125</td>
+    <td class="border border-gray-300 p-2 text-center">300</td>
+  </tr>
+  <tr>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center">125</td>
+    <td class="border border-gray-300 p-2 text-center">300</td>
+  </tr>
+  <tr>
+    <td class="border border-gray-300 p-2 text-center">JEONG, Chu-young</td>
+    <td class="border border-gray-300 p-2 text-center">정추영</td>
+    <td class="border border-gray-300 p-2 text-center">ジョン チュヨン</td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center">125</td>
+    <td class="border border-gray-300 p-2 text-center">300</td>
+  </tr>
+  <tr>
+    <td class="border border-gray-300 p-2 text-center">ASAI, Eri</td>
+    <td class="border border-gray-300 p-2 text-center">아사이 에리</td>
+    <td class="border border-gray-300 p-2 text-center">浅井 絵梨</td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center">Thu May 12 1994 00:00:00 GMT+0900 (日本標準時)</td>
+    <td class="border border-gray-300 p-2 text-center">30</td>
+    <td class="border border-gray-300 p-2 text-center">68</td>
+  </tr>
+  <tr>
+    <td class="border border-gray-300 p-2 text-center">ASAI, Hirohiko</td>
+    <td class="border border-gray-300 p-2 text-center">아사이 히로히코</td>
+    <td class="border border-gray-300 p-2 text-center">浅井 浩彦</td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center">Sat Jul 21 1962 00:00:00 GMT+0900 (日本標準時)</td>
+    <td class="border border-gray-300 p-2 text-center">62</td>
+    <td class="border border-gray-300 p-2 text-center">138</td>
+  </tr>
+  <tr>
+    <td class="border border-gray-300 p-2 text-center">ASAI(IO), Yuzuko</td>
+    <td class="border border-gray-300 p-2 text-center">아사이 유즈코</td>
+    <td class="border border-gray-300 p-2 text-center">浅井 由津子</td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center">Sat Oct 07 1961 00:00:00 GMT+0900 (日本標準時)</td>
+    <td class="border border-gray-300 p-2 text-center">63</td>
+    <td class="border border-gray-300 p-2 text-center">216</td>
+  </tr>
+  <tr>
+    <td class="border border-gray-300 p-2 text-center">ASAI, </td>
+    <td class="border border-gray-300 p-2 text-center">아사이</td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center">125</td>
+    <td class="border border-gray-300 p-2 text-center">300</td>
+  </tr>
+  <tr>
+    <td class="border border-gray-300 p-2 text-center">ASAI(), </td>
+    <td class="border border-gray-300 p-2 text-center">아사이</td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center">125</td>
+    <td class="border border-gray-300 p-2 text-center">300</td>
+  </tr>
+  <tr>
+    <td class="border border-gray-300 p-2 text-center">IO, </td>
+    <td class="border border-gray-300 p-2 text-center">이오</td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center">125</td>
+    <td class="border border-gray-300 p-2 text-center">300</td>
+  </tr>
+  <tr>
+    <td class="border border-gray-300 p-2 text-center">IO(), </td>
+    <td class="border border-gray-300 p-2 text-center">이오</td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center"></td>
+    <td class="border border-gray-300 p-2 text-center">Sun Feb 05 1939 00:00:00 GMT+0900 (日本標準時)</td>
+    <td class="border border-gray-300 p-2 text-center">86</td>
+    <td class="border border-gray-300 p-2 text-center">337</td>
+  </tr>
+</table>
+
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="experience" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center gradient-text">강연・강의 경험</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="card bg-white rounded-xl shadow-lg p-6">
+                    <div class="mb-4">
+                        <h3 class="text-xl font-semibold">SKT AI Frontier</h3>
+                        <p class="text-gray-600">4기, 5기 파트너 | 강의&컨설팅&코칭</p>
+                    </div>
+                    <a href="https://youtu.be/gaZw8sbeqJ4?si=awiIhJ-MfQDV8cMv" target="_blank" class="text-blue-600 hover:underline">5기 1일차 영상 보기</a>
+                </div>
+
+                
+                <div class="card bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4">패스트캠퍼스 강의</h3>
+                    <ul class="space-y-3">
+                        <li><a href="https://fastcampus.co.kr/biz_online_researcher" target="_blank" class="text-blue-600 hover:underline">연구자를 위한 AI툴 활용법</a></li>
+                        <li><a href="https://fastcampus.co.kr/data_oneonone_aiservice" target="_blank" class="text-blue-600 hover:underline">나만을 위한 AI 서비스 만들기</a></li>
+                        <li><a href="https://fastcampus.co.kr/data_online_genaimaster" target="_blank" class="text-blue-600 hover:underline">16가지 툴로 배우는 생성 AI 마스터 패키지</a></li>
+                    </ul>
+                </div>
+
+                
+                <div class="card bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4">특별 강연</h3>
+                    <ul class="space-y-3">
+                        <li><a href="https://youtu.be/dnnXZw9a01s?si=op3CW5tu2OTncaqY" target="_blank" class="text-blue-600 hover:underline">국립농업과학원 AI 연구 가이드</a></li>
+                        <li><a href="https://youtu.be/66cNdgo18iE?si=0zVIuJY7flNTx2Ld" target="_blank" class="text-blue-600 hover:underline">GPTers GPTs 특강</a></li>
+                        <li><a href="https://youtu.be/PDGCb5xkdv4?si=hS1b9KO9GQSfvzTS" target="_blank" class="text-blue-600 hover:underline">AI로 문제 도출 & 솔루션 만들기</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="development" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center gradient-text">개발 프로젝트</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <div class="card bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4">주요 프로젝트</h3>
+                    <ul class="space-y-3">
+                        <li><a href="https://llm-project-joon.site/" target="_blank" class="text-blue-600 hover:underline">논문 분석 올인원 AI 서비스 등 13종</a></li>
+                        <li>마케팅 LMF 시트 자동화 프로그램</li>
+                        <li>네이버 플레이스 keyword 추출</li>
+                        <li>총 50+ 프로젝트 진행</li>
+                    </ul>
+                </div>
+
+                
+                <div class="card bg-white rounded-xl shadow-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4">개발 관련 강의</h3>
+                    <ul class="space-y-3">
+                        <li><a href="https://youtu.be/IOARrKfS6yY?si=n433B6dU7n07MlCL" target="_blank" class="text-blue-600 hover:underline">데이터분석 시계열 분석 - RNN, LSTM</a></li>
+                        <li><a href="https://youtu.be/GQRIFZDsXAo?si=q70p5d_ckth39VKZ" target="_blank" class="text-blue-600 hover:underline">딥러닝 밑바닥부터 구현하는 Linear regression</a></li>
+                        <li><a href="https://youtu.be/YDAqj9qZ0bw?si=HtBf1ITypMwIYlZe" target="_blank" class="text-blue-600 hover:underline">Python의 Tensorflow를 통한 Artificial Neuron 구현</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="curriculum" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center gradient-text">커리큘럼</h2>
+            <div class="space-y-8">
+                
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold mb-4">AI 개괄적인 내용</h3>
+                    <ul class="space-y-4 text-gray-700">
+                        <li class="flex items-start">
+                            <span class="text-blue-600 mr-2">●</span>
+                            <span>ChatGPT 등의 LLM부터 시작하여 이미지 생성 모델, 비디오 생성 모델 등의 다양한 생성형 인공지능을 통해 AI의 개념과 백그라운드 학습</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-600 mr-2">●</span>
+                            <span>다양한 AI 툴 소개 및 실습</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-600 mr-2">●</span>
+                            <span>딥러닝, 머신러닝의 기초부터 심화까지 단계별 학습</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-600 mr-2">●</span>
+                            <span>LLM 심화 과정: 프롬프트 엔지니어링, RAG, Fine-tuning 실습</span>
+                        </li>
+                    </ul>
+                </div>
+
+                
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold mb-4">프로그래밍 기초</h3>
+                    <ul class="space-y-4 text-gray-700">
+                        <li class="flex items-start">
+                            <span class="text-blue-600 mr-2">●</span>
+                            <span>Python 기본 문법 학습</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-600 mr-2">●</span>
+                            <span>실전 프로젝트를 통한 Python 프로그래밍 실습</span>
+                        </li>
+                    </ul>
+                </div>
+
+                
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold mb-4">API & 노코드 도구</h3>
+                    <ul class="space-y-4 text-gray-700">
+                        <li class="flex items-start">
+                            <span class="text-blue-600 mr-2">●</span>
+                            <span>OpenAI, Claude, Gemini 등 LLM API 실습</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-600 mr-2">●</span>
+                            <span>이미지 생성, TTS 모델 API 활용 프로젝트</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-600 mr-2">●</span>
+                            <span>Make, n8n 등 노코드 툴 활용법</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-600 mr-2">●</span>
+                            <span>Google Apps Script 학습 및 실습</span>
+                        </li>
+                    </ul>
+                </div>
+
+                
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold mb-4">웹앱 개발 프로젝트</h3>
+                    <p class="text-gray-700">Python 기반의 다양한 웹 애플리케이션 제작을 통해 실전 경험을 쌓습니다. 배운 내용을 총망라하여 실제 서비스를 구현해보는 과정을 통해 실무 능력을 향상시킵니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12 text-center gradient-text">기타 활동</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <div class="card bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold mb-4">커뮤니티 활동</h3>
+                    <ul class="space-y-4 text-gray-700">
+                        <li>
+                            <a href="https://www.youtube.com/@joonlab98?sub_confirmation=1" target="_blank" class="text-blue-600 hover:underline">준랩 | JoonLab 유튜브 채널</a>
+                            <p class="mt-2">AI 활용, AI 뉴스, LLM 관련 인사이트, 데이터분석, 수학 관련 콘텐츠 제작</p>
+                        </li>
+                        <li>
+                            <a href="https://open.kakao.com/o/gl7JSkSg" target="_blank" class="text-blue-600 hover:underline">준랩 | JoonLab의 지식 공유방 - Al, LLM</a>
+                            <p class="mt-2">약 300명의 회원이 참여하는 카카오톡 오픈채팅방 운영</p>
+                        </li>
+                    </ul>
+                </div>
+
+                
+                <div class="card bg-white rounded-xl shadow-lg p-8">
+                    <h3 class="text-2xl font-semibold mb-4">미디어 출연</h3>
+                    <ul class="space-y-4 text-gray-700">
+                        <li>
+                            <a href="https://youtu.be/4xpaawymZN4?si=WOAE5eNIG0xb3suJ" target="_blank" class="text-blue-600 hover:underline">평범한 사업가 AI 팟캐스트</a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/live/C5FWK5MwRS8?si=RcHRUWdIV6TszMo1" target="_blank" class="text-blue-600 hover:underline">테디노트 라이브</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-4">
+                <a href="https://soomgo.com/profile/users/7524519" target="_blank" class="text-blue-400 hover:text-blue-300 mx-2">숨고 프로필</a>
+                <span class="text-gray-400">|</span>
+                <a href="https://open.kakao.com/o/gl7JSkSg" target="_blank" class="text-blue-400 hover:text-blue-300 mx-2">카카오톡 오픈채팅</a>
+            </div>
+            <p class="text-gray-400">© 2024 JoonLab. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+    </script>
+<script src="https://www.drv.tw/inc/wd.js?s=joonlab-html-file-hosting"></script></body>
+</html>
