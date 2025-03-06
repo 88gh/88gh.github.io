@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>박준의 AI 개발 교육 포트폴리오</title>
+    <title>GH & Eri&#39;s Family Portal</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -27,7 +27,6 @@
             text-decoration: none;
             padding: 5px 0;
         }
-
         .nav-link::after {
             content: '';
             position: absolute;
@@ -38,7 +37,6 @@
             background-color: #4f46e5;
             transition: width 0.3s ease;
         }
-
         .nav-link:hover::after {
             width: 100%;
         }
@@ -46,7 +44,6 @@
         .card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -61,6 +58,41 @@
             display: inline-block;
             margin: 5px;
         }
+
+         
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel-slide {
+            min-width: 33.3333%;
+            box-sizing: border-box;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.8);
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .carousel-arrow:hover {
+            background: rgba(255,255,255,1);
+        }
+        .carousel-arrow.left {
+            left: 0.5rem;
+        }
+        .carousel-arrow.right {
+            right: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -70,7 +102,11 @@
             <div class="flex justify-between items-center">
                 <h1 class="text-xl font-bold gradient-text">JoonLab</h1>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="nav-link">About</a>
+                    
+                    <a href="#family-events" class="nav-link">GH & Eri's Family Events</a>
+                    
+                    <a href="#family-birthdays" class="nav-link">GH & Eri's Family Birthdays</a>
+                    
                     <a href="#experience" class="nav-link">강연・강의 경험</a>
                     <a href="#development" class="nav-link">개발</a>
                     <a href="#curriculum" class="nav-link">커리큘럼</a>
@@ -102,9 +138,88 @@
     </section>
 
     
-    <section id="about" class="py-20">
+    <section id="family-events" class="py-20">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-12 text-center gradient-text">GH & Eri's Family Events</h2>
+        
+        <div class="carousel-container">
+          
+          <button class="carousel-arrow left" id="prevBtn">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+
+          
+          <div class="carousel-track" id="carouselTrack">
+            
+            
+            
+            
+            <div class="carousel-slide w-full card bg-white p-6 m-4 rounded-xl shadow-lg">
+              <h3 class="text-xl font-semibold mb-4">[Clone] Dummy Text #2</h3>
+              <p class="text-gray-600">This is a cloned slide for infinite looping.</p>
+            </div>
+
+            
+            <div class="carousel-slide w-full card bg-white p-6 m-4 rounded-xl shadow-lg">
+              <h3 class="text-xl font-semibold mb-4">Children's Day Picnic</h3>
+              <p class="text-gray-600">
+                The family plans an outdoor picnic with the kids, featuring games, snacks, and a mini talent show.
+              </p>
+            </div>
+
+            
+            <div class="carousel-slide w-full card bg-white p-6 m-4 rounded-xl shadow-lg">
+              <h3 class="text-xl font-semibold mb-4">Grandparents' Gathering</h3>
+              <p class="text-gray-600">
+                A special weekend for grandparents to share stories, enjoy tea, and strengthen family bonds.
+              </p>
+            </div>
+
+            
+            <div class="carousel-slide w-full card bg-white p-6 m-4 rounded-xl shadow-lg">
+              <h3 class="text-xl font-semibold mb-4">Upcoming Birthday</h3>
+              <p class="text-gray-600">
+                The next upcoming birthday is: <strong>(Will be fetched via script)</strong>
+              </p>
+            </div>
+
+            
+            <div class="carousel-slide w-full card bg-white p-6 m-4 rounded-xl shadow-lg">
+              <h3 class="text-xl font-semibold mb-4">Dummy Text #1</h3>
+              <p class="text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
+              </p>
+            </div>
+
+            
+            <div class="carousel-slide w-full card bg-white p-6 m-4 rounded-xl shadow-lg">
+              <h3 class="text-xl font-semibold mb-4">Dummy Text #2</h3>
+              <p class="text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac nisi eu odio fermentum.
+              </p>
+            </div>
+
+            
+            <div class="carousel-slide w-full card bg-white p-6 m-4 rounded-xl shadow-lg">
+              <h3 class="text-xl font-semibold mb-4">[Clone] Children's Day Picnic</h3>
+              <p class="text-gray-600">
+                This is a cloned slide for infinite looping.
+              </p>
+            </div>
+          </div>
+
+          
+          <button class="carousel-arrow right" id="nextBtn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="family-birthdays" class="py-20">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-12 text-center gradient-text">자기 소개</h2>
+            <h2 class="text-3xl font-bold mb-12 text-center gradient-text">GH & Eri's Family Birthdays</h2>
             <div class="bg-white rounded-xl shadow-lg p-8">
                 
                 <table class="border-collapse border border-gray-300 w-full">
@@ -124,7 +239,7 @@
     <td class="border border-gray-300 p-2 text-center">黃 健輝</td>
     <td class="border border-gray-300 p-2 text-center">Fri Apr 24 1998 00:00:00 GMT+0900 (日本標準時)</td>
     <td class="border border-gray-300 p-2 text-center">26</td>
-    <td class="border border-gray-300 p-2 text-center">50</td>
+    <td class="border border-gray-300 p-2 text-center">49</td>
   </tr>
   <tr>
     <td class="border border-gray-300 p-2 text-center">HWANG, Baesun</td>
@@ -133,7 +248,7 @@
     <td class="border border-gray-300 p-2 text-center"></td>
     <td class="border border-gray-300 p-2 text-center">Sat Feb 24 1968 00:00:00 GMT+0900 (日本標準時)</td>
     <td class="border border-gray-300 p-2 text-center">57</td>
-    <td class="border border-gray-300 p-2 text-center">356</td>
+    <td class="border border-gray-300 p-2 text-center">355</td>
   </tr>
   <tr>
     <td class="border border-gray-300 p-2 text-center">KANG, sunhee</td>
@@ -142,7 +257,7 @@
     <td class="border border-gray-300 p-2 text-center"></td>
     <td class="border border-gray-300 p-2 text-center">Tue Jan 04 1972 00:00:00 GMT+0900 (日本標準時)</td>
     <td class="border border-gray-300 p-2 text-center">53</td>
-    <td class="border border-gray-300 p-2 text-center">305</td>
+    <td class="border border-gray-300 p-2 text-center">304</td>
   </tr>
   <tr>
     <td class="border border-gray-300 p-2 text-center">HWANG, Jaehwi</td>
@@ -151,7 +266,7 @@
     <td class="border border-gray-300 p-2 text-center">黃 在輝</td>
     <td class="border border-gray-300 p-2 text-center">Sat Oct 28 2000 00:00:00 GMT+0900 (日本標準時)</td>
     <td class="border border-gray-300 p-2 text-center">24</td>
-    <td class="border border-gray-300 p-2 text-center">237</td>
+    <td class="border border-gray-300 p-2 text-center">236</td>
   </tr>
   <tr>
     <td class="border border-gray-300 p-2 text-center">HWANG, Namseok</td>
@@ -160,7 +275,7 @@
     <td class="border border-gray-300 p-2 text-center"></td>
     <td class="border border-gray-300 p-2 text-center"></td>
     <td class="border border-gray-300 p-2 text-center">125</td>
-    <td class="border border-gray-300 p-2 text-center">300</td>
+    <td class="border border-gray-300 p-2 text-center">299</td>
   </tr>
   <tr>
     <td class="border border-gray-300 p-2 text-center">LEE, Jeong-im</td>
@@ -169,7 +284,7 @@
     <td class="border border-gray-300 p-2 text-center"></td>
     <td class="border border-gray-300 p-2 text-center"></td>
     <td class="border border-gray-300 p-2 text-center">125</td>
-    <td class="border border-gray-300 p-2 text-center">300</td>
+    <td class="border border-gray-300 p-2 text-center">299</td>
   </tr>
   <tr>
     <td class="border border-gray-300 p-2 text-center"></td>
@@ -178,7 +293,7 @@
     <td class="border border-gray-300 p-2 text-center"></td>
     <td class="border border-gray-300 p-2 text-center"></td>
     <td class="border border-gray-300 p-2 text-center">125</td>
-    <td class="border border-gray-300 p-2 text-center">300</td>
+    <td class="border border-gray-300 p-2 text-center">299</td>
   </tr>
   <tr>
     <td class="border border-gray-300 p-2 text-center">JEONG, Chu-young</td>
@@ -187,7 +302,7 @@
     <td class="border border-gray-300 p-2 text-center"></td>
     <td class="border border-gray-300 p-2 text-center"></td>
     <td class="border border-gray-300 p-2 text-center">125</td>
-    <td class="border border-gray-300 p-2 text-center">300</td>
+    <td class="border border-gray-300 p-2 text-center">299</td>
   </tr>
   <tr>
     <td class="border border-gray-300 p-2 text-center">ASAI, Eri</td>
@@ -196,7 +311,7 @@
     <td class="border border-gray-300 p-2 text-center"></td>
     <td class="border border-gray-300 p-2 text-center">Thu May 12 1994 00:00:00 GMT+0900 (日本標準時)</td>
     <td class="border border-gray-300 p-2 text-center">30</td>
-    <td class="border border-gray-300 p-2 text-center">68</td>
+    <td class="border border-gray-300 p-2 text-center">67</td>
   </tr>
   <tr>
     <td class="border border-gray-300 p-2 text-center">ASAI, Hirohiko</td>
@@ -205,7 +320,7 @@
     <td class="border border-gray-300 p-2 text-center"></td>
     <td class="border border-gray-300 p-2 text-center">Sat Jul 21 1962 00:00:00 GMT+0900 (日本標準時)</td>
     <td class="border border-gray-300 p-2 text-center">62</td>
-    <td class="border border-gray-300 p-2 text-center">138</td>
+    <td class="border border-gray-300 p-2 text-center">137</td>
   </tr>
   <tr>
     <td class="border border-gray-300 p-2 text-center">ASAI(IO), Yuzuko</td>
@@ -214,7 +329,7 @@
     <td class="border border-gray-300 p-2 text-center"></td>
     <td class="border border-gray-300 p-2 text-center">Sat Oct 07 1961 00:00:00 GMT+0900 (日本標準時)</td>
     <td class="border border-gray-300 p-2 text-center">63</td>
-    <td class="border border-gray-300 p-2 text-center">216</td>
+    <td class="border border-gray-300 p-2 text-center">215</td>
   </tr>
   <tr>
     <td class="border border-gray-300 p-2 text-center">ASAI, </td>
@@ -223,7 +338,7 @@
     <td class="border border-gray-300 p-2 text-center"></td>
     <td class="border border-gray-300 p-2 text-center"></td>
     <td class="border border-gray-300 p-2 text-center">125</td>
-    <td class="border border-gray-300 p-2 text-center">300</td>
+    <td class="border border-gray-300 p-2 text-center">299</td>
   </tr>
   <tr>
     <td class="border border-gray-300 p-2 text-center">ASAI(), </td>
@@ -232,7 +347,7 @@
     <td class="border border-gray-300 p-2 text-center"></td>
     <td class="border border-gray-300 p-2 text-center"></td>
     <td class="border border-gray-300 p-2 text-center">125</td>
-    <td class="border border-gray-300 p-2 text-center">300</td>
+    <td class="border border-gray-300 p-2 text-center">299</td>
   </tr>
   <tr>
     <td class="border border-gray-300 p-2 text-center">IO, </td>
@@ -241,7 +356,7 @@
     <td class="border border-gray-300 p-2 text-center"></td>
     <td class="border border-gray-300 p-2 text-center"></td>
     <td class="border border-gray-300 p-2 text-center">125</td>
-    <td class="border border-gray-300 p-2 text-center">300</td>
+    <td class="border border-gray-300 p-2 text-center">299</td>
   </tr>
   <tr>
     <td class="border border-gray-300 p-2 text-center">IO(), </td>
@@ -250,7 +365,7 @@
     <td class="border border-gray-300 p-2 text-center"></td>
     <td class="border border-gray-300 p-2 text-center">Sun Feb 05 1939 00:00:00 GMT+0900 (日本標準時)</td>
     <td class="border border-gray-300 p-2 text-center">86</td>
-    <td class="border border-gray-300 p-2 text-center">337</td>
+    <td class="border border-gray-300 p-2 text-center">336</td>
   </tr>
 </table>
 
@@ -258,6 +373,7 @@
         </div>
     </section>
 
+    
     
     <section id="experience" class="py-20 bg-gray-50">
         <div class="container mx-auto px-6">
@@ -447,6 +563,7 @@
         </div>
     </footer>
 
+    
     <script>
         
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -471,6 +588,76 @@
                 nav.classList.remove('shadow-md');
             }
         });
+
+        
+        
+        
+        
+        
+        const track = document.getElementById('carouselTrack');
+        const slides = Array.from(track.children);
+        const slideWidth = slides[0].getBoundingClientRect().width;
+
+        
+        
+        let currentIndex = 1; 
+        
+        track.style.transform = `translateX(${-slideWidth * currentIndex}px)`;
+
+        function moveToSlide(targetIndex) {
+            track.style.transition = 'transform 0.5s ease';
+            track.style.transform = `translateX(${-slideWidth * targetIndex}px)`;
+            currentIndex = targetIndex;
+        }
+
+        
+        track.addEventListener('transitionend', () => {
+            
+            if (slides[currentIndex].innerHTML.includes('[Clone]') && currentIndex === 0) {
+                track.style.transition = 'none';
+                currentIndex = slides.length - 2; 
+                track.style.transform = `translateX(${-slideWidth * currentIndex}px)`;
+            }
+            
+            if (slides[currentIndex].innerHTML.includes('[Clone]') && currentIndex === slides.length - 1) {
+                track.style.transition = 'none';
+                currentIndex = 1;
+                track.style.transform = `translateX(${-slideWidth * currentIndex}px)`;
+            }
+        });
+
+        
+        let slideInterval = setInterval(() => {
+            nextSlide();
+        }, 5000);
+
+        function nextSlide() {
+            moveToSlide(currentIndex + 1);
+        }
+
+        function prevSlide() {
+            moveToSlide(currentIndex - 1);
+        }
+
+        
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            
+            clearInterval(slideInterval);
+            nextSlide();
+            slideInterval = setInterval(() => {
+                nextSlide();
+            }, 5000);
+        });
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            clearInterval(slideInterval);
+            prevSlide();
+            slideInterval = setInterval(() => {
+                nextSlide();
+            }, 5000);
+        });
     </script>
-<script src="https://www.drv.tw/inc/wd.js?s=joonlab-html-file-hosting"></script></body>
+
+    
+    <script src="https://www.drv.tw/inc/wd.js?s=joonlab-html-file-hosting"></script>
+</body>
 </html>
