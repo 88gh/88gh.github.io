@@ -58,11 +58,12 @@
         <h1 class="text-xl font-bold gradient-text">旅行計画</h1>
         <div class="hidden md:flex space-x-8">
           <!-- 프로セ스 섹션 삭제에 따라 메뉴 구성 변경 -->
-          <a href="#plan" class="nav-link">旅行内容</a>
-          <a href="#reservation" class="nav-link">予約・手配</a>
+<!--           <a href="#plan" class="nav-link">旅行内容</a>
+          <a href="#reservation" class="nav-link">予約・手配</a> -->
           <a href="#flight-info" class="nav-link">フライト情報</a>
           <a href="#schedule" class="nav-link">旅行日程</a>
           <a href="#hotel-info" class="nav-link">ホテル情報</a>
+          <a href="#budget" class="nav-link">支払い情報</a>
         </div>
       </div>
     </div>
@@ -76,7 +77,7 @@
           旅行計画のご案内
         </h2>
         <p class="text-lg text-gray-600">
-          2025年2月13日（最後更新：2025年2月19日）
+          2025年2月13日（最後更新：2025年4月8日）
         </p>
       </div>
     </div>
@@ -494,6 +495,42 @@
   </div>
 </section>
 
+  <!-- 支払い情報 -->
+<section id="budget" class="py-10 bg-gray-50">
+  <div class="container mx-auto px-6">
+    <h3 class="text-2xl font-bold mb-6 gradient-text">支払い情報</h3>
+    <div class="bg-white rounded-xl shadow-lg p-6 overflow-x-auto">
+      <table class="min-w-full table-auto text-left text-gray-700">
+        <thead>
+          <tr class="border-b">
+            <th class="px-4 py-2 font-semibold">項目</th>
+            <th class="px-4 py-2 font-semibold">使用金額 (円)</th>
+            <th class="px-4 py-2 font-semibold">備考</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y">
+          <tr>
+            <td class="px-4 py-2">大韓航空（4名、往復）</td>
+            <td class="px-4 py-2">164,460</td>
+            <td class="px-4 py-2">交通費として10万円受領（3月30日）</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2">初日ホテル（4名）</td>
+            <td class="px-4 py-2">約14,000</td>
+            <td class="px-4 py-2">未決済</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2">3日目ホテル（4名）</td>
+            <td class="px-4 py-2">約19,000</td>
+            <td class="px-4 py-2">未決済</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+  
   <!-- フッター -->
   <footer class="bg-gray-800 text-white py-8 mt-10">
     <div class="container mx-auto px-6 text-center">
