@@ -51,8 +51,8 @@ header::after {
     height: 2.4px; /* Height of the border */
     background: linear-gradient(to right, 
                                 transparent 0%, 
-                                #024d6f 23.33%, /* Start solid color more gradually */
-                                #024d6f 76.67%, /* End solid color more gradually */
+                                #631621 23.33%, /* Start solid color more gradually */
+                                #631621 76.67%, /* End solid color more gradually */
                                 transparent 100%);
     transform: translateX(-50%); /* Center the element horizontally */
     z-index: 10;
