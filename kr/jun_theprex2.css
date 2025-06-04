@@ -1,3 +1,4 @@
+/*
 @font-face {
     font-family: 'TitleMedium';
     src: url('https://raw.githubusercontent.com/88gh/88gh.github.io/main/kr/Title_Medium.woff') format('woff');
@@ -11,6 +12,16 @@ body {
     color: #ffffff;
     line-height: 1.6;
 }
+*/
+
+body {
+    margin: 0;
+    font-family: 'Libre Baskerville', 'Gowun Batang', 'Sawarabi Mincho', serif; 
+    background-color: #202022;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
 :lang(en) {
     font-family: Arial, sans-serif;
 }
