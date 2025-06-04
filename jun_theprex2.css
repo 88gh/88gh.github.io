@@ -31,8 +31,8 @@ header::after {
     height: 2.4px; /* Height of the border */
     background: linear-gradient(to right, 
                                 transparent 0%, 
-                                #80a060 23.33%, /* Start solid color more gradually */
-                                #80a060 76.67%, /* End solid color more gradually */
+                                #315834 23.33%, /* Start solid color more gradually */
+                                #315834 76.67%, /* End solid color more gradually */
                                 transparent 100%);
     transform: translateX(-50%); /* Center the element horizontally */
     z-index: 10;
@@ -91,17 +91,17 @@ html {
     scroll-behavior: smooth;
 }
 .badge {
-    background-color: #80a060;
+    background-color: #315834;
     margin-left: 0;
     margin-right: 0;
 }
 .badger {
-    background-color: #a06060;
+    background-color: #620216;
     margin-left: 0;
     margin-right: 0;
 }
 .badgeb {
-    background-color: #6080a0;
+    background-color: #023458;
     margin-left: 0;
     margin-right: 0;
 }
