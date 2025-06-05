@@ -228,15 +228,28 @@ html {
 }
 @media (min-width: 768px) {
     div.col-md-8.order-md-1 p.curpmaq {
-        margin-top: 40px;
+        margin-top: 48px;
     }
-<!--    div.col-md-8.order-md-1 p.curpmaw {
-        margin-top: 5px;
-        margin-bottom: 1px;
-    }-->
+    div.col-md-8.order-md-1 p.curpmaw {
+        margin-bottom: 12px;
+    }
 }
-div.col-md-8.order-md-1 p.curpmaw {
+
+div.col-md-8.order-md-1 p.curpmab {
     background-color: #024d6f;
+    display: inline-block;
+    margin: 0;
+    margin-top: 6px;
+    padding: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    border-radius: 5px; 
+}
+div.col-md-8.order-md-1 p.curpmar {
+    background-color: #631621;
     display: inline-block;
     margin: 0;
     margin-top: 6px;
