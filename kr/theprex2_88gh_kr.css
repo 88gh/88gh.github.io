@@ -264,11 +264,6 @@ div.col-md-8.order-md-1 p.curpmar {
     vertical-align: middle;
     border-radius: 5px; 
 }
-.language-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px; /* optional: adds space between items */
-}
 
 .card-body {
     background-color: #303030;
