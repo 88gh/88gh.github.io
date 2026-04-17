@@ -1,0 +1,218 @@
+\documentclass{article}
+
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+
+\usepackage{icml2026}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage[capitalize,noabbrev]{cleveref}
+
+\icmltitlerunning{Political Implications of AI Scribes in Social Welfare Documentation}
+
+\begin{document}
+
+\twocolumn[
+  \icmltitle{Making Visible, Making Invisible:\\Political Implications of AI Scribes\\in Social Welfare Documentation}
+
+  \icmlsetsymbol{equal}{*}
+
+  \begin{icmlauthorlist}
+    \icmlauthor{Anonymous}{anon}
+  \end{icmlauthorlist}
+
+  \icmlaffiliation{anon}{Anonymous Institution}
+
+  \icmlkeywords{AI for Social Good, AI Scribes, Social Work, Technology Probe, Trustworthy AI}
+
+  \vskip 0.3in
+]
+
+\printAffiliationsAndNotice{}
+
+\begin{abstract}
+AI scribes have shown promise in reducing clinical documentation burden and are now extending into social welfare.
+Social work documentation, however, serves a distinct function: it mediates between individual clients and the welfare regime, determining eligibility and shaping whose needs are recognized.
+We designed and deployed \textit{Care Fish}, an AI scribe technology probe for in-home older adult care in South Korea, with four social workers over two weeks.
+Participants reported that Care Fish improved documentation efficiency by surfacing information missed during client interviews.
+Our analysis also revealed that the AI scribe reshapes the epistemological landscape of documentation: the materiality of recordings, the evidential authority of AI-generated citations, and the structure of institutional templates combine to privilege the welfare regime's informational needs over clients' lived experiences.
+We discuss implications for workers' professional discretion and clients' strategic self-presentation, and propose design directions centered on visualizing the \textit{situated vision} of AI scribes.
+\end{abstract}
+
+\section{Introduction}
+
+Documentation is an essential task of social work, where social workers recognize clients' needs and match them with appropriate public services. It serves as a translation between the differing information needs of public institutions, service clients, managers, and social workers \citep{sum2023translation}. For instance, a client's difficulty in preparing meals might be translated into eligibility for a meal-support service. Documentation is also critical for ensuring quality and legality of core social work tasks such as assessment, planning, and service delivery \citep{reamer2005documentation}.
+
+Social workers struggle with a heavy burden of documentation, which is a main source of worker stress and burnout \citep{nelson2024designing, gondimalla2024aligning}. Workers often face a scarcity of resources while serving overwhelmingly many clients \citep{lee2020problems}, and the documentation burden can feel detached from their core responsibilities \citep{kim2023seoul, jo2025understanding}, even though the produced documents are often still insufficient \citep{kuorikoski2024client}.
+
+AI scribes have recently gained popularity in clinical contexts to address similar challenges. These systems combine automatic speech recognition, natural language processing, and a review interface to support documentation from recorded conversations. Studies report that AI scribes reduce documentation burden and improve clinician-patient interaction \citep{cao2024, tierney2024, nair2026}. However, prior work on AI-supported documentation in healthcare \citep{sasseville2025impact, lee2024evaluating, li2021automating} has not addressed the unique nature of social services.
+
+Social work documentation shares surface similarities with clinical documentation: both involve translating professional conversations into institution-required formats. Yet social work case documents serve as the interface between individual clients and the welfare regime, determining eligibility, allocating resources, and shaping whose needs are recognized. How an AI scribe translates conversations into these documents carries implications that extend beyond accuracy or efficiency.
+
+Research on AI scribes for social work is limited. The only available commercial products, \textit{Magic Notes} and \textit{Copilot}, are at early stages \citep{meers2026}. Public perception is mixed, with responses ranging from enthusiasm to resistance. More broadly, scholarship on AI in public institutions has shown that automated systems can reshape the dynamics of street-level bureaucracy \citep{alkhatib2019street}, sometimes reinforcing existing inequalities \citep{eubanks2018automating}. These insights have not been empirically examined in the context of AI scribes for social work.
+
+Given this gap, we designed and deployed \textit{Care Fish}, an AI scribe technology probe for in-home older adult care in South Korea. We use the term \textit{client} to refer to the older adult receiving care services, and \textit{social worker} (or \textit{worker}) to refer to the professional who conducts home visits and produces case documents. A \textit{case interview} is a structured conversation between worker and client aimed at assessing needs and matching the client with appropriate services.
+
+We ask two research questions:
+\begin{enumerate}
+\item How do social workers' documentation practices and perceptions change when an AI scribe is introduced?
+\item What do these changes reveal about the political implications of AI-mediated documentation in social welfare?
+\end{enumerate}
+
+Through a two-week field deployment with three participants and one supplementary lab session, followed by semi-structured interviews, we make three contributions: (1) Care Fish, a technology probe designed through formative fieldwork; (2) empirical findings on how social workers use and negotiate with an AI scribe; and (3) a critical analysis of how AI scribes can reinforce the epistemological hierarchy of the welfare regime, with design implications centered on visualizing the AI scribe's situated vision.
+
+\section{Design of Technology Probe}
+
+\subsection{Informing the Design}
+
+We visited two in-home older adult care centers, where we had conversations with managers and care workers and observed their documentation practices. Combined with a literature review, these visits identified four design opportunities.
+
+\textbf{Excessive client-worker ratio.} On average, 2--3 social workers care for approximately 50 clients per worker, among which about 10 are more intensively tracked. A manager noted that case work is often postponed because it is less visible than other tasks such as benefit payments and meal delivery, and understanding clients' needs is done at a bare minimum until annual audits make it visible.
+
+\textbf{Extensive paperwork.} Approximately twenty case documents per client are filled out after the first case interview, and similar requirements are repeated annually. These documents are essential for case meetings, service planning, audits, and performance management. Translating a case interview that sometimes exceeds two hours into diverse formal documents can take more than half a day.
+
+\textbf{Fragmented information systems.} Workers produce case documents by handwriting, word processor, and institutional web database, supplemented by governmental databases, spreadsheets, and presentation software. They struggle with using multiple systems simultaneously, causing inefficiency and incompatibility.
+
+\textbf{Diverse perspectives.} Social workers have diverse case work philosophies. They sometimes coordinate conflicting perspectives on defining client needs, where what clients explicitly want differs from what the worker assesses they need. Case documents include many subjective and open-ended parts.
+
+\subsection{System Design}
+
+Care Fish is a case note assistant that supports documentation by transcribing audio recordings of client-worker conversations and populating institution-required case documents. We designed it around two approaches.
+
+\textbf{Automated form filling.} Care Fish fills in eleven institution-required case documents based on transcriptions. These belong to two types: evaluation forms (measuring clients' daily living abilities and mental health) and case logs (recording histories of assessment activities, service provision, and case meetings). Users can record or upload audio, then generate multiple document types from a single recording.
+
+\textbf{Evidence and explanation.} For each entry of an AI-generated draft, Care Fish provides \textit{evidence} (exact quotes from the transcript grounding the suggestion) and \textit{explanation} (a rationale connecting the evidence to the suggestion). Evidence appears as a pop-up citing transcript excerpts highlighted within the full transcript \citep{nguyen2024human}. For evaluation forms, where workers reported greater need for perspective coordination, both explanation and evidence are displayed; for other forms, only evidence is shown.
+
+The system was built with React and Gemini 2.5 Flash, with CLOVA Voice for transcription. For privacy, the backend ran locally on each worker's machine; client data was sent only to paid API endpoints that do not use data for training, and was invisible to the researchers.
+
+\section{Method}
+
+We deployed Care Fish as a technology probe \citep{hutchinson2003technology} to explore what it means to introduce AI scribes into social work documentation. Technology probes prioritize generating situated understanding over statistical generalization, making them suited for studying how people adopt and make sense of new technologies in their work.
+
+\subsection{Study Design}
+
+The study proceeded in four phases: (1) a 40-minute introductory session explaining the system, study procedure, and warnings for safer use; (2) a probe usage period: a 14-day field study (3 participants) or a 20-minute lab session via Zoom (1 participant who could not participate in the field deployment due to technical issues); (3) a 1-hour follow-up semi-structured interview; and (4) a 10-minute drawing activity asking participants to imagine case work five years from now.
+
+We presented participants with warning messages about potential problems, including a general warning (``Care Fish AI is not perfect. ALWAYS REVIEW BY YOUR OWN.'') and specific examples of problematic predictions: hallucination that mixes facts and fabrications, and bias reflecting societal conditions embedded in the model.
+
+\subsection{Participants}
+
+We recruited four social workers (2 female, 2 male; mean age 35.3) from in-home older adult care centers. Mean social work experience was 5.8 years (range: 4--9); mean experience in in-home older adult care was 2.2 years (range: 4 months--5 years). We refer to participants as Minjun (W1), Seojun (W2), Seoyun (W5), and Seoyeon (W3, lab study). All are current practitioners conducting case management for older adults living at home.
+
+\subsection{Data Collection and Analysis}
+
+We conducted semi-structured interviews individually, except for two workers who participated together due to shared experience. Interviews lasted approximately 60 minutes and covered how workers used Care Fish, perceptions of each feature, worker agency, navigation of diverse case work approaches, and trust and privacy concerns. At Day 7, we sent check-up messages to assess engagement.
+
+We analyzed interview transcripts through thematic analysis, attending to what Care Fish makes visible and invisible in the documentation process. We iteratively coded the data, identifying descriptive themes and organizing them into interpretive themes connecting to authority, agency, and institutional power. The study received IRB approval, and informed consent was obtained from all participants. Recordings and documents were saved locally on workers' machines and not submitted to the researchers.
+
+\begin{table}[t]
+\caption{Participants' engagement with Care Fish.}
+\label{tab:engagement}
+\begin{center}
+\begin{small}
+\begin{tabular}{lcccl}
+\toprule
+ & Type & Rec. & Docs & Forms \\
+\midrule
+W1 & Field & 4 & 8 & F2, F8 \\
+W2 & Field & 4 & 44 & F1--F11 \\
+W5 & Field & 1 & 10 & --- \\
+W3 & Lab & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{small}
+\end{center}
+\end{table}
+
+All field study participants generated at least 8 documents, exceeding the requested minimum of 3. W2 produced 44 documents across all 11 form types (\cref{tab:engagement}).
+
+\section{Findings}
+
+We organize our findings around three themes, tracing the concept of \textit{visibility}: how Care Fish surfaces useful information (Theme 1), how it interacts with existing work practices (Theme 2), and how it reshapes what counts as evidence and whose perspective is privileged (Theme 3).
+
+\subsection{Making the Invisible Visible}
+
+\subsubsection{Surfacing missed information.}
+
+Participants reported that Care Fish reduced documentation time by organizing conversation content that would otherwise require re-listening to long recordings. Minjun noted that unlike voice recording alone, where he would need to search for relevant segments himself, Care Fish ``organizes it once, so time is definitely saved and I miss fewer things.'' For Seojun, Care Fish's annotation-style display revealed parts of the conversation he had overlooked: ``Because it shows the basis for its judgment as an annotation next to it, I can notice parts I had missed when looking only at the raw data.'' Care Fish organized the client's life story chronologically, surfacing stories that Seojun had missed, easing the burden of writing case documents.
+
+In both cases, the value lies in making practically inaccessible information accessible. The relevant details were already present in conversations spanning over two hours, but workers lacked the time to locate them.
+
+\subsubsection{Worker agency over AI outputs.}
+
+All participants viewed that they could at least partially control Care Fish. They reported that its errors are visible, verifiable, and correctable. Participants used Care Fish for reference rather than adopting outputs directly, and they maintained accountability for the final result. Seoyeon explained that Care Fish's mistakes tend to be categorically detectable: it either includes information absent from the conversation or omits information that was present. These are errors that fall within a social worker's expertise to recognize.
+
+\subsection{Friction with Existing Practices}
+
+\subsubsection{Re-entry as accidental safeguard.}
+
+Care Fish was not compatible with existing information systems. Participants re-entered Care Fish's outputs into other systems such as CareVisit or Excel. Minjun noted: ``We don't use it as-is; we go through the process of transferring it once more, and in that process, things get filtered out, so it wasn't a big problem.'' He discovered an error during re-entry when Care Fish generated an incorrect service plan based on a misunderstanding of the conversation. The manual transfer forced workers to review each item, creating a checkpoint against uncritical adoption of AI outputs.
+
+\subsubsection{Customization.}
+
+Seojun noted that Care Fish is difficult to customize, given that social workers use different theories, logics, and writing styles. His concern was about the amount of manual revision needed rather than the quality of the final document: workers could still produce documents meeting their standards, but the process required more editing.
+
+\subsection{The Politics of Visibility}
+
+\subsubsection{Rearranging the authority of evidence.}
+
+Both workers and Care Fish were regarded as having errors and biases. How participants talked about these errors, however, reveals a shift in how different types of evidence are valued.
+
+Seoyun questioned the legitimacy of her own professional judgment when Care Fish offered an alternative form of evidence. She described feeling uncertain about whether to rely on her observation that a client's health had declined---what she called a ``subjective'' impression---or to base her documentation on ``actual audio evidence, like how Care Fish writes it.'' Before Care Fish, her non-verbal observation during home visits (noticing a client's frailty, facial expression, or living conditions) was a legitimate basis for documentation. With Care Fish, she began to treat this observation as less authoritative than the recording-based evidence.
+
+This shift is grounded in the material properties of the recording. A recording captures the entire verbal exchange and cannot be altered after the fact. It can be replayed and verified. These properties---comprehensiveness, immutability, replayability---make the recording appear as an objective account of what happened, though it captures only the verbal dimension and misses body language and the worker's embodied observation.
+
+Care Fish's evidence feature adds another layer. When it presents each filled form entry alongside a quote from the transcript, the recording's latent authority becomes active: it is mobilized as an explicit citation backing each AI suggestion. Seoyeon similarly noted that Care Fish could remove the worker's ``cognitive error or distortion,'' and in this view, the system helps produce ``objective documents.'' She also observed that Care Fish tends to assess conditions as more severe than workers would, particularly on evaluation forms involving clinical indicators.
+
+When Care Fish's outputs conflicted with what workers directly observed during home visits, workers asserted the primacy of their first-person knowledge. Seoyeon checked generated results against ``what I saw.'' In these observable, physical domains, workers felt confident overriding the AI. In more interpretive domains---characterizing the severity of a condition, determining service appropriateness---the recording-backed authority of Care Fish carried more weight, because the worker's alternative was professional judgment without material backing.
+
+\subsubsection{How recording and AI reshape what gets said.}
+
+Records in case documentation have always been kept selectively. Workers do not transcribe everything from an interview; they remove and abridge content that does not fit their information needs. Clients, too, present themselves strategically. Workers referred to certain client statements as ``lies.'' In the context of welfare case interviews, client self-presentation serves multiple functions: negotiating eligibility under stringent criteria, preserving dignity in the face of dependency, and managing the relationship with the worker. What workers call lies may include understating family support to maintain eligibility, or overstating capacity to preserve self-image. These are responses to an institutional context in which clients must fit complex lives into rigid eligibility categories.
+
+The introduction of recording and AI-mediated documentation changed this landscape. Participants reported three effects. First, clients showed reluctance for recording or avoided self-disclosure (Minjun, Seoyun). The awareness of being recorded creates a condition in which clients may withhold information they would otherwise share. Second, some clients brought up new topics as the conversation became more natural without the interruption of note-taking (Seoyun). The removal of visible note-taking changed the feel of the interview, though these additional disclosures were now captured in a recording the client may not have fully appreciated would be systematically processed. Third, workers adapted their own conversation strategies: they strove to include more information clearly in the conversation so that Care Fish could better fill in the documents. The case interview began to be shaped by the documentation system's needs. Institutional form templates already exerted a structuring force on interviews before Care Fish, but the AI scribe intensified this force by making the connection between speech and document more immediate.
+
+\section{Discussion}
+
+\subsection{The Situated Vision of AI Scribes}
+
+Our findings point to a central tension. Care Fish surfaces useful information and supports workers in reviewing AI outputs. It also reshapes the epistemological landscape of documentation in ways that carry political consequences.
+
+Care Fish selects which parts of a conversation are relevant, translates them into institutional categories, and presents them backed by evidence citations. Each step embodies a perspective: the perspective encoded in the welfare regime's form templates. The form templates define what information matters; the AI selects and organizes accordingly; the recording provides the raw material from which citations are drawn. Information relevant to the client but not required by any form is systematically deprioritized.
+
+We call this the reinforcement of epistemological hierarchy: a structure in which the welfare regime's way of knowing---through standardized assessments, eligibility criteria, and formal categories---is positioned above the client's way of knowing through lived experience and personal narrative. Care Fish did not create this hierarchy; it predates AI. Case documents have always been selective translations of complex lives. But Care Fish amplifies this hierarchy by making the translation more efficient, more comprehensive, and harder to deviate from. When every word of a conversation is recorded, processed, and cited, the space for professional discretion narrows.
+
+\subsection{Discretion Under Pressure}
+
+Social workers are paradigmatic street-level bureaucrats \citep{lipsky2010street}: they implement institutional rules while exercising discretion to adapt them to individual client situations. This discretion is a recognized and necessary feature of frontline public service work. Workers and clients tacitly co-construct selective records, and what workers call client ``lies'' sometimes serve a protective function under stringent eligibility criteria. If the formal criteria of the ``deserving poor'' are too strictly applied, some people cannot continue their lives.
+
+Care Fish's comprehensive recording and systematic processing make discretion costlier to exercise. Workers must now actively override AI outputs backed by evidence quotes, rather than choosing not to document certain information. The re-entry practice provides one safeguard, forcing manual review. But the direction of the technology points toward greater integration, which would remove this accidental checkpoint.
+
+This connects to a broader pattern: technologies that promise efficiency and transparency in public services can subject vulnerable populations to a level of scrutiny that amounts to surveillance \citep{eubanks2018automating}. Our findings suggest that AI scribes in social work can produce a similar dynamic, making client speech more accountable than ever while the institutional criteria that judge that speech remain unexamined.
+
+\subsection{Design Implications}
+
+We propose that a core design goal for AI scribes in social work should be supporting reflexivity about the documentation process: making visible the situated vision of the AI scribe so that workers can critically examine what the AI produced and from whose perspective.
+
+We sketch three directions. First, a \textbf{``what was omitted'' view}: for each generated document, showing conversation segments that were relevant to the client's situation but did not map onto any form field. This makes the AI's selection process visible. Second, \textbf{perspective markers}: annotating each document entry with the source of its authority, distinguishing entries based on the client's direct statement, the worker's observation, or an AI inference from institutional criteria. Third, \textbf{discretion-supporting alerts}: when the AI identifies information that could jeopardize a client's eligibility, notifying the worker so they can make a deliberate decision about how to handle it.
+
+These directions share a common principle: the AI scribe should make the institution's gaze visible to the worker, not only make the conversation visible to the institution.
+
+\section{Limitations and Future Work}
+
+Our participant sample (N=4, with one in a lab setting) limits generalizability, though this is consistent with the technology probe methodology, which prioritizes situated understanding over statistical power. Future work should deploy AI scribes with more social workers across different institutional contexts. We did not collect fine-grained usage logs, which would have enriched our understanding of how workers engage with evidence and explanation features. Our findings are situated in the Korean in-home older adult care context; the dynamics of authority, discretion, and self-presentation may operate differently in other welfare systems. The design implications remain conceptual and require implementation and evaluation.
+
+\section{Conclusion}
+
+We presented Care Fish, an AI scribe technology probe for social work documentation, and reported findings from a deployment with four social workers. Care Fish improved documentation efficiency by surfacing information that workers missed during case interviews. Our analysis also showed that AI scribes can reinforce the epistemological hierarchy of the welfare regime, privileging institutional categories over clients' lived experiences and constraining professional discretion. We proposed visualizing the situated vision of AI scribes as a design goal for trustworthy AI in public welfare documentation.
+
+\bibliography{references}
+\bibliographystyle{plainnat}
+
+\end{document}
