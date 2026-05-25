@@ -39,7 +39,7 @@
 
     * { -webkit-font-smoothing: antialiased; }
 
-    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    html { scroll-behavior: smooth; scroll-padding-top: 110px; }
 
     body {
       font-family: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
@@ -149,7 +149,7 @@
     .hero {
       position: relative;
       overflow: hidden;
-      padding-top: 7rem;
+      padding-top: 9rem;
       padding-bottom: 3rem;
     }
     .hero-panel {
@@ -450,7 +450,7 @@
     /* mobile tweaks */
     @media (max-width: 640px) {
       .section-title { font-size: 1.5rem; }
-      .hero { padding-top: 5.5rem; }
+      .hero { padding-top: 7rem; }
       .menu-mini { grid-template-columns: 1fr; }
     }
 
@@ -579,6 +579,16 @@
 
   <!-- ========== NAV ========== -->
   <nav class="site-nav fixed w-full z-50">
+    <!-- Announcement bar: link to old version -->
+    <div style="background:var(--obutan-ink); color:var(--obutan-cream);">
+      <div class="container mx-auto px-5 py-1.5 flex items-center justify-end gap-2 text-xs">
+        <i class="fa-solid fa-clock-rotate-left" style="color:var(--obutan-mustard)"></i>
+        <span class="opacity-80">過去バージョンをご覧になりたい方はこちら：</span>
+        <a href="https://88gh.github.io/pages/obutan_tpg/03May2026" class="font-bold underline hover:opacity-80" style="color:var(--obutan-mustard)">
+          旧バージョン (ver 03May2026) を見る <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-0.5"></i>
+        </a>
+      </div>
+    </div>
     <div class="container mx-auto px-5 py-2.5 flex justify-between items-center">
       <a href="#top" class="flex items-center gap-2.5">
         <img src="obutanTPG_logo.png" alt="" class="w-9 h-9 rounded-full" />
@@ -737,24 +747,28 @@
             <div class="text-center p-4 rounded-lg" style="background:var(--obutan-cream)">
               <div class="text-xs font-bold tracking-widest" style="color:var(--obutan-ink-soft)">1日販売量</div>
               <div class="font-display text-2xl mt-1">200食</div>
-              <div class="text-xs mt-1" style="color:var(--obutan-ink-soft)">トッポギ もち20kg</div>
+              <div class="text-xs mt-1" style="color:var(--obutan-ink-soft)">トッポギ＋オプション</div>
             </div>
             <div class="text-center p-4 rounded-lg" style="background:var(--obutan-cream)">
               <div class="text-xs font-bold tracking-widest" style="color:var(--obutan-ink-soft)">1日売上</div>
-              <div class="font-display text-2xl mt-1" style="color:var(--obutan-red)">¥160,000</div>
-              <div class="text-xs mt-1" style="color:var(--obutan-ink-soft)">@¥800 × 200食</div>
+              <div class="font-display text-2xl mt-1" style="color:var(--obutan-red)">¥84,500</div>
+              <div class="text-xs mt-1" style="color:var(--obutan-ink-soft)">単価¥400〜500中心</div>
             </div>
             <div class="text-center p-4 rounded-lg" style="background:var(--obutan-cream)">
               <div class="text-xs font-bold tracking-widest" style="color:var(--obutan-ink-soft)">3日合計売上</div>
-              <div class="font-display text-2xl mt-1" style="color:var(--obutan-red)">¥480,000</div>
+              <div class="font-display text-2xl mt-1" style="color:var(--obutan-red)">¥253,000</div>
               <div class="text-xs mt-1" style="color:var(--obutan-ink-soft)">3日間フル稼働</div>
             </div>
             <div class="text-center p-4 rounded-lg" style="background:var(--obutan-mustard); color:var(--obutan-ink)">
               <div class="text-xs font-bold tracking-widest">想定 純利益</div>
-              <div class="font-display text-2xl mt-1">¥250,000</div>
-              <div class="text-xs mt-1">原価・固定費控除後</div>
+              <div class="font-display text-2xl mt-1">¥200,000</div>
+              <div class="text-xs mt-1">原価率約20%・固定費控除後</div>
             </div>
           </div>
+          <p class="mt-4 text-xs leading-relaxed" style="color:var(--obutan-ink-soft)">
+            ※想定構成：トッポギ ¥400 × 100食 + チーズトッポギ ¥500 × 60食 + 韓国おでん ¥300 × 40食 + おでんスープ ¥50 × 50食。
+            販売量より単価・労働強度のバランスを優先する方針。
+          </p>
         </div>
 
       </div>
@@ -766,25 +780,24 @@
         <div class="text-center mb-10">
           <div class="section-eyebrow">Menu</div>
           <h2 class="section-title text-3xl md:text-4xl mt-2">販売メニュー</h2>
-          <p class="mt-2 text-sm" style="color:var(--obutan-ink-soft)">価格は試作・原価確定後に最終調整</p>
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
           <div class="card p-6 card-marked">
-            <div class="ko text-sm">떡볶이 (大)</div>
-            <h3 class="font-display text-2xl mb-3">トッポギ <span class="text-base">大</span></h3>
+            <div class="ko text-sm">떡볶이</div>
+            <h3 class="font-display text-2xl mb-3">トッポギ</h3>
             <div class="flex justify-between items-end">
-              <div class="text-[10px] tracking-widest" style="color:var(--obutan-ink-soft)">もち約10コ</div>
-              <div class="font-display text-3xl" style="color:var(--obutan-red)">¥800</div>
+              <div class="text-[10px] tracking-widest" style="color:var(--obutan-ink-soft)">もち7コ</div>
+              <div class="font-display text-3xl" style="color:var(--obutan-red)">¥400</div>
             </div>
           </div>
 
           <div class="card p-6">
-            <div class="ko text-sm">떡볶이 (小)</div>
-            <h3 class="font-display text-2xl mb-3">トッポギ <span class="text-base">小</span></h3>
+            <div class="ko text-sm">치즈 떡볶이</div>
+            <h3 class="font-display text-2xl mb-3">チーズトッポギ</h3>
             <div class="flex justify-between items-end">
-              <div class="text-[10px] tracking-widest" style="color:var(--obutan-ink-soft)">もち約5コ</div>
+              <div class="text-[10px] tracking-widest" style="color:var(--obutan-ink-soft)">もち7コ＋チーズ</div>
               <div class="font-display text-3xl" style="color:var(--obutan-red)">¥500</div>
             </div>
           </div>
@@ -803,28 +816,10 @@
             <h3 class="font-display text-2xl mb-3">おでんスープ</h3>
             <div class="flex justify-between items-end">
               <div class="text-[10px] tracking-widest" style="color:var(--obutan-ink-soft)">紙コップ</div>
-              <div class="font-display text-3xl" style="color:var(--obutan-red)">¥100</div>
+              <div class="font-display text-3xl" style="color:var(--obutan-red)">¥50</div>
             </div>
           </div>
 
-        </div>
-
-        <!-- Topping option -->
-        <div class="card mt-6 p-6 md:p-7 flex flex-col md:flex-row items-center gap-5">
-          <div class="text-4xl flex-shrink-0" style="color:var(--obutan-mustard)">
-            <i class="fa-solid fa-cheese"></i>
-          </div>
-          <div class="flex-1">
-            <div class="ko text-sm">치즈 추가</div>
-            <h3 class="font-display text-xl mb-1">トッピング：チーズ追加</h3>
-            <p class="text-sm leading-relaxed" style="color:var(--obutan-ink-soft)">
-              トッポギ大・小に追加可能。アークス等のスーパーで購入できる<strong style="color:var(--obutan-ink)">常温保管可能なパルメザンチーズ</strong>等を振りかけて提供（冷蔵庫不要）。
-            </p>
-          </div>
-          <div class="text-right flex-shrink-0">
-            <div class="text-[10px] tracking-widest" style="color:var(--obutan-ink-soft)">追加料金</div>
-            <div class="font-display text-3xl" style="color:var(--obutan-red)">+¥100</div>
-          </div>
         </div>
 
       </div>
@@ -855,10 +850,11 @@
                 <i class="fa-solid fa-list-check mr-2" style="color:var(--obutan-mustard)"></i>材料 <span class="text-xs font-normal" style="color:var(--obutan-ink-soft)">（1食 ¥100相当 / もち約7個）</span>
               </h4>
               <ul class="text-sm space-y-2" style="color:var(--obutan-ink-soft)">
-                <li class="flex justify-between"><span>純米トッポギもち</span><span class="qty-box">約100g</span></li>
+                <li class="flex justify-between"><span>純米トッポギもち</span><span class="qty-box">7コ</span></li>
                 <li class="flex justify-between"><span>特製ヤンニョム粉</span><span class="qty-box">適量</span></li>
                 <li class="flex justify-between"><span>水</span><span class="qty-box">適量</span></li>
-                <li class="flex justify-between"><span>パルメザンチーズ（追加トッピング）</span><span class="qty-box">適量</span></li>
+                <li class="flex justify-between"><span>韓国おでん（小さく切ったもの）</span><span class="qty-box">2片</span></li>
+                <li class="flex justify-between"><span>パルメザンチーズ（チーズトッポギの場合）</span><span class="qty-box">適量</span></li>
               </ul>
               <div class="mt-3 p-3 rounded text-xs leading-relaxed" style="background:var(--obutan-cream); color:var(--obutan-maroon)">
                 <i class="fa-solid fa-snowflake mr-1"></i>
@@ -871,14 +867,15 @@
                 <i class="fa-solid fa-fire mr-2" style="color:var(--obutan-red)"></i>必要機材
               </h4>
               <ul class="text-sm space-y-2" style="color:var(--obutan-ink-soft)">
-                <li><i class="fa-solid fa-check mr-2" style="color:var(--obutan-blue)"></i>枠付き鉄板 または 鍋 3〜4個</li>
-                <li><i class="fa-solid fa-check mr-2" style="color:var(--obutan-blue)"></i>ガスコンロ（生協レンタル）</li>
+                <li><i class="fa-solid fa-check mr-2" style="color:var(--obutan-blue)"></i>枠付き鉄板（深さ2.5cm・取り外し可）</li>
+                <li><i class="fa-solid fa-check mr-2" style="color:var(--obutan-blue)"></i>ガスコンロ（1600W以上、生協レンタル）</li>
                 <li><i class="fa-solid fa-check mr-2" style="color:var(--obutan-blue)"></i>長いお玉・トング</li>
-                <li><i class="fa-solid fa-check mr-2" style="color:var(--obutan-blue)"></i>紙容器・プラスチックフォーク</li>
+                <li><i class="fa-solid fa-check mr-2" style="color:var(--obutan-blue)"></i>紙コップ・プラスチックフォーク</li>
+                <li><i class="fa-solid fa-check mr-2" style="color:var(--obutan-blue)"></i>軽トラック（鉄板搬入用、実行委員会レンタル）</li>
               </ul>
               <div class="mt-3 p-3 rounded text-xs leading-relaxed" style="background:#fef3c7; color:#92400e">
                 <i class="fa-solid fa-triangle-exclamation mr-1"></i>
-                <strong>枠なし鉄板は液状調理不可。</strong>枠あり鉄板の確保が困難な場合は鍋で対応（販売量は減るがレンタル不要）。
+                <strong>鉄板の洗浄は2人体制必須</strong>（重量があるため）。洗浄は1日1回・計3〜4回。
               </div>
             </div>
           </div>
@@ -905,8 +902,8 @@
             <div class="flex gap-4">
               <span class="step-num">3</span>
               <div>
-                <div class="font-bold">もち投入</div>
-                <div class="text-sm" style="color:var(--obutan-ink-soft)">水に浸しておいた純米トッポギもちを入れ、煮込む。</div>
+                <div class="font-bold">もち＆おでん投入</div>
+                <div class="text-sm" style="color:var(--obutan-ink-soft)">水に浸しておいた純米トッポギもち7コと、小さく切った韓国おでんを2片ほど一緒に入れ、煮込む。</div>
               </div>
             </div>
             <div class="flex gap-4">
@@ -919,8 +916,8 @@
             <div class="flex gap-4">
               <span class="step-num">5</span>
               <div>
-                <div class="font-bold">紙容器に盛り付け</div>
-                <div class="text-sm" style="color:var(--obutan-ink-soft)">大：もち約10個 / 小：もち約5個 を目安に盛り付け。フォークを添えて提供。</div>
+                <div class="font-bold">紙コップに盛り付け</div>
+                <div class="text-sm" style="color:var(--obutan-ink-soft)">もち7コ＋おでん片を紙コップに盛り付け、フォークを添えて提供。チーズトッポギの場合はここでパルメザンチーズを振りかける。</div>
               </div>
             </div>
           </div>
@@ -930,10 +927,16 @@
               <i class="fa-solid fa-flask text-lg" style="color:var(--obutan-maroon)"></i>
               <h5 class="font-display text-base" style="color:var(--obutan-maroon)">特製ヤンニョム粉のレシピ</h5>
             </div>
-            <p class="text-sm leading-relaxed" style="color:var(--obutan-ink-soft)">
-              基本配合：<strong style="color:var(--obutan-ink)">牛肉ダシダ ： 細かい唐辛子粉 ： 砂糖 = 1 ： 1 ： 1</strong> で混ぜたものをベースとする。<br/>
-              辛さ・甘さ・旨味のバランスは<strong style="color:var(--obutan-red)">試食会での実食を踏まえて研究の上、最終決定する。</strong>
+            <p class="text-sm leading-relaxed mb-3" style="color:var(--obutan-ink-soft)">
+              試食会（2026.05.19）を踏まえた現時点の配合：<br/>
+              <strong style="color:var(--obutan-ink)">唐辛子粉 ： ダシダ ： オリゴ糖 ： 砂糖 ： カプサイシン粉 = 2 ： 2 ： 0.5 ： 3 ： 0.3</strong>
             </p>
+            <ul class="text-xs space-y-1.5 leading-relaxed" style="color:var(--obutan-ink-soft)">
+              <li><i class="fa-solid fa-pepper-hot mr-1.5" style="color:var(--obutan-red)"></i><strong>唐辛子粉</strong>：味の中心。入れすぎるとしょっぱくなるので、おいしさの妥協点でストップ。</li>
+              <li><i class="fa-solid fa-fire mr-1.5" style="color:var(--obutan-red)"></i><strong>カプサイシン粉</strong>：辛さ調整専用。少量で本場の辛さを再現。<span class="ko">신마트（すすきの）</span>または<span class="ko">北18条駅近くの韓国市場</span>で粉タイプを購入（液状は不可）。</li>
+              <li><i class="fa-solid fa-cube mr-1.5" style="color:var(--obutan-mustard)"></i><strong>砂糖メイン・オリゴ糖少量</strong>：オリゴ糖は飽きやすい甘さなので妥協点として少量のみ。</li>
+              <li><i class="fa-solid fa-circle-info mr-1.5" style="color:var(--obutan-blue)"></i>もち250gに対して粉25g程度が現時点の目安。煮込むため粉の絶対量より<strong>比率の一貫性</strong>が重要。</li>
+            </ul>
           </div>
         </div>
 
@@ -947,7 +950,7 @@
             </div>
           </div>
           <p class="text-sm mb-5" style="color:var(--obutan-ink-soft)">
-            韓国おでん（串1本 ¥300）を煮るのと同時に、その煮汁をスープ（紙コップ ¥100）として販売する一石二鳥方式。
+            韓国おでん（串1本 ¥300）を煮るのと同時に、その煮汁をスープ（紙コップ ¥50）として販売する一石二鳥方式。
           </p>
           <div class="grid md:grid-cols-2 gap-6">
             <div>
@@ -965,7 +968,7 @@
                 <li>湯を沸かしダシダ＋つゆを投入</li>
                 <li>韓国おでんの串をスープに浸して煮込む</li>
                 <li>おでんは串1本ごとに ¥300 で提供</li>
-                <li>その煮汁を紙コップに注いで ¥100 のスープとして販売</li>
+                <li>その煮汁を紙コップに注いで ¥50 のスープとして販売</li>
               </ol>
               <div class="mt-3 p-3 rounded text-xs leading-relaxed" style="background:#dbeafe; color:#1e40af">
                 <i class="fa-solid fa-clock mr-1"></i>
@@ -1074,16 +1077,10 @@
                   <td>アークス等で購入。冷蔵庫不要</td>
                 </tr>
                 <tr>
-                  <td><strong>紙容器（大トッポギ用）</strong></td>
-                  <td class="price">120個</td>
-                  <td class="price">360個</td>
-                  <td>大サイズ専用容器。実行委経由</td>
-                </tr>
-                <tr>
-                  <td><strong>紙コップ（小トッポギ・おでん・スープ兼用）</strong></td>
-                  <td class="price">200個</td>
-                  <td class="price">600個</td>
-                  <td>小トッポギ50＋おでん50＋スープ100程度。実行委経由</td>
+                  <td><strong>紙コップ（トッポギ・チーズ・スープ兼用）</strong></td>
+                  <td class="price">220個</td>
+                  <td class="price">660個</td>
+                  <td>トッポギ160＋スープ50＋予備10程度。実行委経由</td>
                 </tr>
                 <tr>
                   <td><strong>プラスチックフォーク</strong></td>
@@ -1243,22 +1240,42 @@
           <div class="card p-6">
             <h3 class="font-display text-base mb-3">
               <i class="fa-solid fa-calculator mr-2" style="color:var(--obutan-blue)"></i>
-              原価試算（トッポギ大 1食）
+              原価試算（試食会実測ベース）
             </h3>
             <table class="w-full text-sm">
+              <thead>
+                <tr style="border-bottom:1px solid var(--obutan-line)">
+                  <th class="text-left py-1.5 text-xs font-bold" style="color:var(--obutan-ink-soft)">メニュー</th>
+                  <th class="text-right py-1.5 text-xs font-bold" style="color:var(--obutan-ink-soft)">原価</th>
+                  <th class="text-right py-1.5 text-xs font-bold" style="color:var(--obutan-ink-soft)">販売価格</th>
+                  <th class="text-right py-1.5 text-xs font-bold" style="color:var(--obutan-ink-soft)">粗利率</th>
+                </tr>
+              </thead>
               <tbody>
-                <tr><td class="py-1.5">業務用トッポギもち 100g</td><td class="text-right py-1.5"><span class="price">¥64</span></td></tr>
-                <tr><td class="py-1.5">特製ヤンニョム粉<br/><span class="text-xs" style="color:var(--obutan-ink-soft)">ダシダ＋唐辛子粉＋砂糖</span></td><td class="text-right py-1.5"><span class="price">¥15</span></td></tr>
-                <tr><td class="py-1.5">紙容器・フォーク</td><td class="text-right py-1.5"><span class="price">¥15</span></td></tr>
-                <tr><td class="py-1.5">ガス・水・雑費</td><td class="text-right py-1.5"><span class="price">¥10</span></td></tr>
-                <tr style="border-top:2px solid var(--obutan-ink)"><td class="py-2 font-bold">合計原価</td><td class="text-right py-2 price text-base">¥104</td></tr>
-                <tr><td class="py-1.5">販売価格</td><td class="text-right py-1.5 price">¥800</td></tr>
-                <tr><td class="py-1.5 font-bold" style="color:var(--obutan-red)">粗利</td><td class="text-right py-1.5 font-bold" style="color:var(--obutan-red)">¥696 (87%)</td></tr>
+                <tr>
+                  <td class="py-1.5">トッポギ（おでん無し）</td>
+                  <td class="text-right py-1.5"><span class="price">¥65</span></td>
+                  <td class="text-right py-1.5 price">¥400</td>
+                  <td class="text-right py-1.5 font-bold" style="color:var(--obutan-red)">84%</td>
+                </tr>
+                <tr>
+                  <td class="py-1.5">トッポギ（おでん入り）</td>
+                  <td class="text-right py-1.5"><span class="price">¥71</span></td>
+                  <td class="text-right py-1.5 price">¥400</td>
+                  <td class="text-right py-1.5 font-bold" style="color:var(--obutan-red)">82%</td>
+                </tr>
+                <tr>
+                  <td class="py-1.5">チーズトッポギ</td>
+                  <td class="text-right py-1.5"><span class="price">¥81</span></td>
+                  <td class="text-right py-1.5 price">¥500</td>
+                  <td class="text-right py-1.5 font-bold" style="color:var(--obutan-red)">84%</td>
+                </tr>
               </tbody>
             </table>
             <div class="mt-3 text-xs leading-relaxed" style="color:var(--obutan-ink-soft)">
-              ※チーズ追加（+¥100）の原価は約¥30、粗利¥70。<br/>
-              ※鉄板/コンロレンタル等の固定費は別途。試食会後に実測値で更新。
+              ※原価内訳：もち＋粉＋小ネギ＋紙カップ＋（おでん）＋（チーズ）。<br/>
+              ※竹串・摂動誤差は無視。やや高めの見積もり（多田会計 2026.05.19 試食会）。<br/>
+              ※鉄板/コンロ等の固定費は別途。
             </div>
           </div>
         </div>
@@ -1306,25 +1323,30 @@
               <div class="timeline-title">パネル・パンフレット画像 ver3 確定</div>
               <div class="timeline-desc">提出期限：5月6日(水) 23:50</div>
             </div>
-            <div class="timeline-item now">
+            <div class="timeline-item done">
               <div class="timeline-date">2026.05.06</div>
-              <div class="timeline-title"><i class="fa-solid fa-flag mr-1" style="color:var(--obutan-mustard)"></i>パネル・模擬店ガイド画像 提出締切</div>
-              <div class="timeline-desc">楡陵祭2026公式Webサイトより送信</div>
+              <div class="timeline-title">パネル・模擬店ガイド画像 提出</div>
+              <div class="timeline-desc">楡陵祭2026公式Webサイトより送信完了</div>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item done">
               <div class="timeline-date">2026.05.08</div>
               <div class="timeline-title">第1回 試作会（タコパ兼用）</div>
-              <div class="timeline-desc">分量・味・調理時間の検証 → 結果踏まえ第2回会議</div>
+              <div class="timeline-desc">分量・味・調理時間の検証</div>
             </div>
-            <div class="timeline-item">
-              <div class="timeline-date">2026.05中旬</div>
-              <div class="timeline-title">第2回 試作会＆発注確定</div>
-              <div class="timeline-desc">最終レシピ確定、もち・ダシダ・おでん発注</div>
+            <div class="timeline-item done">
+              <div class="timeline-date">2026.05.19</div>
+              <div class="timeline-title">第2回 試作会・原価確定</div>
+              <div class="timeline-desc">トッポギ7本ベースで決定 / 原価 ¥65〜¥81 / 価格 ¥400・¥500 確定</div>
+            </div>
+            <div class="timeline-item now">
+              <div class="timeline-date">2026.05.21</div>
+              <div class="timeline-title"><i class="fa-solid fa-flag mr-1" style="color:var(--obutan-mustard)"></i>ヤンニョム粉配合 最終調整中</div>
+              <div class="timeline-desc">カプサイシン粉を導入し、辛さ研究 / 配合 2:2:0.5:3:0.3</div>
             </div>
             <div class="timeline-item">
               <div class="timeline-date">2026.05下旬</div>
               <div class="timeline-title">機材レンタル申請・シフト確定</div>
-              <div class="timeline-desc">枠付き鉄板/鍋・コンロ・ガス・バッテリーレンタル / シフト制で売り手を募集</div>
+              <div class="timeline-desc">枠付き鉄板（深さ2.5cm）・コンロ・ガス・軽トラ等レンタル / シフト制で売り手を募集</div>
             </div>
             <div class="timeline-item">
               <div class="timeline-date">2026.06.04</div>
@@ -1542,6 +1564,12 @@
             参考リンク
           </h3>
           <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <a href="https://hokudai-my.sharepoint.com/:x:/g/personal/m049938m_ms-license_oicte_hokudai_ac_jp/IQB6tfC-5GR9R5U91XOisOQ0Aa7iuJmFrlotPR-iYi_FEIw" target="_blank" rel="noopener" class="link-card" style="border-color:var(--obutan-mustard); background: linear-gradient(135deg, #fff 0%, var(--obutan-cream) 100%);">
+              <div class="lc-host"><i class="fa-solid fa-lock mr-1" style="color:var(--obutan-mustard)"></i>SharePoint（チーム限定）</div>
+              <div class="lc-title">出費管理・収益計算エクセル</div>
+              <div class="lc-desc">チームおぶたん専用シート（多田会計）</div>
+              <div class="lc-arrow">開く <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></div>
+            </a>
             <a href="https://www.kpedia.jp/w/21928" target="_blank" rel="noopener" class="link-card">
               <div class="lc-host">kpedia.jp</div>
               <div class="lc-title">「오붓하다」の意味</div>
