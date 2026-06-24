@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!--
+  ============================================================
+  3분할 동기 데모  (원본 | Depth | 3D 점군)
+  ------------------------------------------------------------
+  같은 폴더에 아래 3개를 넣으면 자동 로드된다:
+    original.mp4   원본 클립 (또는 YOLO 거리라벨이 입혀진 영상)
+    depth.mp4      VDA depth 영상
+    pointcloud.ply 점군
+  GitHub Pages에 메인으로 띄우려면 이 파일을 index.html 로 이름만 바꾸면 됨.
+  로컬 file:// 더블클릭 시엔 자동로드 대신 파일을 창에 끌어다 놓으면 됨
+  (영상 파일명에 'depth' 가 들어가면 Depth 패널로, 나머지는 원본 패널로 배치).
+  쿼리로 경로 덮어쓰기: ?orig=a.mp4&depth=b.mp4&ply=c.ply
+  ============================================================
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2정문 3D 재구성 데모</title>
+<style>
+  :root{
+    --bg:#0a0d13; --panel:#0d121b; --panel2:rgba(17,21,30,0.86); --border:rgba(255,255,255,0.09);
+    --text:#e7eaf0; --muted:#8a92a6; --accent:#5b9dff; --measure:#36d6c3;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--text);overflow:hidden;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Noto Sans KR",Roboto,sans-serif;}
+  #wrap{display:flex;flex-direction:column;height:100%;padding:14px;gap:12px;}
+
+  header{display:flex;align-items:baseline;gap:12px;flex:none;}
+  header h1{font-size:15px;margin:0;font-weight:650;letter-spacing:-0.01em;}
+  header span{font-size:12px;color:var(--muted);}
+
+  /* transport */
+  #bar{flex:none;display:flex;align-items:center;gap:12px;background:var(--panel2);backdrop-filter:blur(10px);
+    border:1px solid var(--border);border-radius:12px;padding:9px 13px;}
+  #play{cursor:pointer;width:34px;height:34px;border:none;border-radius:8px;background:var(--accent);
+    color:#06101f;font-size:15px;font-weight:700;flex:none;}
+  #play:hover{filter:brightness(1.08);}
+  #seek{flex:1;accent-color:var(--accent);height:4px;}
+  #time{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;flex:none;min-width:82px;text-align:right;}
+  #bar select{background:#0d121b;color:var(--text);border:1px solid var(--border);border-radius:7px;padding:4px 7px;font-size:12px;}
+  .tog{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);cursor:pointer;user-select:none;}
+  .dot{width:34px;height:20px;border-radius:10px;background:#222a39;position:relative;transition:background .15s;}
+  .dot.on{background:var(--accent);}
+  .dot::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .15s;}
+  .dot.on::after{transform:translateX(14px);}
+
+  /* stage */
+  #stage{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;min-height:0;}
+  @media(max-width:900px){ #stage{grid-template-columns:1fr;} #wrap{height:auto;overflow:auto;} html,body{overflow:auto;} }
+  .panel{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:12px;overflow:hidden;
+    background:var(--panel);min-height:0;}
+  .panel .head{flex:none;padding:8px 12px;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;
+    color:var(--muted);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+  .panel .body{position:relative;flex:1;background:#000;min-height:220px;}
+  video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;}
+  .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#4b5468;
+    font-size:12px;text-align:center;padding:20px;}
+  #cloudwrap{position:absolute;inset:0;}
+  #cloudwrap canvas{display:block;}
+  .cloudbtns{position:absolute;top:8px;right:8px;display:flex;gap:5px;z-index:3;}
+  .cloudbtns button{cursor:pointer;background:var(--panel2);backdrop-filter:blur(8px);border:1px solid var(--border);
+    color:var(--text);border-radius:7px;padding:4px 8px;font-size:11px;}
+  .cloudbtns button.on{background:var(--accent);color:#06101f;border-color:var(--accent);}
+  .cloudbtns button:hover{border-color:var(--accent);}
+
+  #drophint{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:var(--panel2);
+    backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:10px;padding:8px 14px;font-size:12px;
+    color:var(--muted);z-index:20;}
+  body.dragging::after{content:'파일을 놓으세요';position:fixed;inset:0;background:rgba(91,157,255,0.10);
+    display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--accent);z-index:30;pointer-events:none;}
+</style>
+</head>
+<body>
+<div id="wrap">
+  <header>
+    <h1>2정문 · monodepth 기반 3D 재구성</h1>
+    <span>원본 → Depth → 점군</span>
+  </header>
+
+  <div id="bar">
+    <button id="play">▶</button>
+    <input id="seek" type="range" min="0" max="1000" value="0">
+    <span id="time">0:00 / 0:00</span>
+    <label class="tog" id="loopt"><span>반복</span><span class="dot on" id="loopd"></span></label>
+    <select id="rate"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select>
+  </div>
+
+  <div id="stage">
+    <div class="panel">
+      <div class="head"><span>원본 / 탐지</span></div>
+      <div class="body"><video id="vorig" muted playsinline></video><div class="ph" id="phorig">original.mp4 대기</div></div>
+    </div>
+    <div class="panel">
+      <div class="head"><span>Depth 맵</span></div>
+      <div class="body"><video id="vdepth" muted playsinline></video><div class="ph" id="phdepth">depth.mp4 대기</div></div>
+    </div>
+    <div class="panel">
+      <div class="head"><span>3D 점군</span></div>
+      <div class="body">
+        <div id="cloudwrap"></div>
+        <div class="ph" id="phcloud">pointcloud.ply 대기</div>
+        <div class="cloudbtns">
+          <button id="cb-rotate" class="on">회전</button>
+          <button id="cb-flip">뒤집기</button>
+          <button id="cb-color">깊이색</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="drophint">로컬에서 열었으면 original.mp4 · depth.mp4 · pointcloud.ply 를 이 창에 끌어다 놓으세요</div>
+<input type="file" id="file" accept=".ply,.mp4,.webm,.mov" multiple style="display:none">
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { PLYLoader } from 'three/addons/loaders/PLYLoader.js';
+
+const params = new URLSearchParams(location.search);
+const $ = id => document.getElementById(id);
+const vorig = $('vorig'), vdepth = $('vdepth');
+
+/* ================= video sync ================= */
+let loopOn = true;
+
+function fmt(t){ if(!isFinite(t)) t=0; const m=Math.floor(t/60), s=Math.floor(t%60); return `${m}:${String(s).padStart(2,'0')}`; }
+
+function setSource(video, ph, url){
+  video.src = url;
+  video.loop = loopOn;
+  video.addEventListener('loadeddata', () => { ph.style.display='none'; video.play().catch(()=>{}); }, { once:true });
+  video.addEventListener('error', () => { ph.textContent = ph.textContent.replace('대기','없음'); }, { once:true });
+}
+
+$('play').addEventListener('click', () => {
+  if(vorig.paused){ vorig.play(); vdepth.play(); $('play').textContent='⏸'; }
+  else { vorig.pause(); vdepth.pause(); $('play').textContent='▶'; }
+});
+addEventListener('keydown', e => { if(e.code==='Space'){ e.preventDefault(); $('play').click(); } });
+
+$('seek').addEventListener('input', e => {
+  const d = vorig.duration || 0;
+  const t = (e.target.value/1000)*d;
+  vorig.currentTime = t; if(vdepth.readyState) vdepth.currentTime = t;
+});
+
+vorig.addEventListener('timeupdate', () => {
+  const d = vorig.duration || 0;
+  $('seek').value = d ? (vorig.currentTime/d)*1000 : 0;
+  $('time').textContent = `${fmt(vorig.currentTime)} / ${fmt(d)}`;
+  if(vdepth.readyState && Math.abs(vdepth.currentTime - vorig.currentTime) > 0.08){
+    vdepth.currentTime = vorig.currentTime;
+  }
+});
+vorig.addEventListener('play', () => $('play').textContent='⏸');
+vorig.addEventListener('pause', () => $('play').textContent='▶');
+
+$('loopt').addEventListener('click', () => {
+  loopOn = !loopOn; $('loopd').classList.toggle('on', loopOn);
+  vorig.loop = loopOn; vdepth.loop = loopOn;
+});
+$('rate').addEventListener('change', e => { vorig.playbackRate = +e.target.value; vdepth.playbackRate = +e.target.value; });
+
+/* ================= point cloud ================= */
+const wrap = $('cloudwrap');
+let renderer, scene, camera, controls, pointsGroup, points=null, material;
+let origColors=null, diag=1;
+const cstate = { rotate:true, flip:false, color:'original' };
+
+function initCloud(){
+  renderer = new THREE.WebGLRenderer({ antialias:true, preserveDrawingBuffer:true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  wrap.appendChild(renderer.domElement);
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x05070b);
+  camera = new THREE.PerspectiveCamera(55, 1, 0.01, 5000);
+  camera.position.set(0,0,4);
+  controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true; controls.dampingFactor = 0.08;
+  controls.autoRotate = true; controls.autoRotateSpeed = 1.1;
+  pointsGroup = new THREE.Group(); scene.add(pointsGroup);
+  new ResizeObserver(resizeCloud).observe(wrap);
+  resizeCloud();
+  (function loop(){ requestAnimationFrame(loop); controls.autoRotate = cstate.rotate; controls.update(); renderer.render(scene,camera); })();
+}
+function resizeCloud(){
+  const w = wrap.clientWidth, h = wrap.clientHeight;
+  if(!w||!h) return;
+  renderer.setSize(w,h,false);
+  camera.aspect = w/h; camera.updateProjectionMatrix();
+}
+
+const loader = new PLYLoader();
+function loadPlyBuffer(buf){
+  let geom; try{ geom = loader.parse(buf); }catch(e){ return; }
+  if(points){ pointsGroup.remove(points); points.geometry.dispose(); material.dispose(); }
+  const ca = geom.getAttribute('color');
+  origColors = ca ? Float32Array.from(ca.array) : null;
+  if(!origColors){ cstate.color='depth'; $('cb-color').classList.add('on'); $('cb-color').textContent='원본색'; }
+  if(!geom.getAttribute('color')) geom.setAttribute('color', new THREE.BufferAttribute(new Float32Array(geom.getAttribute('position').count*3),3));
+  material = new THREE.PointsMaterial({ size:1.6, sizeAttenuation:true, vertexColors:true });
+  points = new THREE.Points(geom, material); pointsGroup.add(points);
+  const wb = new THREE.Box3().setFromObject(points); const s=new THREE.Vector3(); wb.getSize(s); diag=s.length()||1;
+  applyColor(); applyFlip(); frameCloud();
+  $('phcloud').style.display='none';
+}
+function applyColor(){
+  if(!points) return;
+  const g=points.geometry, pos=g.getAttribute('position').array, n=g.getAttribute('position').count, arr=g.getAttribute('color').array;
+  const mode = (cstate.color==='original' && !origColors) ? 'depth' : cstate.color;
+  if(mode==='original'){ arr.set(origColors); }
+  else{
+    let mn=Infinity,mx=-Infinity; for(let i=0;i<n;i++){const v=pos[i*3+2]; if(v<mn)mn=v; if(v>mx)mx=v;}
+    const r=(mx-mn)||1, c=new THREE.Color();
+    for(let i=0;i<n;i++){ const t=(pos[i*3+2]-mn)/r; c.setHSL((1-t)*0.66,0.95,0.52); arr[i*3]=c.r; arr[i*3+1]=c.g; arr[i*3+2]=c.b; }
+  }
+  g.getAttribute('color').needsUpdate = true;
+}
+function applyFlip(){ pointsGroup.rotation.x = cstate.flip ? Math.PI : 0; }
+function frameCloud(){
+  if(!points) return;
+  const wb=new THREE.Box3().setFromObject(points), c=new THREE.Vector3(), s=new THREE.Vector3();
+  wb.getCenter(c); wb.getSize(s); const m=Math.max(s.x,s.y,s.z)||1;
+  controls.target.copy(c);
+  camera.position.set(c.x + m*0.5, c.y + m*0.3, c.z + m*1.5);
+  camera.near=Math.max(diag/1000,0.001); camera.far=diag*60; camera.updateProjectionMatrix();
+  controls.update();
+}
+$('cb-rotate').addEventListener('click', e => { cstate.rotate=!cstate.rotate; e.target.classList.toggle('on',cstate.rotate); });
+$('cb-flip').addEventListener('click', e => { cstate.flip=!cstate.flip; e.target.classList.toggle('on',cstate.flip); applyFlip(); frameCloud(); });
+$('cb-color').addEventListener('click', e => {
+  cstate.color = cstate.color==='original' ? 'depth' : 'original';
+  const isDepth = cstate.color==='depth';
+  e.target.classList.toggle('on', isDepth);
+  e.target.textContent = isDepth ? '원본색' : '깊이색';
+  applyColor();
+});
+
+/* ================= auto-load + drop ================= */
+initCloud();
+
+setSource(vorig, $('phorig'), params.get('orig') || './original.mp4');
+setSource(vdepth, $('phdepth'), params.get('depth') || './depth.mp4');
+(async () => {
+  try{
+    const res = await fetch(params.get('ply') || './pointcloud.ply', { cache:'no-store' });
+    if(res.ok) loadPlyBuffer(await res.arrayBuffer());
+  }catch(e){ /* file:// 차단 → 드롭으로 */ }
+})();
+
+function routeFile(f){
+  const name = f.name.toLowerCase();
+  if(name.endsWith('.ply')){ const r=new FileReader(); r.onload=()=>loadPlyBuffer(r.result); r.readAsArrayBuffer(f); }
+  else if(/\.(mp4|webm|mov)$/.test(name)){
+    const url = URL.createObjectURL(f);
+    if(name.includes('depth')) setSource(vdepth, $('phdepth'), url);
+    else setSource(vorig, $('phorig'), url);
+  }
+}
+['dragenter','dragover'].forEach(ev=>addEventListener(ev,e=>{e.preventDefault();document.body.classList.add('dragging');}));
+['dragleave','drop'].forEach(ev=>addEventListener(ev,e=>{e.preventDefault();document.body.classList.remove('dragging');}));
+addEventListener('drop', e => { [...e.dataTransfer.files].forEach(routeFile); $('drophint').style.display='none'; });
+</script>
+</body>
+</html>
