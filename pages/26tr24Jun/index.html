@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ko">
+<!--
+  ============================================================
+  GitHub Pages 배포용 점군 뷰어
+  ------------------------------------------------------------
+  1) 이 파일을 저장소에 index.html (소문자!) 로 넣는다.
+  2) 점군 파일을 같은 폴더에 pointcloud.ply 라는 이름으로 넣는다.
+  3) Settings > Pages 에서 배포 브랜치를 켠다.
+  → 방문자가 URL을 열면 pointcloud.ply 가 자동 로드된다.
+  (다른 파일 보고 싶으면 ?ply=다른파일.ply 쿼리로 덮어쓸 수 있음)
+  로컬 file:// 로 더블클릭하면 자동로드는 막히지만 드래그&드롭은 동작한다.
+  ============================================================
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D 점군 뷰어 · 2정문 데모</title>
+<style>
+  :root{
+    --bg:#0a0d13; --panel:rgba(17,21,30,0.86); --border:rgba(255,255,255,0.09);
+    --text:#e7eaf0; --muted:#8a92a6; --accent:#5b9dff; --measure:#36d6c3;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;overflow:hidden;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Noto Sans KR",Roboto,sans-serif;}
+  #app{position:fixed;inset:0;}
+  canvas{display:block;}
+
+  #drop{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+    pointer-events:none;transition:background .15s ease,opacity .25s ease;z-index:10;}
+  #drop.active{pointer-events:auto;}
+  #drop.dragging{background:rgba(91,157,255,0.10);}
+  #drop.loaded{opacity:0;pointer-events:none;}
+  #drop .card{pointer-events:auto;border:1px dashed var(--border);border-radius:16px;
+    padding:34px 40px;background:var(--panel);backdrop-filter:blur(10px);max-width:480px;text-align:center;}
+  #drop h1{font-size:18px;margin:0 0 8px;font-weight:650;letter-spacing:-0.01em;}
+  #drop p{margin:7px 0;color:var(--muted);font-size:13px;line-height:1.65;}
+  #drop b{color:var(--text);}
+  .btn{display:inline-block;margin-top:14px;cursor:pointer;background:var(--accent);color:#06101f;
+    border:none;border-radius:10px;padding:10px 18px;font-size:13px;font-weight:650;}
+  .btn:hover{filter:brightness(1.08);}
+  .spinner{width:26px;height:26px;border:3px solid var(--border);border-top-color:var(--accent);
+    border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 14px;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  #panel{position:fixed;top:14px;left:14px;width:262px;background:var(--panel);backdrop-filter:blur(12px);
+    border:1px solid var(--border);border-radius:14px;padding:14px;font-size:12.5px;display:none;
+    max-height:calc(100vh - 28px);overflow:auto;z-index:5;}
+  #panel.show{display:block;}
+  #panel h2{font-size:11px;text-transform:uppercase;letter-spacing:0.09em;color:var(--muted);
+    margin:0 0 11px;font-weight:600;}
+  .row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:9px 0;}
+  input[type=range]{width:124px;accent-color:var(--accent);}
+  select{background:#0d121b;color:var(--text);border:1px solid var(--border);border-radius:8px;
+    padding:5px 8px;font-size:12px;}
+  .toggle{width:38px;height:22px;border-radius:11px;background:#222a39;position:relative;cursor:pointer;
+    transition:background .15s;flex:none;}
+  .toggle.on{background:var(--accent);}
+  .toggle::after{content:'';position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;
+    background:#fff;transition:transform .15s;}
+  .toggle.on::after{transform:translateX(16px);}
+  .divider{height:1px;background:var(--border);margin:12px 0;}
+  .btnrow{display:flex;gap:6px;flex-wrap:wrap;}
+  .minibtn{cursor:pointer;background:#0d121b;border:1px solid var(--border);color:var(--text);
+    border-radius:8px;padding:7px 10px;font-size:12px;}
+  .minibtn:hover{border-color:var(--accent);}
+
+  #info{position:fixed;bottom:14px;left:14px;background:var(--panel);backdrop-filter:blur(12px);
+    border:1px solid var(--border);border-radius:12px;padding:10px 13px;font-size:11.5px;color:var(--muted);
+    display:none;line-height:1.75;max-width:300px;z-index:5;}
+  #info.show{display:block;}
+  #info b{color:var(--text);font-weight:600;}
+  #measure-out{color:var(--measure);font-weight:600;}
+  #hint{position:fixed;bottom:14px;right:14px;font-size:11px;color:var(--muted);background:var(--panel);
+    border:1px solid var(--border);border-radius:10px;padding:8px 11px;display:none;z-index:5;}
+  #hint.show{display:block;}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<div id="drop" class="active">
+  <div class="card">
+    <div id="loading-view">
+      <div class="spinner"></div>
+      <p>점군을 불러오는 중…</p>
+    </div>
+    <div id="drop-view" style="display:none">
+      <h1>3D 점군 뷰어 · 2정문 데모</h1>
+      <p><b>pointcloud.ply</b> 를 찾지 못했습니다.<br>저장소에 함께 올렸는지 확인하거나, .ply 파일을 이 창에 끌어다 놓으세요.</p>
+      <button class="btn" id="pick">파일 선택</button>
+      <p style="margin-top:16px;font-size:11.5px;">좌클릭 회전 · 우클릭 이동 · 휠 줌</p>
+    </div>
+  </div>
+</div>
+<input type="file" id="file" accept=".ply" style="display:none">
+
+<div id="panel">
+  <h2>표시 설정</h2>
+  <div class="row"><label>점 크기</label><input id="ui-size" type="range" min="0.2" max="8" step="0.1" value="1.6"></div>
+  <div class="row"><label>색상 모드</label>
+    <select id="ui-color">
+      <option value="original">원본 색</option>
+      <option value="depth">깊이 (Z)</option>
+      <option value="height">높이 (Y)</option>
+    </select>
+  </div>
+  <div class="row"><label>배경</label>
+    <select id="ui-bg"><option value="dark">어둡게</option><option value="light">밝게</option></select>
+  </div>
+  <div class="divider"></div>
+  <div class="row"><label>그리드</label><div class="toggle" id="ui-grid"></div></div>
+  <div class="row"><label>좌표축</label><div class="toggle" id="ui-axes"></div></div>
+  <div class="row"><label>상하 뒤집기</label><div class="toggle" id="ui-flip"></div></div>
+  <div class="row"><label>거리 측정</label><div class="toggle" id="ui-measure"></div></div>
+  <div class="divider"></div>
+  <div class="btnrow">
+    <button class="minibtn" id="ui-reset">시점 초기화</button>
+    <button class="minibtn" id="ui-shot">PNG 저장</button>
+    <button class="minibtn" id="ui-load">새 파일</button>
+  </div>
+</div>
+
+<div id="info"></div>
+<div id="hint"></div>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { PLYLoader } from 'three/addons/loaders/PLYLoader.js';
+
+const app = document.getElementById('app');
+let renderer, scene, camera, controls;
+let points = null, pointsGroup, material;
+let grid, axes;
+let origColors = null;
+let diag = 1;
+
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+let markers = [], measureLine = null;
+let downPos = null;
+
+const state = { size:1.6, colorMode:'original', flip:false, measure:false };
+
+init();
+
+function init(){
+  renderer = new THREE.WebGLRenderer({ antialias:true, preserveDrawingBuffer:true });
+  renderer.setSize(innerWidth, innerHeight);
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  app.appendChild(renderer.domElement);
+
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0a0d13);
+
+  camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, 0.01, 5000);
+  camera.position.set(0, 0, 4);
+
+  controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.08;
+  controls.screenSpacePanning = true;
+
+  pointsGroup = new THREE.Group();
+  scene.add(pointsGroup);
+
+  grid = new THREE.GridHelper(10, 20, 0x2a3346, 0x161c28);
+  grid.visible = false; scene.add(grid);
+  axes = new THREE.AxesHelper(1);
+  axes.visible = false; scene.add(axes);
+
+  addEventListener('resize', onResize);
+  setupUI(); setupDnD(); setupMeasure();
+  animate();
+  tryAutoLoad();
+}
+
+function onResize(){
+  camera.aspect = innerWidth/innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+}
+
+function animate(){
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene, camera);
+}
+
+/* ---------- auto-load (배포 환경) ---------- */
+async function tryAutoLoad(){
+  const params = new URLSearchParams(location.search);
+  const url = params.get('ply') || './pointcloud.ply';
+  try{
+    const res = await fetch(url, { cache:'no-store' });
+    if(!res.ok) throw new Error('not found');
+    const buf = await res.arrayBuffer();
+    loadBuffer(buf, url.split('/').pop());
+  }catch(e){
+    // 파일 없음 또는 로컬 file:// 차단 → 드래그&드롭 화면으로
+    document.getElementById('loading-view').style.display = 'none';
+    document.getElementById('drop-view').style.display = 'block';
+  }
+}
+
+/* ---------- loading ---------- */
+const loader = new PLYLoader();
+
+function readFile(f){
+  if(!/\.ply$/i.test(f.name)){ alert('.ply 파일을 올려주세요.'); return; }
+  const r = new FileReader();
+  r.onload = () => loadBuffer(r.result, f.name);
+  r.readAsArrayBuffer(f);
+}
+
+function loadBuffer(buf, name){
+  let geom;
+  try { geom = loader.parse(buf); }
+  catch(e){ alert('PLY 파싱 실패: ' + e.message); return; }
+
+  if(points){ pointsGroup.remove(points); points.geometry.dispose(); material.dispose(); points = null; }
+  clearMeasure();
+
+  const colAttr = geom.getAttribute('color');
+  origColors = colAttr ? Float32Array.from(colAttr.array) : null;
+  if(!origColors){ state.colorMode = 'depth'; document.getElementById('ui-color').value = 'depth'; }
+
+  material = new THREE.PointsMaterial({ size: state.size, sizeAttenuation:true, vertexColors:true });
+  if(!geom.getAttribute('color')){
+    geom.setAttribute('color', new THREE.BufferAttribute(new Float32Array(geom.getAttribute('position').count*3), 3));
+  }
+  points = new THREE.Points(geom, material);
+  pointsGroup.add(points);
+
+  const wb = new THREE.Box3().setFromObject(points);
+  const s = new THREE.Vector3(); wb.getSize(s); diag = s.length() || 1;
+
+  applyColorMode();
+  applyFlip();
+  frameView();
+  updateInfo(name, geom.getAttribute('position').count);
+
+  const drop = document.getElementById('drop');
+  drop.classList.remove('active'); drop.classList.add('loaded');
+  document.getElementById('panel').classList.add('show');
+  document.getElementById('info').classList.add('show');
+}
+
+/* ---------- color ---------- */
+function applyColorMode(){
+  if(!points) return;
+  const geom = points.geometry;
+  const pos = geom.getAttribute('position').array;
+  const n = geom.getAttribute('position').count;
+  const arr = geom.getAttribute('color').array;
+  let mode = (state.colorMode === 'original' && !origColors) ? 'depth' : state.colorMode;
+
+  if(mode === 'original'){
+    arr.set(origColors);
+  } else {
+    const axis = (mode === 'height') ? 1 : 2;
+    let mn = Infinity, mx = -Infinity;
+    for(let i=0;i<n;i++){ const v = pos[i*3+axis]; if(v<mn)mn=v; if(v>mx)mx=v; }
+    const range = (mx - mn) || 1;
+    const c = new THREE.Color();
+    for(let i=0;i<n;i++){
+      const t = (pos[i*3+axis] - mn) / range;     // 0=가까움/낮음(파랑) → 1=멀음/높음(빨강)
+      c.setHSL((1 - t) * 0.66, 0.95, 0.52);
+      arr[i*3]=c.r; arr[i*3+1]=c.g; arr[i*3+2]=c.b;
+    }
+  }
+  geom.getAttribute('color').needsUpdate = true;
+}
+
+/* ---------- view ---------- */
+function frameView(){
+  if(!points) return;
+  const wb = new THREE.Box3().setFromObject(points);
+  const center = new THREE.Vector3(); wb.getCenter(center);
+  const s = new THREE.Vector3(); wb.getSize(s);
+  const m = Math.max(s.x, s.y, s.z) || 1;
+  controls.target.copy(center);
+  camera.position.set(center.x + m*0.55, center.y + m*0.35, center.z + m*1.5);
+  camera.near = Math.max(diag/1000, 0.001);
+  camera.far  = diag * 60;
+  camera.updateProjectionMatrix();
+  controls.update();
+  grid.position.set(center.x, wb.min.y, center.z);
+  grid.scale.setScalar(Math.max(diag/10, 0.001));
+  axes.scale.setScalar(diag * 0.15);
+}
+
+function applyFlip(){ pointsGroup.rotation.x = state.flip ? Math.PI : 0; }
+
+/* ---------- measure ---------- */
+function setupMeasure(){
+  const el = renderer.domElement;
+  el.addEventListener('pointerdown', e => { downPos = {x:e.clientX, y:e.clientY}; });
+  el.addEventListener('pointerup', e => {
+    if(!state.measure || !points || !downPos) return;
+    if(Math.hypot(e.clientX-downPos.x, e.clientY-downPos.y) > 6) return; // 드래그(회전)는 무시
+    pick(e);
+  });
+}
+
+function pick(e){
+  const rect = renderer.domElement.getBoundingClientRect();
+  mouse.x = ((e.clientX-rect.left)/rect.width)*2 - 1;
+  mouse.y = -((e.clientY-rect.top)/rect.height)*2 + 1;
+  raycaster.setFromCamera(mouse, camera);
+  raycaster.params.Points.threshold = diag * 0.005;
+  const hits = raycaster.intersectObject(points, false);
+  if(!hits.length) return;
+  addMarker(hits[0].point.clone());
+}
+
+function addMarker(p){
+  if(markers.length >= 2) clearMeasure();
+  const s = new THREE.Mesh(
+    new THREE.SphereGeometry(diag*0.007, 16, 16),
+    new THREE.MeshBasicMaterial({ color:0x36d6c3 })
+  );
+  s.position.copy(p); scene.add(s); markers.push(s);
+  const out = document.getElementById('measure-out');
+  if(markers.length === 2){
+    const a = markers[0].position, b = markers[1].position;
+    measureLine = new THREE.Line(
+      new THREE.BufferGeometry().setFromPoints([a, b]),
+      new THREE.LineBasicMaterial({ color:0x36d6c3 })
+    );
+    scene.add(measureLine);
+    if(out) out.textContent = `측정 거리: ${a.distanceTo(b).toFixed(2)} (metric depth 근사 단위)`;
+  } else if(out){
+    out.textContent = '두 번째 점을 클릭하세요…';
+  }
+}
+
+function clearMeasure(){
+  markers.forEach(m => scene.remove(m)); markers = [];
+  if(measureLine){ scene.remove(measureLine); measureLine = null; }
+}
+
+/* ---------- UI ---------- */
+function setupUI(){
+  document.getElementById('ui-size').addEventListener('input', e => {
+    state.size = +e.target.value; if(material) material.size = state.size;
+  });
+  document.getElementById('ui-color').addEventListener('change', e => {
+    state.colorMode = e.target.value; applyColorMode();
+  });
+  document.getElementById('ui-bg').addEventListener('change', e => {
+    scene.background = new THREE.Color(e.target.value === 'light' ? 0xf2f4f8 : 0x0a0d13);
+  });
+  bindToggle('ui-grid', v => grid.visible = v);
+  bindToggle('ui-axes', v => axes.visible = v);
+  bindToggle('ui-flip', v => { state.flip = v; applyFlip(); frameView(); });
+  bindToggle('ui-measure', v => {
+    state.measure = v;
+    const h = document.getElementById('hint');
+    h.classList.toggle('show', v);
+    h.textContent = '측정 모드: 점 두 개를 클릭하면 거리가 표시됩니다';
+    if(!v){ clearMeasure(); const out = document.getElementById('measure-out'); if(out) out.textContent = ''; }
+  });
+  document.getElementById('ui-reset').addEventListener('click', frameView);
+  document.getElementById('ui-shot').addEventListener('click', screenshot);
+  document.getElementById('ui-load').addEventListener('click', () => document.getElementById('file').click());
+}
+
+function bindToggle(id, fn){
+  const el = document.getElementById(id);
+  el.addEventListener('click', () => { const v = !el.classList.contains('on'); el.classList.toggle('on', v); fn(v); });
+}
+
+function setupDnD(){
+  const drop = document.getElementById('drop');
+  ['dragenter','dragover'].forEach(ev => addEventListener(ev, e => { e.preventDefault(); drop.classList.add('dragging'); }));
+  ['dragleave','drop'].forEach(ev => addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('dragging'); }));
+  addEventListener('drop', e => { const f = e.dataTransfer.files[0]; if(f) readFile(f); });
+  document.getElementById('pick').addEventListener('click', () => document.getElementById('file').click());
+  document.getElementById('file').addEventListener('change', e => { const f = e.target.files[0]; if(f) readFile(f); });
+}
+
+function updateInfo(name, count){
+  const wb = new THREE.Box3().setFromObject(points);
+  const s = new THREE.Vector3(); wb.getSize(s);
+  document.getElementById('info').innerHTML =
+    `<b>${name}</b><br>점 개수: ${count.toLocaleString()}<br>` +
+    `범위(approx): X ${s.x.toFixed(2)} · Y ${s.y.toFixed(2)} · Z ${s.z.toFixed(2)}<br>` +
+    `<span id="measure-out"></span>`;
+}
+
+function screenshot(){
+  renderer.render(scene, camera);
+  const a = document.createElement('a');
+  a.href = renderer.domElement.toDataURL('image/png');
+  a.download = 'pointcloud_view.png';
+  a.click();
+}
+</script>
+</body>
+</html>
